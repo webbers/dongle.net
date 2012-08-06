@@ -1,0 +1,63 @@
+﻿.wswitchbutton
+{
+    position:absolute;
+    left:-9999px;
+}
+
+.wswitchbutton-control
+{
+    height: 21px;
+    display: inline-block;
+    margin: 3px;
+    *position: relative !important;
+}
+
+.wswitchbutton-control div
+{
+    float: left;
+    cursor: pointer;
+}
+
+.wswitchbutton-control .button
+{
+    width: 47px;
+    height: 21px;
+    background: url(images/wswitchbutton.png);
+}
+.wswitchbutton-control .button[disabled], .wswitchbutton-control .button-disabled
+{
+    width: 47px;
+    height: 21px;
+    background: url(images/wswitchbutton-disabled.png);
+}
+.wswitchbutton-control .left, .wswitchbutton-control .right
+{
+    padding: 0 5px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.wswitchbutton-checked
+{
+    background-position: 0px;
+}
+
+.wswitchbutton-unchecked
+{
+    background-position: -25px;
+}
+
+.wswitchbutton-checked[disabled=disabled]
+{
+    background-position: 0px;
+}
+
+.wswitchbutton-unchecked[disabled=disabled]
+{
+    background-position: -25px;
+}

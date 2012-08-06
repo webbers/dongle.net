@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2D5FCAFA-852A-4880-9302-C3F99919ADBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUtils", "WebUtils\WebUtils.csproj", "{56CF536E-2136-4E13-B987-2A76304BEC08}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{625036F7-4951-4AFD-A91D-C662D54277C5}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+		WebUtils.vsmdi = WebUtils.vsmdi
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUtils.Tests", "WebUtils.Tests\WebUtils.Tests.csproj", "{70AA16AE-F8CF-4B5C-B2E5-6F00212C54C3}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = WebUtils.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Publish|Any CPU = Publish|Any CPU
+		Publish|Mixed Platforms = Publish|Mixed Platforms
+		Publish|x86 = Publish|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56CF536E-2136-4E13-B987-2A76304BEC08}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{56CF536E-2136-4E13-B987-2A76304BEC08}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{56CF536E-2136-4E13-B987-2A76304BEC08}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{56CF536E-2136-4E13-B987-2A76304BEC08}.Debug|x86.ActiveCfg = Debug|x86
+		{56CF536E-2136-4E13-B987-2A76304BEC08}.Debug|x86.Build.0 = Debug|x86
+		{56CF536E-2136-4E13-B987-2A76304BEC08}.Publish|Any CPU.ActiveCfg = Publish|x86
+		{56CF536E-2136-4E13-B987-2A76304BEC08}.Publish|Mixed Platforms.ActiveCfg = Publish|x86
+		{56CF536E-2136-4E13-B987-2A76304BEC08}.Publish|Mixed Platforms.Build.0 = Publish|x86
+		{56CF536E-2136-4E13-B987-2A76304BEC08}.Publish|x86.ActiveCfg = Publish|x86
+		{56CF536E-2136-4E13-B987-2A76304BEC08}.Publish|x86.Build.0 = Publish|x86
+		{56CF536E-2136-4E13-B987-2A76304BEC08}.Release|Any CPU.ActiveCfg = Release|x86
+		{56CF536E-2136-4E13-B987-2A76304BEC08}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{56CF536E-2136-4E13-B987-2A76304BEC08}.Release|Mixed Platforms.Build.0 = Release|x86
+		{56CF536E-2136-4E13-B987-2A76304BEC08}.Release|x86.ActiveCfg = Release|x86
+		{56CF536E-2136-4E13-B987-2A76304BEC08}.Release|x86.Build.0 = Release|x86
+		{70AA16AE-F8CF-4B5C-B2E5-6F00212C54C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70AA16AE-F8CF-4B5C-B2E5-6F00212C54C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70AA16AE-F8CF-4B5C-B2E5-6F00212C54C3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{70AA16AE-F8CF-4B5C-B2E5-6F00212C54C3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{70AA16AE-F8CF-4B5C-B2E5-6F00212C54C3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{70AA16AE-F8CF-4B5C-B2E5-6F00212C54C3}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
+		{70AA16AE-F8CF-4B5C-B2E5-6F00212C54C3}.Publish|Any CPU.Build.0 = Publish|Any CPU
+		{70AA16AE-F8CF-4B5C-B2E5-6F00212C54C3}.Publish|Mixed Platforms.ActiveCfg = Publish|Any CPU
+		{70AA16AE-F8CF-4B5C-B2E5-6F00212C54C3}.Publish|Mixed Platforms.Build.0 = Publish|Any CPU
+		{70AA16AE-F8CF-4B5C-B2E5-6F00212C54C3}.Publish|x86.ActiveCfg = Publish|Any CPU
+		{70AA16AE-F8CF-4B5C-B2E5-6F00212C54C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70AA16AE-F8CF-4B5C-B2E5-6F00212C54C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70AA16AE-F8CF-4B5C-B2E5-6F00212C54C3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{70AA16AE-F8CF-4B5C-B2E5-6F00212C54C3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{70AA16AE-F8CF-4B5C-B2E5-6F00212C54C3}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{70AA16AE-F8CF-4B5C-B2E5-6F00212C54C3} = {2D5FCAFA-852A-4880-9302-C3F99919ADBA}
+	EndGlobalSection
+EndGlobal

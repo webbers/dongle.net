@@ -1,0 +1,121 @@
+img
+{
+    border: none;
+}
+
+.wslider a
+{
+    color: #fff;
+}
+
+.wslider
+{
+    list-style: none;
+    overflow: hidden;
+    position: relative;
+    background-color: #333;
+    height: 400px;
+    width: 600px;
+	font-family: arial, sans-serif
+}
+
+.wslider li
+{
+    list-style: none;
+}
+
+.wslider .items
+{
+    margin: 0;
+	padding: 0;
+    list-style: none;
+}
+
+.wslider .items li
+{
+    position: absolute;
+    overflow: hidden;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    background: url(images/loader.gif) center center no-repeat #333;
+    margin: 0;
+    padding: 0;
+}
+
+.wslider .items li h2
+{
+    font-size: 2em;
+    font-weight: normal;
+    margin: 0 0 5px;
+    padding: 10px;
+}
+
+.wslider .description
+{
+    font-size: 1.2em;
+    padding: 0px;
+    margin: 0;
+    line-height: 1.6em;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    background: #111;
+}
+
+.wslider .anchor
+{
+    background-color: #f73769;
+    display: inline;
+    font-weight: bold;
+    padding: 5px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.wslider .description div
+{
+    padding: 10px;
+}
+
+
+.wslider .bullets
+{
+    position: absolute;
+    left: 50%;
+    bottom: 7px;
+}
+
+.wslider .bullets ul
+{
+    position: relative;
+    left: -50%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.wslider .bullets ul li
+{
+    float: left;
+    margin-left: 5px;
+}
+.wslider .bullets div
+{
+    background-image: url(images/bullet.png);
+    display: block;
+    width: 16px;
+    height: 16px;
+	cursor: pointer;
+	overflow: hidden;
+}
+.wslider .bullets .selected div
+{
+    background-image: url(images/bullet-selected.png);
+}
+
+.wslider p
+{
+    line-height: 125%;
+}

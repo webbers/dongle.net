@@ -1,0 +1,40 @@
+.color_picker
+{
+	background: url('drop.png');
+	width: 45px;
+	height: 35px;
+	display: block;
+	float: left;
+}
+
+.color_picker div
+{
+  height: 27px;
+  width: 27px;
+  padding: 0 !important;
+  margin: 3px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  line-height: 16px;
+}
+
+div#color_selector
+{
+  width: 104px;
+  position: absolute;
+  border: 1px solid #999999;
+  background-color: #EEEEEE;
+  padding: 2px;
+  z-index: 99999;
+}
+
+div.color_swatch
+{
+  height: 20px;
+  width: 20px;
+  border: none;
+  margin: 3px;
+  float: left;
+  cursor: pointer;
+  line-height: 12px;
+}

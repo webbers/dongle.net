@@ -1,0 +1,29 @@
+.wsimplegrid-filter-icon, .wsimplegrid-filter-icon-active
+{
+	background: url('img/filter-icon.png') no-repeat;
+	width: 12px;
+	height: 13px;
+	display: inline-block;
+	_display: inline;
+	*display: inline;
+	zoom: 1;
+	float:left;
+	*float:none;
+	position:relative;
+	cursor:pointer;
+}
+.wsimplegrid-filter-icon-active
+{
+	background: url('img/filter-icon-active.png') no-repeat;
+}
+.wsimplegrid-filter-panel
+{
+	background:red;
+	position: absolute;
+	margin: 0 auto;
+	background-color: white;
+	border: 1px solid #B6BCC8;
+	-webkit-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3);
+	box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3);
+}

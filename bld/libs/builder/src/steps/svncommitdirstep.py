@@ -1,0 +1,25 @@
+from steps.abstractstep import *
+from util import *
+
+class SvnCommitDirStep(AbstractStep):
+    """Svn Commit Dir Step"""
+
+    def __init__( self, dir, add ):
+        AbstractStep.__init__( self, "Svn Commit Dir" )
+        
+        self.dir = dir
+        self.add = add
+
+    def do( self ):
+        self.reporter.message( "COMMIT DIR: %s" % self.dir )
+        addResult = True
+        if self.add:
+            command = "svn add --force *.*"
+            addResult = ExecProg( command, self.reporter, self.dir ) == 0
+            
+        if addResult :
+            commitMessage = "Commited by Build"
+            command = "svn commit -m \"%s\"" % ( commitMessage )
+            self.reporter.message( "SVN COMMIT DIR: %s" % self.dir )
+            return ExecProg( command, self.reporter, self.dir ) == 0
+        return False

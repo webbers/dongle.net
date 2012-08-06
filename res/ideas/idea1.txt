@@ -1,0 +1,28 @@
+public static string GetSha256Checksum(string file)
+{
+	using (FileStream stream = File.OpenRead(file))
+	{
+		SHA256Managed sha = new SHA256Managed();
+		byte[] checksum = sha.ComputeHash(stream);
+		return BitConverter.ToString(checksum).Replace("-", String.Empty);
+	}
+}
+
+public static string GetSha256Checksum(Stream stream)
+{
+	SHA256Managed sha = new SHA256Managed();
+	byte[] checksum = sha.ComputeHash(stream);
+	return BitConverter.ToString(checksum).Replace("-", String.Empty);
+}
+
+public static string GetMimeType(string fileName)
+{
+	string mimeType = "application/unknown";
+	string ext = Path.GetExtension(fileName).ToLower();
+	RegistryKey regKey = Registry.ClassesRoot.OpenSubKey(ext);
+	if (regKey != null && regKey.GetValue("Content Type") != null)
+	{
+		mimeType = regKey.GetValue("Content Type").ToString();
+	}
+	return mimeType;
+}

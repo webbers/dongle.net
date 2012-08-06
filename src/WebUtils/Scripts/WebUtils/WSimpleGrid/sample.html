@@ -1,0 +1,89 @@
+<html>
+<head>
+	<title>WSimple Grid</title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="wsimplegrid.js"></script>
+	<link rel="stylesheet" type="text/css" href="wsimplegrid.css">
+	<script>
+		$(document).ready(function()
+		{
+			$("#teste1").wsimplegrid({columnClass: "filtrar"});
+		});
+	</script>
+</head>
+
+<body>
+	<h1>Exemplo 1</h1>
+	<pre style="border: 1px #CCC dotted;">
+	
+	$(document).ready(function()
+	{
+		$("#teste1").wsimplegrid({columnClass: "filtrar"});
+	});
+	</pre>
+	<textarea cols="90" rows="13">
+		<table id='teste1'>
+			<thead>
+				<tr>
+					<th>Titutlo da coluna</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Conteudo da celula </td>
+				</tr>
+			</tbody>
+		</table>
+	</textarea>
+	<table id='teste1'>
+		<thead>
+			<tr>
+				<th class="filtrar">Operadoras</th>
+				<th>Numeros</th>
+				<th class="filtrar">Estado</th>
+				<th class="filtrar">Cidade</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Oi</td>
+				<td>88128832</td>
+				<td>RJ</td>
+				<td>Volta Redonda</td>
+			</tr>
+			<tr>
+				<td>Oi</td>
+				<td>88108834</td>
+				<td>SP</td>
+				<td>São Caetano</td>
+			</tr>
+			<tr>
+				<td>Vivo</td>
+				<td>98889221</td>
+				<td>MG</td>
+				<td>Juiz de Fora</td>
+			</tr>
+			<tr>
+				<td>Vivo</td>
+				<td>98889221</td>
+				<td>MG</td>
+				<td>Belo Horizonte</td>
+			</tr>
+			<tr>
+				<td>Tim</td>
+				<td>99345563</td>
+				<td>SP</td>
+				<td>Campinas</td>
+			</tr>
+			<tr>
+				<td>Nextel</td>
+				<td>78983342</td>
+				<td>BH</td>
+				<td>Salvador</td>
+			</tr>
+		</tbody>
+	</table>
+	<hr />
+</body>
+
+</html>

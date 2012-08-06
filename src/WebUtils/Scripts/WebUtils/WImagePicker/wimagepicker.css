@@ -1,0 +1,69 @@
+﻿.wimagepicker
+{
+    width: 340px;
+    padding: 5px;
+}
+
+.wimagepicker img, .wimagepicker .default-icon
+{
+    float: left;
+    width: 50px;
+	height: 50px;
+	float: left;
+}
+
+.wimagepicker .default-icon
+{
+	background: url(images/default-icon.png);
+}
+
+.wimagepicker div
+{
+    float: left;
+    margin-left: 5px;
+}
+.wimagepicker label
+{
+    display: block;
+}
+.wimagepicker input
+{
+    width: 200px;
+    height: 16px;
+    margin-top: 1px;
+    float: left;
+    text-align: right;
+}
+
+.wimagepicker a
+{
+    padding: 3px 5px;
+    margin-top: 1px;
+    display: block;
+    float: left;
+    border-left: none;
+}
+
+.image-selector-window
+{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #ffffff;
+}
+
+.image-selector
+{
+	margin: 0;
+	padding: 0;
+    background-color: #ffffff;
+}
+
+.image-selector .selected
+{
+    background-color: #336699;
+}
+
+#sb-wrapper { height:600px !important; min-width:600px !important; }
+#sb-wrapper-inner { height:600px !important; min-width:600px !important; }
