@@ -39,7 +39,6 @@ bp.addStep( SvnUpdateDirStep( projectRootDir ))
 
 bp.addStep( DelTreeStep( tempDir + '\\WebUtils\\testresults' ) )  
 bp.addStep( CopyFilteredFilesStep( WebUtilsFileFilter(), tempDir + "\\WebUtils", pubDir ) )
-bp.addStep( CopyDirStep( scriptDir, pubDir + '//Scripts' ) )
 bp.addStep( DelTreeStep( tempDir ) ) 
 bp.addStep( SvnImportDirStep( pubDir, repoUrl ) )
 bp.addStep( SvnCommitDirStep( assemblyDir, 1  ) )
