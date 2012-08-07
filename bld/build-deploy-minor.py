@@ -29,7 +29,7 @@ repoUrl = 'http://cronos:9090/gasrd/Web/pub/Dongle.Net/trunk'
 
 #--------------------------------------------------------------------
 bp = Builder( "Dongle.Net" )
-#bp.addStep( IncrementMinorVersionStep( assemblyPath, projectRootDir ) )
+bp.addStep( IncrementMinorVersionStep( assemblyPath, projectRootDir ) )
 
 bp.addStep( MainBuild() )
 
@@ -42,7 +42,7 @@ bp.addStep( CopyFilteredFilesStep( WebUtilsFileFilter(), tempDir + "\\WebUtils",
 bp.addStep( DelTreeStep( tempDir ) ) 
 bp.addStep( SvnImportDirStep( pubDir, repoUrl ) )
 bp.addStep( SvnCommitDirStep( assemblyDir, 1, "webbers", "webers123!"  ) )
-bp.addStep( SvnCreateTagDirStep( pubDir,  'http://cronos:9090/gasrd/Web/pub/Dongle.Net/tags', assemblyPath ) )
+bp.addStep( SvnCreateTagDirStep( repoUrl,  'http://cronos:9090/gasrd/Web/pub/Dongle.Net/tags', assemblyPath ) )
 
 if not bp.build():
     sys.exit(1)

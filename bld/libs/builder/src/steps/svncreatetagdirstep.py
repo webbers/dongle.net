@@ -25,5 +25,8 @@ class SvnCreateTagDirStep(AbstractStep):
         self.reporter.message( "TRUNK DIR: %s" % self.dirTrunk )
         self.reporter.message( "TAG DIR: %s" % self.dirTag )        
         commitMessage = "Created by Build"
-        command = 'svn copy ' + self.dirTrunk + ' ' + self.dirTag + ' -m \"'+commitMessage+'\"'
-        return ExecProg( command, self.reporter, self.dirTrunk ) == 0
+        command = 'svn copy "' + self.dirTrunk + '" "' + self.dirTag + '" -m \"'+commitMessage+'\"'
+
+        self.reporter.message( "COMMAND: %s" % command )
+        
+        return ExecProg( command, self.reporter ) == 0
