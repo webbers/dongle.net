@@ -41,7 +41,7 @@ bp.addStep( DelTreeStep( tempDir + '\\WebUtils\\testresults' ) )
 bp.addStep( CopyFilteredFilesStep( WebUtilsFileFilter(), tempDir + "\\WebUtils", pubDir ) )
 bp.addStep( DelTreeStep( tempDir ) ) 
 bp.addStep( SvnImportDirStep( pubDir, repoUrl ) )
-bp.addStep( SvnCommitDirStep( assemblyDir, 1, "webbers", "webers123!"  ) )
+bp.addStep( SvnCommitDirStep( assemblyDir, 1, "buildwebbers", "webers123!"  ) )
 bp.addStep( SvnCreateTagDirStep( repoUrl,  'http://cronos:9090/gasrd/Web/pub/Dongle.Net/tags', assemblyPath ) )
 
 if not bp.build():
