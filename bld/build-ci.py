@@ -7,6 +7,7 @@ import setlibspath
 from mainbuild import *
 from steps.incrementbuildversionstep import *
 from steps.svncommitdirstep import *
+from steps.svnimportdirstep import *
 from steps.runcommandstep import *
 from filters.pythonfilefilter import *
 from filters.csbinaryfilefiltertests import *
@@ -33,13 +34,12 @@ bp.addStep( MainBuild() )
 
 bp.addStep( SvnDeleteStep('http://cronos:9090/gasrd/Web/pub/WebUtils/trunk'))
 bp.addStep( DelTreeStep( pubDir ) )
-bp.addStep( SvnUpdateDirStep( projectRootDir ))
+bp.addStep( SvnUpdateDirStep( projectRootDir ) )
 
 bp.addStep( DelTreeStep( tempDir + '\\WebUtils\\testresults' ) )  
 bp.addStep( CopyFilteredFilesStep( WebUtilsFileFilter(), tempDir + "\\WebUtils", pubDir + "//Bin" ) )
-bp.addStep( CopyDirStep( scriptDir, pubDir + '//Scripts' ) )
 bp.addStep( DelTreeStep( tempDir ) ) 
-bp.addStep( SvnCommitDirStep( pubDir, 1  ) )
+bp.addStep( SvnImportDirStep( pubDir, 'http://cronos:9090/gasrd/Web/pub/WebUtils/trunk' ) )
 
 if not bp.build():
     sys.exit(1)

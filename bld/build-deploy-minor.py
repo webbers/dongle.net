@@ -39,7 +39,7 @@ bp.addStep( DelTreeStep( tempDir + '\\WebUtils\\testresults' ) )
 bp.addStep( CopyFilteredFilesStep( WebUtilsFileFilter(), tempDir + "\\WebUtils", pubDir + "//Bin" ) )
 bp.addStep( CopyDirStep( scriptDir, pubDir + '//Scripts' ) )
 bp.addStep( DelTreeStep( tempDir ) ) 
-bp.addStep( SvnCommitDirStep( pubDir, 1  ) )
+bp.addStep( SvnImportDirStep( pubDir, 'http://cronos:9090/gasrd/Web/pub/WebUtils/trunk' ) )
 bp.addStep( SvnCommitDirStep( assemblyDir, 1  ) )
 bp.addStep( SvnCreateTagDirStep( pubDir,  'http://cronos:9090/gasrd/Web/pub/WebUtils/tags', assemblyPath ) )
 
