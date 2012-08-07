@@ -99,6 +99,7 @@ publish
 # Others
 [Bb]in
 [Oo]bj
+[Pp]ub
 sql
 TestResults
 *.Cache
