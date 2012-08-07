@@ -7,6 +7,7 @@ import setlibspath
 from mainbuild import *
 from steps.incrementrevisionversionstep import *
 from steps.svncommitdirstep import *
+from steps.svnimportdirstep import *
 from steps.svncreatetagdirstep import *
 from steps.runcommandstep import *
 from filters.pythonfilefilter import *
