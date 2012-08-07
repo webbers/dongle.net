@@ -28,7 +28,7 @@ tempDir = os.path.abspath( os.path.join( os.path.dirname( __file__ ), '../temp' 
 repoUrl = 'http://cronos:9090/gasrd/Web/pub/Dongle.Net/trunk'
 
 #--------------------------------------------------------------------
-bp = Builder( "Gbwcd" )
+bp = Builder( "Dongle.Net" )
 bp.addStep( IncrementRevisionVersionStep( assemblyPath, projectRootDir ) )
 
 bp.addStep( MainBuild() )
