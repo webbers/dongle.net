@@ -61,6 +61,15 @@ namespace WebUtils.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Usuário ou senha inválidos..
+        /// </summary>
+        internal static string BadUsernameOrPassword {
+            get {
+                return ResourceManager.GetString("BadUsernameOrPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Poucos segundos atrás.
         /// </summary>
         internal static string FewSecondsAgo {

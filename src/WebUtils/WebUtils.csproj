@@ -58,6 +58,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.DirectoryServices.Protocols" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
@@ -74,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mvc\Authentication\BadUsernameOrPasswordException.cs" />
     <Compile Include="Mvc\Authentication\LdapAuthenticator.cs" />
     <Compile Include="Mvc\Html\WDateTimeLabelExtensions.cs" />
     <Compile Include="Mvc\Authentication\IAuthenticator.cs" />

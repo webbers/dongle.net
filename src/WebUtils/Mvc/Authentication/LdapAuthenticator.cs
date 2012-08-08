@@ -1,49 +1,54 @@
-using System.DirectoryServices;
+using System.DirectoryServices.AccountManagement;
+using WebUtils.Resources;
 
 namespace WebUtils.Mvc.Authentication
 {
-    public class LdapAuthenticator: IAuthenticator
+    public class LdapAuthenticator : IAuthenticator
     {
         private readonly string _domain;
-        private readonly string _path;
+        private readonly string _container;
 
-        public LdapAuthenticator(string domain, string path)
+        public LdapAuthenticator(string domain, string container)
         {
             _domain = domain;
-            _path = path;
+            _container = container;
         }
 
         public virtual AuthenticatedUser Authenticate(string username, string password)
-        {       
-            try
+        {
+            if (!ValidateCredentials(username, password))
             {
-                var domainAndUsername = _domain + @"\" + username;
-                var entry = new DirectoryEntry(_path, domainAndUsername, password);
-                var search = new DirectorySearcher(entry) { Filter = "(SAMAccountName=" + username + ")" };
-
-                search.PropertiesToLoad.Add("cn");
-                search.PropertiesToLoad.Add("displayName");
-                search.PropertiesToLoad.Add("email");
-                var result = search.FindOne();
-
-                if (result != null)
-                {
-                    var email = result.Properties["email"].Count > 0 ? result.Properties["email"][0] : "";
-                    var name = result.Properties["displayName"].Count > 0 ? result.Properties["displayName"][0] : "";
-
-                    return new AuthenticatedUser
-                               {
-                                   Email = email.ToString(),
-                                   Name = name.ToString(),
-                                   UserName = username
-                               };
-                }
+                throw new BadUsernameOrPasswordException(WebUtilsResource.BadUsernameOrPassword);
             }
-            catch (DirectoryServicesCOMException)
+
+            var userPrincipal = GetUser(username);
+
+            return new AuthenticatedUser
             {
-            }
-            return null;
+                Email = userPrincipal.EmailAddress,
+                Name = userPrincipal.Name,
+                UserName = username
+            };
         }
 
+        public UserPrincipal GetUser(string username)
+        {
+            var principalContext = GetPrincipalContext();
+            var userPrincipal = UserPrincipal.FindByIdentity(principalContext, IdentityType.SamAccountName, username);
+            return userPrincipal;
+        }
+        public bool ValidateCredentials(string username, string password)
+        {
+            using (var principalContext = GetPrincipalContext())
+            {
+                return principalContext.ValidateCredentials(username, password);
+            }
+        }
+
+        private PrincipalContext GetPrincipalContext()
+        {
+            var principalContext = new PrincipalContext(ContextType.Domain, _domain, _container);
+            return principalContext;
+        }
     }
 }

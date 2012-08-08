@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,11 +6,14 @@ using MvcAuthorize.Tests.Mocks;
 using WebUtils.Mvc.Authentication;
 using WebUtilsTest.Tools;
 
-namespace WebUtilsTest.Mvc.Authentication
+namespace WebUtils.Tests.Mvc.Authentication
 {
     [TestClass]
     public class AuthenticationTest
     {
+        private const string Domain = "MIDGARD.LOCAL";
+        private const string Container = "dc=MIDGARD,dc=local";
+
         [TestMethod]
         public void TestAuthorized()
         {
@@ -80,5 +82,33 @@ namespace WebUtilsTest.Mvc.Authentication
 
             Assert.AreEqual("Afonso França de Oliveira", user.Name);
         }*/
+
+        [TestMethod]
+        public void TestLdapAuthenticatorGetUser()
+        {   //fixture setup
+            var sut = new LdapAuthenticator(Domain, Container);
+
+            //exercize
+            var result = sut.GetUser("rodrigo.rodrigues");
+
+            //verify outcome
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Rodrigo Aiala Feijolo Rodrigues", result.Name);
+
+            //teardown
+            result.Dispose();
+        }
+        [TestMethod]
+        public void TestLdapAuthenticatorValidateCredentials()
+        {
+            //fixture setup
+            var sut = new LdapAuthenticator(Domain, Container);
+
+            //exercize
+            var result = sut.ValidateCredentials("unknown.user", "");
+
+            //verify outcome
+            Assert.IsFalse(result);
+        }
     }
 }
