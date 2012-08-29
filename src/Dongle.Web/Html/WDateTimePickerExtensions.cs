@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
@@ -32,7 +33,17 @@ namespace Dongle.Web.Html
         {
             var attr = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
             attr.Add("class", "wdatetimepicker");
-            return htmlHelper.TextBox(name, modelMetadata.Model, attr);
+
+            var obj1 = (object)modelMetadata.NullDisplayText;
+            modelMetadata.EditFormatString = "{0:" + CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern + "}";
+            var format = modelMetadata.DisplayFormatString ?? modelMetadata.EditFormatString;
+            if (modelMetadata.Model != null && !string.IsNullOrEmpty(format))
+                obj1 = string.Format(CultureInfo.CurrentCulture, format, new object[1]
+                                                                             {
+                                                                                 modelMetadata.Model
+                                                                             });
+
+            return htmlHelper.TextBox(name, obj1, attr);
         }
     }
 }
