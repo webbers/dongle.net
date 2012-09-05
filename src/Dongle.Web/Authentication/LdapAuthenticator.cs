@@ -1,5 +1,4 @@
 using System.DirectoryServices.AccountManagement;
-using System.Web.Security;
 
 namespace Dongle.Web.Authentication
 {

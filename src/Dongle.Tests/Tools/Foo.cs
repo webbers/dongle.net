@@ -1,12 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using Dongle.Web.ModelAttributes;
 
 namespace Dongle.Tests.Tools
 {
     public class Foo
     {
-        [WEmail]
         public string Name { get; set; }
 
         [Display(Name="Idade")]
@@ -16,7 +14,6 @@ namespace Dongle.Tests.Tools
 
         public double Price { get; set; }
 
-        [WSwitchButton(LabelNo = "Não!", LabelYes = "Sim!")]
         public bool Enabled { get; set; }
 
         public Foo Parent { get; set; }

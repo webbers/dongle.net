@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Web.Script.Serialization;
+using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
 namespace Dongle.System.Tree
@@ -41,13 +41,13 @@ namespace Dongle.System.Tree
 
         #region Navigation
 
-        [ScriptIgnore, XmlIgnore]
+        [IgnoreDataMember, XmlIgnore]
         public TreeNode<T> Parent { get { return _parent; } }
 
         /// <summary>
         /// returns all siblings as a NodeList<T>. If this is a root node, the function returns null.
         /// </summary>
-        [ScriptIgnore, XmlIgnore]
+        [IgnoreDataMember, XmlIgnore]
         public TreeNodeCollection<T> Siblings
         {
             get { return _parent != null ? _parent.Nodes : null; }
@@ -62,7 +62,7 @@ namespace Dongle.System.Tree
         /// <summary>
         /// The Root object this Node belongs to. never null
         /// </summary>
-        [ScriptIgnore, XmlIgnore]
+        [IgnoreDataMember, XmlIgnore]
         public TreeRoot<T> Root { get; private set; }
 
         public void SetRootLink(TreeRoot<T> root)
@@ -80,10 +80,10 @@ namespace Dongle.System.Tree
             }
         }
 
-        [ScriptIgnore, XmlIgnore]
+        [IgnoreDataMember, XmlIgnore]
         public bool HasChildren { get { return _nodes != null && _nodes.Count != 0; } }
 
-        [ScriptIgnore, XmlIgnore]
+        [IgnoreDataMember, XmlIgnore]
         public bool IsRoot { get { return _parent == null; } }
 
         public bool IsAncestorOf(TreeNode<T> node)
@@ -105,7 +105,7 @@ namespace Dongle.System.Tree
             return !IsAncestorOf(node);
         }
 
-        [ScriptIgnore, XmlIgnore]
+        [IgnoreDataMember, XmlIgnore]
         public int Depth
         {
             get

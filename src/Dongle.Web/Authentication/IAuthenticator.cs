@@ -1,5 +1,3 @@
-using System.Web.Security;
-
 namespace Dongle.Web.Authentication
 {
     public interface IAuthenticator
