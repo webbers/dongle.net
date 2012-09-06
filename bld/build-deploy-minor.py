@@ -45,9 +45,9 @@ bp.addStep( DelTreeStep( tempDir ) )
 
 bp.addStep( SvnDeleteStep(repoUrl))
 bp.addStep( SvnImportDirStep( pubDir, repoUrl ) )
-bp.addStep( SvnCreateTagDirStep( repoUrl,  'http://cronos:9090/gasrd/Web/pub/Dongle.Net/tags', assemblyPath ) )
+bp.addStep( SvnCreateTagDirStep( repoUrl,  'http://cronos:9090/gasrd/Web/pub/Dongle.Net/tags', assemblyPath1 ) )
 
-bp.addStep( SvnCommitDirStep( assemblyDir, 1, sys.argv[1], sys.argv[2]  ) )
+bp.addStep( SvnCommitDirStep( assemblyDir1, 1, sys.argv[1], sys.argv[2]  ) )
 
 if not bp.build():
     sys.exit(1)

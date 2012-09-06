@@ -13,9 +13,6 @@ class IncrementRevisionVersionStep(AbstractStep):
         self.projectRoot = projectRoot
 
     def do( self ):
-        process = subprocess.Popen( "svnversion", cwd=self.projectRoot, stdout=subprocess.PIPE )
-        svnrevision = re.search( '\d+', process.stdout.readline() ).group(0)
-        
         f = open(self.assemblyPath, 'r')
         content = f.read()
         f.close()
@@ -25,10 +22,10 @@ class IncrementRevisionVersionStep(AbstractStep):
         major = version.group(1);
         minor = version.group(2);
         revision = int(version.group(3)) + 1;
-        build = svnrevision;
+        build = 0;
         
         old = version.group(0)
-        new = '"' + major + "." + minor + "." + str( revision ) + "." + build + '"'
+        new = '"' + major + "." + minor + "." + str( revision ) + '.0"'
         
         content = content.replace(old,new)
         
