@@ -35,10 +35,10 @@ namespace Dongle.Web.Html
             attr.Add("class", "wdatetimepicker");
 
             var obj1 = (object)modelMetadata.NullDisplayText;
-            modelMetadata.EditFormatString = "{0:" + CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern + "}";
+            modelMetadata.EditFormatString = "{0:G}";
             var format = modelMetadata.DisplayFormatString ?? modelMetadata.EditFormatString;
             if (modelMetadata.Model != null && !string.IsNullOrEmpty(format))
-                obj1 = string.Format(CultureInfo.CurrentCulture, format, new object[1]
+                obj1 = string.Format(CultureInfo.CurrentCulture, format, new[]
                                                                              {
                                                                                  modelMetadata.Model
                                                                              });

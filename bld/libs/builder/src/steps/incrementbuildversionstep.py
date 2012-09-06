@@ -13,9 +13,6 @@ class IncrementBuildVersionStep(AbstractStep):
         self.projectRoot = projectRoot
 
     def do( self ):
-        process = subprocess.Popen( "svnversion", cwd=self.projectRoot, stdout=subprocess.PIPE )
-        revision = re.search( '\d+', process.stdout.readline() ).group(0)
-        
         f = open(self.assemblyPath, 'r')
         content = f.read()
         f.close()

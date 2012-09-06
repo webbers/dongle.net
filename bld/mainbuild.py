@@ -27,14 +27,14 @@ class MainBuild( Builder ):
 
     def build( self ):
         tempDir  = os.path.join( os.path.dirname( __file__ ), '../temp' )
-        consoleTempDir  = os.path.join( os.path.dirname( __file__ ), '../temp/Dongle.Web/' )
+        consoleTempDir  = os.path.join( os.path.dirname( __file__ ), '../temp/Dongle/' )
         pubDir = os.path.join( os.path.dirname( __file__ ), '../pub' )
         resDir = os.path.join( os.path.dirname( __file__ ), '../res' )
         consoleProjectPath = os.path.join( os.path.dirname( __file__ ), '../src/Dongle.sln' )
 		
         self.addStep( DelTreeStep( tempDir ) )        
-        self.addStep( SvnUpdateDirStep( os.path.join( os.path.dirname( __file__ ), '../' ) ) )
         self.addStep( CsProjectBuildStep( consoleProjectPath, consoleTempDir ) )        
+        self.addStep( RunCsUnitTestStep( consoleTempDir + 'Dongle.Tests.dll' ) )
         self.addStep( RunCsUnitTestStep( consoleTempDir + 'Dongle.Web.Tests.dll' ) )
         
                 

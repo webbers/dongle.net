@@ -100,6 +100,7 @@ publish
 [Bb]in
 [Oo]bj
 [Pp]ub
+[Tt]emp
 sql
 TestResults
 *.Cache

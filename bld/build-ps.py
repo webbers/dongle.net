@@ -14,9 +14,7 @@ bp = Builder( "Dongle" )
 rootPath = os.path.join( os.path.dirname( __file__ ), '../' )
 tempDir  = os.path.join( os.path.dirname( __file__ ), '../temp' )
 
-bp.addStep( CheckUnversionedFilesStep( rootPath ) )
 bp.addStep( MainBuild() )
-bp.addStep( TortoiseSvnCommitStep( rootPath ) )
 bp.addStep( DelTreeStep( tempDir ) )  
 
 if not bp.build():
