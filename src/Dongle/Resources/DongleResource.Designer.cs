@@ -61,7 +61,7 @@ namespace Dongle.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Poucos segundos atrás.
+        ///   Looks up a localized string similar to Few seconds ago.
         /// </summary>
         internal static string FewSecondsAgo {
             get {
@@ -70,7 +70,7 @@ namespace Dongle.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Não é possível ler o arquivo.
+        ///   Looks up a localized string similar to Is not possible read file.
         /// </summary>
         internal static string ItsNotPossibleReadFile {
             get {
@@ -79,7 +79,7 @@ namespace Dongle.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to não.
+        ///   Looks up a localized string similar to no.
         /// </summary>
         internal static string No {
             get {
@@ -88,7 +88,7 @@ namespace Dongle.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 dia atrás.
+        ///   Looks up a localized string similar to 1 day ago.
         /// </summary>
         internal static string OneDayAgo {
             get {
@@ -97,7 +97,7 @@ namespace Dongle.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 hora atrás.
+        ///   Looks up a localized string similar to 1hour ago.
         /// </summary>
         internal static string OneHourAgo {
             get {
@@ -106,7 +106,7 @@ namespace Dongle.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 minuto atrás.
+        ///   Looks up a localized string similar to 1 minute ago.
         /// </summary>
         internal static string OneMinuteAgo {
             get {
@@ -115,7 +115,7 @@ namespace Dongle.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Valor inválido para o campo {0}.
+        ///   Looks up a localized string similar to Invalid value for field {0}.
         /// </summary>
         internal static string TheXFieldWasInvalid {
             get {
@@ -124,7 +124,7 @@ namespace Dongle.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} dias atrás.
+        ///   Looks up a localized string similar to {0} days ago.
         /// </summary>
         internal static string XDaysAgo {
             get {
@@ -133,7 +133,7 @@ namespace Dongle.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} horas atrás.
+        ///   Looks up a localized string similar to {0} hours ago.
         /// </summary>
         internal static string XHoursAgo {
             get {
@@ -142,7 +142,7 @@ namespace Dongle.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} minutos atrás.
+        ///   Looks up a localized string similar to {0} minutes ago.
         /// </summary>
         internal static string XMinutesAgo {
             get {
@@ -151,7 +151,7 @@ namespace Dongle.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to sim.
+        ///   Looks up a localized string similar to yes.
         /// </summary>
         internal static string Yes {
             get {
@@ -160,7 +160,7 @@ namespace Dongle.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ontem.
+        ///   Looks up a localized string similar to Yesterday.
         /// </summary>
         internal static string Yesterday {
             get {

@@ -118,39 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FewSecondsAgo" xml:space="preserve">
-    <value>Poucos segundos atrás</value>
+    <value>Few seconds ago</value>
   </data>
   <data name="ItsNotPossibleReadFile" xml:space="preserve">
-    <value>Não é possível ler o arquivo</value>
+    <value>Is not possible read file</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>não</value>
+    <value>no</value>
   </data>
   <data name="OneDayAgo" xml:space="preserve">
-    <value>1 dia atrás</value>
+    <value>1 day ago</value>
   </data>
   <data name="OneHourAgo" xml:space="preserve">
-    <value>1 hora atrás</value>
+    <value>1hour ago</value>
   </data>
   <data name="OneMinuteAgo" xml:space="preserve">
-    <value>1 minuto atrás</value>
+    <value>1 minute ago</value>
   </data>
   <data name="TheXFieldWasInvalid" xml:space="preserve">
-    <value>Valor inválido para o campo {0}</value>
+    <value>Invalid value for field {0}</value>
   </data>
   <data name="XDaysAgo" xml:space="preserve">
-    <value>{0} dias atrás</value>
+    <value>{0} days ago</value>
   </data>
   <data name="XHoursAgo" xml:space="preserve">
-    <value>{0} horas atrás</value>
+    <value>{0} hours ago</value>
   </data>
   <data name="XMinutesAgo" xml:space="preserve">
-    <value>{0} minutos atrás</value>
+    <value>{0} minutes ago</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>sim</value>
+    <value>yes</value>
   </data>
   <data name="Yesterday" xml:space="preserve">
-    <value>Ontem</value>
+    <value>Yesterday</value>
   </data>
 </root>

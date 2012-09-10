@@ -6,12 +6,12 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WebUtils")]
+[assembly: AssemblyTitle("Dongle")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Webers")]
-[assembly: AssemblyProduct("WebUtils")]
-[assembly: AssemblyCopyright("Copyright © Webers 2011")]
+[assembly: AssemblyCompany("Webbers")]
+[assembly: AssemblyProduct("Dongle")]
+[assembly: AssemblyCopyright("Copyright © Webbers 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -44,7 +44,7 @@ using System.Resources;
 
 
 
-[assembly: NeutralResourcesLanguageAttribute("pt-BR")]
+[assembly: NeutralResourcesLanguageAttribute("en-US")]
 
 
 

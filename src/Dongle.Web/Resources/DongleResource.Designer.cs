@@ -61,7 +61,7 @@ namespace Dongle.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Usuário ou senha inválidos..
+        ///   Looks up a localized string similar to Bad username or password..
         /// </summary>
         internal static string BadUsernameOrPassword {
             get {
@@ -70,7 +70,7 @@ namespace Dongle.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Domínio inválido.
+        ///   Looks up a localized string similar to Invalid domain.
         /// </summary>
         internal static string InvalidDomain {
             get {
@@ -79,7 +79,7 @@ namespace Dongle.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-mail inválido.
+        ///   Looks up a localized string similar to Invalid e-mail.
         /// </summary>
         internal static string InvalidEmail {
             get {
@@ -88,7 +88,7 @@ namespace Dongle.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hexadecimal inválido.
+        ///   Looks up a localized string similar to Invalid hexadecimal.
         /// </summary>
         internal static string InvalidHexadecimal {
             get {
@@ -97,7 +97,7 @@ namespace Dongle.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Endereço IP inválido.
+        ///   Looks up a localized string similar to Invalid IP adress.
         /// </summary>
         internal static string InvalidIpAddress {
             get {
@@ -106,7 +106,7 @@ namespace Dongle.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Quantidade de caracteres inválida. Máximo de {0} caracteres..
+        ///   Looks up a localized string similar to Invalid string length. Max {0} characters..
         /// </summary>
         internal static string InvalidStringLength {
             get {
@@ -115,7 +115,7 @@ namespace Dongle.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to URL inválida.
+        ///   Looks up a localized string similar to Invalid URL.
         /// </summary>
         internal static string InvalidUrl {
             get {
@@ -124,7 +124,7 @@ namespace Dongle.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O valor deve estar entre {0} e {1}.
+        ///   Looks up a localized string similar to The value must be between {0} and {1}.
         /// </summary>
         internal static string TheValueMustBeBetween {
             get {
@@ -133,7 +133,7 @@ namespace Dongle.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Campo obrigatório.
+        ///   Looks up a localized string similar to Field required.
         /// </summary>
         internal static string ThisFieldIsRequired {
             get {
@@ -142,7 +142,7 @@ namespace Dongle.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Impossível acessar o servidor LDAP..
+        ///   Looks up a localized string similar to Unable to access LDAP server..
         /// </summary>
         internal static string UnableToAccessLdapServer {
             get {

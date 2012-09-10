@@ -98,12 +98,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DongleResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\DongleResource.pt-BR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DongleResource.pt-BR.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\DongleResource.en-US.resx" />
     <EmbeddedResource Include="Resources\DongleResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DongleResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DongleResource.pt-BR.resx">
+      <LastGenOutput>DongleResource.pt-BR.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
