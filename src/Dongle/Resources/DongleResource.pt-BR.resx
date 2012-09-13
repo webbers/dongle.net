@@ -135,6 +135,9 @@
   <data name="OneMinuteAgo" xml:space="preserve">
     <value>1 minuto atrás</value>
   </data>
+  <data name="SourceDirectoryNotFound" xml:space="preserve">
+    <value>Diretório de origem não existe ou não pode ser encontrado</value>
+  </data>
   <data name="TheXFieldWasInvalid" xml:space="preserve">
     <value>Valor inválido para o campo {0}</value>
   </data>

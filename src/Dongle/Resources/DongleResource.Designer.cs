@@ -97,7 +97,7 @@ namespace Dongle.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1hour ago.
+        ///   Looks up a localized string similar to 1 hour ago.
         /// </summary>
         internal static string OneHourAgo {
             get {
@@ -111,6 +111,15 @@ namespace Dongle.Resources {
         internal static string OneMinuteAgo {
             get {
                 return ResourceManager.GetString("OneMinuteAgo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source directory does not exist or could not be found.
+        /// </summary>
+        internal static string SourceDirectoryNotFound {
+            get {
+                return ResourceManager.GetString("SourceDirectoryNotFound", resourceCulture);
             }
         }
         

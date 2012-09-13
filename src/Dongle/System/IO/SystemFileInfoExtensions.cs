@@ -2,6 +2,8 @@
 using System.IO;
 using System.Text;
 
+using Dongle.Resources;
+
 namespace Dongle.System.IO
 {
     public static class SystemFileInfoExtensions
@@ -129,6 +131,38 @@ namespace Dongle.System.IO
                 return parent;
             }
             return parent.Closest(name);
+        }
+
+        public static void CopyTo( this DirectoryInfo srcDir, string destDir, bool copySubDirs = true)
+        {
+            srcDir.Refresh();
+
+            if (!srcDir.Exists)
+            {
+                throw new DirectoryNotFoundException(DongleResource.SourceDirectoryNotFound + ": " + srcDir.FullName);
+            }
+
+            if (!Directory.Exists(destDir))
+            {
+                new DirectoryInfo(destDir).CreateRecursively();
+            }
+
+            var files = srcDir.GetFiles();
+            foreach (var file in files)
+            {
+                var temppath = Path.Combine(destDir, file.Name);
+                file.CopyTo(temppath, false);
+            }
+
+            if (copySubDirs)
+            {
+                var dirs = srcDir.GetDirectories();
+                foreach (var dir in dirs)
+                {
+                    var newDir = new DirectoryInfo(Path.Combine(destDir, dir.Name));
+                    dir.CopyTo(newDir.FullName);
+                }
+            }
         }
     }
 }

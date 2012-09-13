@@ -1,0 +1,36 @@
+﻿{
+	"name": "dongle.js",
+	"title": "Dongle.Js",
+	"description": "A boosted util library",
+	"version": "0.8.1.7",
+	"homepage": "https://github.com/webbers/dongle.js",
+	"author": {
+		"name": "Webbers Team",
+		"url": "https://github.com/webbers/dongle.js/blob/master/AUTHORS.txt"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/webbers/dongle.js.git"
+	},
+	"bugs": {
+		"url": "https://github.com/webbers/dongle.js/issues"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "https://github.com/webbers/dongle.js/blob/master/MIT-LICENSE.txt"
+		}
+	],
+	"dependencies":
+	{
+	},
+	"devDependencies":
+	{
+	},
+	"keywords": []
+}
+
+
+
+
+

@@ -76,11 +76,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DongleResource.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\DongleResource.pt-BR.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DongleResource.pt-BR.resx</DependentUpon>
-    </Compile>
     <Compile Include="System\DateTimeExtensions.cs" />
     <Compile Include="System\EnumerableExtensions.cs" />
     <Compile Include="System\IO\Ftp\FtpDirectoryInfo.cs" />
@@ -96,10 +91,10 @@
     <Compile Include="System\Tree\TreeNode.cs" />
     <Compile Include="System\Tree\TreeRoot.cs" />
     <Compile Include="System\TypeExtensions.cs" />
-    <EmbeddedResource Include="Resources\DongleResource.pt-BR.resx">
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Resources\DongleResource.pt-BR.resx" />
+    <EmbeddedResource Include="Resources\DongleResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DongleResource.pt-BR.Designer.cs</LastGenOutput>
+      <LastGenOutput>DongleResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -110,11 +105,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Resources\DongleResource.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DongleResource.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

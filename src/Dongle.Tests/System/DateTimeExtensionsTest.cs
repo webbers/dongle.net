@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Globalization;
+using System.Threading;
+
 using Dongle.System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -9,9 +12,12 @@ namespace Dongle.Tests.System
     {
         private static DateTime _now = new DateTime(2011, 8, 15, 12, 30, 15);
 
-        [TestMethod]
+        [TestMethod, DeploymentItem(@"pt-BR\Dongle.resources.dll", "pt-BR")]
         public void TestToFriendlyString()
         {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-BR");
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
+
             AssertFriendlyString("14 ago (Ontem)", "Ontem", _now.AddDays(-1));
             AssertFriendlyString("10 ago (5 dias atrás)", "5 dias atrás", _now.AddDays(-5));
             AssertFriendlyString("05 ago", "10 dias atrás", _now.AddDays(-10));
@@ -24,6 +30,26 @@ namespace Dongle.Tests.System
             AssertFriendlyString("12:29 (Poucos segundos atrás)", "Poucos segundos atrás", _now.AddSeconds(-30));
             AssertFriendlyString("12:29 (1 minuto atrás)", "1 minuto atrás", _now.AddMinutes(-1));
             AssertFriendlyString("11:40 (50 minutos atrás)", "50 minutos atrás", _now.AddMinutes(-50));
+        }
+
+        [TestMethod]
+        public void TestToFriendlyStringEnglish()
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+
+            AssertFriendlyString("14 Aug (Yesterday)", "Yesterday", _now.AddDays(-1));
+            AssertFriendlyString("10 Aug (5 days ago)", "5 days ago", _now.AddDays(-5));
+            AssertFriendlyString("05 Aug", "10 days ago", _now.AddDays(-10));
+
+            AssertFriendlyString("8/15/2010 12:30:15 PM", "365 days ago", _now.AddYears(-1));
+
+            AssertFriendlyString("11:30 (1 hour ago)", "1 hour ago", _now.AddHours(-1));
+            AssertFriendlyString("07:30 (5 hours ago)", "5 hours ago", _now.AddHours(-5));
+
+            AssertFriendlyString("12:29 (Few seconds ago)", "Few seconds ago", _now.AddSeconds(-30));
+            AssertFriendlyString("12:29 (1 minute ago)", "1 minute ago", _now.AddMinutes(-1));
+            AssertFriendlyString("11:40 (50 minutes ago)", "50 minutes ago", _now.AddMinutes(-50));
         }
 
         [TestMethod]

@@ -130,7 +130,7 @@
     <value>Invalid hexadecimal</value>
   </data>
   <data name="InvalidIpAddress" xml:space="preserve">
-    <value>Invalid IP adress</value>
+    <value>Invalid IP address</value>
   </data>
   <data name="InvalidStringLength" xml:space="preserve">
     <value>Invalid string length. Max {0} characters.</value>

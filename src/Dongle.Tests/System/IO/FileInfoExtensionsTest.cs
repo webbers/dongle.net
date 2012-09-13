@@ -188,11 +188,26 @@ namespace Dongle.Tests.System.IO
             Assert.IsNull(directory.Closest("blablabla"));
         }
 
-
-        private static void CreateFoo()
+        [TestMethod]
+        public void CopyDirectory()
         {
             var directory = ApplicationPaths.RootDirectory;
-            var path1 = directory + "\\foo.bar";
+
+            var path1 = new DirectoryInfo(directory + @"\path\path");
+            path1.CreateRecursively();
+            CreateFoo(@"\path\path");
+            path1.CreateSubdirectory("path");
+
+            path1.CopyTo(directory + @"\moved");
+
+            Assert.IsTrue(File.Exists(directory + @"\moved\foo.bar"));
+            Assert.IsTrue(Directory.Exists(directory + @"\moved\path"));
+        }
+
+        private static void CreateFoo(string folder = "")
+        {
+            var directory = ApplicationPaths.RootDirectory;
+            var path1 = directory + @"\" + folder + @"\foo.bar";
 
             if (File.Exists(path1)) File.Delete(path1);
             using (var f = File.CreateText(path1))

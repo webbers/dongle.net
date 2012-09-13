@@ -97,7 +97,7 @@ namespace Dongle.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid IP adress.
+        ///   Looks up a localized string similar to Invalid IP address.
         /// </summary>
         internal static string InvalidIpAddress {
             get {

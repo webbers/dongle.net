@@ -130,10 +130,13 @@
     <value>1 day ago</value>
   </data>
   <data name="OneHourAgo" xml:space="preserve">
-    <value>1hour ago</value>
+    <value>1 hour ago</value>
   </data>
   <data name="OneMinuteAgo" xml:space="preserve">
     <value>1 minute ago</value>
+  </data>
+  <data name="SourceDirectoryNotFound" xml:space="preserve">
+    <value>Source directory does not exist or could not be found</value>
   </data>
   <data name="TheXFieldWasInvalid" xml:space="preserve">
     <value>Invalid value for field {0}</value>

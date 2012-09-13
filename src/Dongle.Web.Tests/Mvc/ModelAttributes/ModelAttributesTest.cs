@@ -17,7 +17,7 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
 
             var rules = attrib.GetClientValidationRules(null, null);
 
-            Assert.AreEqual("E-mail inválido", rules.First().ErrorMessage);
+            Assert.AreEqual("Invalid e-mail", rules.First().ErrorMessage);
         }
 
         [TestMethod]
@@ -29,7 +29,7 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
 
             var rules = attrib.GetClientValidationRules(null, null);
 
-            Assert.AreEqual("Hexadecimal inválido", rules.First().ErrorMessage);
+            Assert.AreEqual("Invalid hexadecimal", rules.First().ErrorMessage);
         }
 
         [TestMethod]
@@ -44,7 +44,7 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
 
             var rules = attrib.GetClientValidationRules(null, null);
 
-            Assert.AreEqual("Domínio inválido", rules.First().ErrorMessage);
+            Assert.AreEqual("Invalid domain", rules.First().ErrorMessage);
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
 
             var rules = attrib.GetClientValidationRules(null, null);
 
-            Assert.AreEqual("URL inválida", rules.First().ErrorMessage);
+            Assert.AreEqual("Invalid URL", rules.First().ErrorMessage);
         }
 
         [TestMethod]
@@ -70,7 +70,7 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
 
             var rules = attrib.GetClientValidationRules(null, null);
 
-            Assert.AreEqual("Endereço IP inválido", rules.First().ErrorMessage);
+            Assert.AreEqual("Invalid IP address", rules.First().ErrorMessage);
         }
 
         [TestMethod]
