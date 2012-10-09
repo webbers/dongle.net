@@ -1,37 +1,49 @@
-using System.DirectoryServices.AccountManagement;
+using System.DirectoryServices;
 
 namespace Dongle.Web.Authentication
 {
     public class LdapAuthenticator : IAuthenticator
     {
         private readonly string _domain;
-        private readonly string _container;
+        private readonly string _path;
 
-        public LdapAuthenticator(string domain, string container)
+        public LdapAuthenticator(string domain, string path)
         {
             _domain = domain;
-            _container = container;
+            _path = path;
         }
 
-        private UserPrincipal GetUser(string username)
+        public virtual AuthenticatedUser Authenticate(string username, string password)
         {
-            var principalContext = GetPrincipalContext();
-            var userPrincipal = UserPrincipal.FindByIdentity(principalContext, IdentityType.SamAccountName, username);
-            return userPrincipal;
-        }
-
-        private PrincipalContext GetPrincipalContext()
-        {
-            var principalContext = new PrincipalContext(ContextType.Domain, _domain, _container);
-            return principalContext;
-        }
-
-        public bool Authenticate(string username, string password)
-        {
-            using (var principalContext = GetPrincipalContext())
+            try
             {
-                return principalContext.ValidateCredentials(username, password);
+                var domainAndUsername = _domain + @"\" + username;
+                var entry = new DirectoryEntry(_path, domainAndUsername, password);
+                var search = new DirectorySearcher(entry) { Filter = "(SAMAccountName=" + username + ")" };
+
+                search.PropertiesToLoad.Add("cn");
+                search.PropertiesToLoad.Add("displayName");
+                search.PropertiesToLoad.Add("email");
+                var result = search.FindOne();
+
+                if (result != null)
+                {
+                    var email = result.Properties["email"].Count > 0 ? result.Properties["email"][0] : "";
+                    var name = result.Properties["displayName"].Count > 0 ? result.Properties["displayName"][0] : "";
+
+                    return new AuthenticatedUser
+                    {
+                        Email = email.ToString(),
+                        Name = name.ToString(),
+                        UserName = username
+                    };
+                }
             }
+            catch (DirectoryServicesCOMException)
+            {
+            }
+            return null;
         }
+
     }
 }
