@@ -36,7 +36,7 @@ namespace Dongle.Web.ModelAttributes
             var rule = new ModelClientValidationRule
                            {
                                ErrorMessage = msg,
-                               ValidationType = "wrequired",
+                               ValidationType = "required",
                            };
             yield return rule;
         }
