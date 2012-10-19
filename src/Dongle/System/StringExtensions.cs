@@ -314,6 +314,10 @@ namespace Dongle.System
             {
                 return str.Substring(0, count);
             }
+            if (count == 0)
+            {
+                return "";
+            }
             return str;
         }
 
