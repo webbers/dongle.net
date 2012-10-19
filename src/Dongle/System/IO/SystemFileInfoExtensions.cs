@@ -133,7 +133,7 @@ namespace Dongle.System.IO
             return parent.Closest(name);
         }
 
-        public static void CopyTo( this DirectoryInfo srcDir, string destDir, bool copySubDirs = true)
+        public static void CopyTo(this DirectoryInfo srcDir, string destDir, bool copySubDirs = true)
         {
             srcDir.Refresh();
 
@@ -162,6 +162,21 @@ namespace Dongle.System.IO
                     var newDir = new DirectoryInfo(Path.Combine(destDir, dir.Name));
                     dir.CopyTo(newDir.FullName);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Cria uma pasta recursivamente
+        /// </summary>
+        public static void CreatePath(this DirectoryInfo directoryInfo)
+        {
+            if (directoryInfo.Parent != null && !directoryInfo.Exists)
+            {
+                CreatePath(directoryInfo.Parent);
+            }
+            if (!directoryInfo.Exists)
+            {
+                directoryInfo.Create();
             }
         }
     }

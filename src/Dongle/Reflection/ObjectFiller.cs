@@ -2,7 +2,7 @@
 
 namespace Dongle.Reflection
 {
-    public class ObjectFiller<TSource, TDestination>
+    public class ObjectFiller<TSource, TDestination> 
         where TSource : class
         where TDestination : class
     {

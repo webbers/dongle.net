@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using Dongle.Algorithms;
 
 namespace Dongle.System
 {
@@ -25,6 +27,9 @@ namespace Dongle.System
             return value.IndexOf('\0') > -1 ? value.Substring(0, value.IndexOf('\0')) : value;
         }
 
+        /// <summary>
+        /// Calcula o MD5 de uma string, não é thread-safe.
+        /// </summary>
         public static string ToMd5(this String str)
         {
             var encodedBytes = Md5Provider.ComputeHash(str.ToBytes());
@@ -38,6 +43,48 @@ namespace Dongle.System
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Calcula o MD5 de uma string, thread-safe.
+        /// </summary>
+        public static string ToMd5Safe(this string value, Encoding encoding = null)
+        {
+            if (encoding == null)
+            {
+                encoding = Encoding.UTF8;
+            }
+            var md5 = MD5.Create();
+            var inputBytes = encoding.GetBytes(value);
+            var hash = md5.ComputeHash(inputBytes);
+            var sb = new StringBuilder();
+            for (var i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("X2"));
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Remove caracteres de acentuação e espaços de uma string, usando sucessivos replaces
+        /// </summary>
+        public static string RemoveSpecialChars(this string text)
+        {
+            const string past = "ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç ";
+            const string future = "AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc_";
+            const string not = "?#\"'\\/:<>|*-+";
+            for (var i = 0; i < past.Length; i++)
+            {
+                text = text.Replace(past[i].ToString(), future[i].ToString());
+            }
+            for (var i = 0; i < not.Length; i++)
+            {
+                text = text.Replace(not[i].ToString(), "");
+            }
+            return text;
+        }
+
+        /// <summary>
+        /// Remove caracteres de acentuação de uma string
+        /// </summary>
         public static string RemoveAccents(this String str)
         {
             str = str.Normalize(NormalizationForm.FormD);
@@ -51,6 +98,9 @@ namespace Dongle.System
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Remove caracteres de pontuação de uma string
+        /// </summary>
         public static string RemovePunctuation(this String str)
         {
             var builder = new StringBuilder();
@@ -64,18 +114,116 @@ namespace Dongle.System
             return builder.ToString();
         }
 
-        static public string ToBase64(this string str)
+        /// <summary>
+        /// Obtem o valor em Base64 de uma string
+        /// </summary>
+        public static string ToBase64(this string value, Encoding encoding = null)
         {
-            var encoding = new UTF8Encoding();
-            var bytes = encoding.GetBytes(str);
-            return Convert.ToBase64String(bytes);
+            if (encoding == null)
+            {
+                encoding = Encoding.UTF8;
+            }
+            return Convert.ToBase64String(encoding.GetBytes(value));
         }
 
-        public static string FromBase64ToString(this String str)
+        /// <summary>
+        /// Obtem a string com base em um texto em Base64
+        /// </summary>
+        public static string FromBase64ToString(this string value, Encoding encoding = null)
         {
-            var encoding = new UTF8Encoding();
-            var encodedDataAsBytes = Convert.FromBase64String(str);
-            return encoding.GetString(encodedDataAsBytes);
+            if (encoding == null)
+            {
+                encoding = Encoding.UTF8;
+            }
+            return encoding.GetString(Convert.FromBase64String(value.Replace("+", " ").Replace(";", "/")));
+        }
+
+        /// <summary>
+        /// Retorna o CRC32 de uma string
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static int ToCrc32(this string value)
+        {
+            return Crc32.Compute(value);
+        }
+
+        /// <summary>
+        /// Converte uma string de um hexa para um int
+        /// </summary>
+        public static int FromHexToInt32(this string hexValue)
+        {
+            int value;
+            try
+            {
+                value = Convert.ToInt32(hexValue, 16);
+            }
+            catch (Exception)
+            {
+                value = 0;
+            }
+            return value;
+        }
+
+        /// <summary>
+        /// Converte uma string de um hexa para um Int64
+        /// </summary>
+        public static long FromHexToInt64(this string hexValue)
+        {
+            Int64 value;
+            try
+            {
+                value = Convert.ToInt64(hexValue, 16);
+            }
+            catch (Exception)
+            {
+                value = 0;
+            }
+            return value;
+        }
+
+        /// <summary>
+        /// Inverte uma string.
+        /// </summary>
+        public static string Reverse(this string valueToReverse)
+        {
+            var array = valueToReverse.ToCharArray();
+            Array.Reverse(array);
+            return (new string(array));
+        }
+
+        /// <summary>
+        /// Remove os ultimos caracteres do texto que corresponderem ao parametro. Em geral é mais rápida que TrimRight.
+        /// </summary>
+        public static string RemoveRightChar(this string value, string rightText)
+        {
+            if (value.EndsWith(rightText))
+                value = value.Substring(0, value.Length - rightText.Length);
+            return value;
+        }
+
+        /// <summary>
+        /// Converte uma string para um texto compatível HTML (ex.: Ç para Ccedil;)
+        /// </summary>
+        public static string HtmlEncode(this string value)
+        {
+            return WebUtility.HtmlEncode(value);
+        }
+
+        /// <summary>
+        /// Converte uma string em HTML para um texto normal (ex.: Ccedil; para Ç)
+        /// </summary>
+        public static string HtmlDecode(this string value)
+        {
+            return WebUtility.HtmlDecode(value);
+        }
+
+        /// <summary>
+        /// Conta as ocorrências um caracter em uma string
+        /// </summary>
+        public static int CountOccurrences(this string text, string textToFind)
+        {
+            return text.Length - text.Replace(textToFind, "").Length;
         }
 
         public static string Capitalize(this string value)
@@ -162,7 +310,11 @@ namespace Dongle.System
 
         public static string Take(this string str, int count)
         {
-            return str.Substring(0, str.Length > count ? count : str.Length);
+            if (count > 0 && str.Length > count)
+            {
+                return str.Substring(0, count);
+            }
+            return str;
         }
 
         public static List<int> IndexOfAll(this string str, string value)

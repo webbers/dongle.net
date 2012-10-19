@@ -54,36 +54,34 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.DirectoryServices" />
-    <Reference Include="System.DirectoryServices.AccountManagement" />
-    <Reference Include="System.DirectoryServices.Protocols" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\Crc32.cs" />
+    <Compile Include="Configuration\AppConfig.cs" />
     <Compile Include="Reflection\ObjectFiller.cs" />
     <Compile Include="Resources\DongleResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DongleResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="System\Collections\CircularConcurrentQueue.cs" />
     <Compile Include="System\DateTimeExtensions.cs" />
+    <Compile Include="System\DynamicQueryable.cs" />
     <Compile Include="System\EnumerableExtensions.cs" />
+    <Compile Include="System\IO\FastDirectoryEnumerator.cs" />
     <Compile Include="System\IO\Ftp\FtpDirectoryInfo.cs" />
     <Compile Include="System\IO\Ftp\FtpFileInfo.cs" />
+    <Compile Include="Configuration\WindowsServices.cs" />
     <Compile Include="System\IO\SystemFileInfoExtensions.cs" />
     <Compile Include="System\IO\ApplicationPaths.cs" />
     <Compile Include="Algorithms\LevensteinDistance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\NumericExtensions.cs" />
     <Compile Include="System\StringExtensions.cs" />
     <Compile Include="Serialization\JsonSimpleSerializer.cs" />
     <Compile Include="System\Tree\TreeNodeCollection.cs" />
@@ -91,6 +89,7 @@
     <Compile Include="System\Tree\TreeNode.cs" />
     <Compile Include="System\Tree\TreeRoot.cs" />
     <Compile Include="System\TypeExtensions.cs" />
+    <Compile Include="Utils\VersionUtils.cs" />
     <EmbeddedResource Include="Resources\DongleResource.pt-BR.resx" />
     <EmbeddedResource Include="Resources\DongleResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
