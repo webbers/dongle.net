@@ -89,6 +89,7 @@
     <Compile Include="System\Tree\TreeNode.cs" />
     <Compile Include="System\Tree\TreeRoot.cs" />
     <Compile Include="System\TypeExtensions.cs" />
+    <Compile Include="Utils\UrlUtils.cs" />
     <Compile Include="Utils\VersionUtils.cs" />
     <EmbeddedResource Include="Resources\DongleResource.pt-BR.resx" />
     <EmbeddedResource Include="Resources\DongleResource.resx">

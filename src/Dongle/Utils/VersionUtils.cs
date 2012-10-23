@@ -5,91 +5,59 @@ namespace Dongle.Utils
     public static class VersionUtils
     {
         /// <summary>
-        /// Obtém uma URL sem querystring
+        /// Compara duas versões
+        /// -1 = versao antiga é menor que versao nova
+        /// 0  = mesma versão ou versão não reconhecida
+        /// 1  = versão antiga é maior que versao nova (downgrade)
         /// </summary>
-        public static string GetUrlWithoutQueryString(string url)
+        public static int CompareWithPreviousVersion(this string newVersion, string oldVersion)
         {
-            try
+            Version oldVer, newVer;
+            if (newVersion == null || oldVersion == null || !Version.TryParse(oldVersion, out oldVer) || !Version.TryParse(newVersion, out newVer))
             {
-                if (url == null)
-                    return null;
-                Uri uri;
-                if (Uri.TryCreate(url, UriKind.Absolute, out uri))
-                {
-                    var ret = "";
-                    ret += uri.Scheme + "://";
-                    ret += uri.Authority + uri.PathAndQuery.Split('?')[0];
-                    return ret;
-                }
-                return url;
+                return 0;
             }
-            catch (Exception)
-            {
-                return url;
-            }
+            return oldVer.CompareTo(newVer);
         }
 
         /// <summary>
-        /// Obtém uma URL sem querystring e sem porta
+        /// Compara duas versões
+        /// true = Versão nova é maior ou igual a versão antiga, ou alguma das duas é vazia
+        /// false = Versão nova é menor que a versão antiga (downgrade)
         /// </summary>
-        public static string GetUrlWithoutPortAndQueryString(string url)
+        public static bool CompareWithPreviousVersionSplit(this string newVersion, string oldVersion)
         {
-            try
+            if (string.IsNullOrEmpty(newVersion) || string.IsNullOrEmpty(oldVersion))
             {
-                if (url == null)
-                    return null;
-                Uri uri;
-                if (Uri.TryCreate(url, UriKind.Absolute, out uri))
+                return true;
+            }
+            var newVersionArray = newVersion.Split('.');
+            var oldVersionArray = oldVersion.Split('.');
+            for (var i = 0; i < newVersion.Length; i++)
+            {
+                if (i >= oldVersionArray.Length)
                 {
-                    var ret = "";
-                    ret += uri.Scheme + "://";
-                    ret += uri.Host + uri.LocalPath;
-                    return ret;
+                    break;
                 }
-                return url;
-            }
-            catch (Exception)
-            {
-                return url;
-            }
-        }
-
-        /// <summary>
-        /// Obtém o dominio de uma URL
-        /// </summary>
-        public static string GetDomain(string url, bool includeSchema)
-        {
-            if (url == null)
-            {
-                return null;
-            }
-            try
-            {
-                Uri uri;
-                if (Uri.TryCreate(url, UriKind.Absolute, out uri))
+                long numNewVersion, numOldVersion;
+                if (!long.TryParse(newVersionArray[i], out numNewVersion))
                 {
-                    var ret = "";
-                    if (includeSchema)
-                    {
-                        ret += uri.Scheme + "://";
-                    }
-                    ret += uri.Host;
-                    return ret;
+                    continue;
                 }
-                return url;
-            }
-            catch (Exception)
-            {
-                if (!includeSchema)
+                if (!long.TryParse(oldVersionArray[i], out numOldVersion))
                 {
-                    var parts = url.Split(new[] { "://" }, StringSplitOptions.RemoveEmptyEntries);
-                    if (parts.Length >= 2)
-                    {
-                        return parts[1];
-                    }
+                    continue;
                 }
-                return url;
+                if (numNewVersion < numOldVersion)
+                {
+                    return false;
+                }
+                if (numNewVersion > numOldVersion)
+                {
+                    return true;
+                }
             }
+            return true;
         }
     }
 }
