@@ -15,7 +15,8 @@
           <Configuration>
             <CodeCoverage xmlns="">
               <Regular>
-                <CodeCoverageItem binaryFile="WebUtils\bin\Debug\WebUtils.dll" pdbFile="WebUtils\bin\Debug\WebUtils.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="Dongle.Web\bin\Debug\Dongle.Web.dll" pdbFile="Dongle.Web\bin\Debug\Dongle.Web.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="Dongle\bin\Debug\Dongle.dll" pdbFile="Dongle\bin\Debug\Dongle.pdb" instrumentInPlace="true" />
               </Regular>
             </CodeCoverage>
           </Configuration>

@@ -310,13 +310,13 @@ namespace Dongle.System
 
         public static string Take(this string str, int count)
         {
+            if (count == 0)
+            {
+                return str;
+            }
             if (count > 0 && str.Length > count)
             {
                 return str.Substring(0, count);
-            }
-            if (count == 0)
-            {
-                return "";
             }
             return str;
         }

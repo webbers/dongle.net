@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Text;
 using Dongle.System;
+using Dongle.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dongle.Tests.System
@@ -143,7 +146,7 @@ namespace Dongle.Tests.System
         [TestMethod]
         public void Take()
         {
-            Assert.AreEqual("", "abc".Take(0));
+            Assert.AreEqual("abc", "abc".Take(0));
             Assert.AreEqual("a", "abc".Take(1));
             Assert.AreEqual("abc", "abc".Take(3));
             Assert.AreEqual("abc", "abc".Take(4));
@@ -166,5 +169,65 @@ namespace Dongle.Tests.System
             Assert.AreEqual(9, indexes[1]);
             Assert.AreEqual(15, indexes[2]);
         }
+
+        [TestMethod]
+        public void Base64Methods()
+        {
+            var inputUtf7 = Encoding.UTF7.GetString(Encoding.UTF7.GetBytes("Alo Mundo Imundo!! áéç^íóú"));
+            var inputUtf8 = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes("Alo Mundo Imundo!! áéç^íóú"));
+            const string outputUtf7 = "QWxvIE11bmRvIEltdW5kbytBQ0VBSVEtICtBT0VBNlFEbkFGNEE3UUR6QVBvLQ==";
+            const string outputUtf8 = "QWxvIE11bmRvIEltdW5kbyEhIMOhw6nDp17DrcOzw7o=";
+
+            Assert.AreEqual(outputUtf8, inputUtf8.ToBase64());
+            Assert.AreEqual(outputUtf7, inputUtf7.ToBase64(Encoding.UTF7));
+
+            Assert.AreEqual(inputUtf8, outputUtf8.FromBase64ToString());
+            Assert.AreEqual(inputUtf7, outputUtf7.FromBase64ToString(Encoding.UTF7));
+        }
+
+        [TestMethod]
+        public void RemoveSpecialChars()
+        {
+            const string input = "ZYÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç ?#\"'\\/:<>|*-+";
+            const string output = "ZYAAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc_";
+            Assert.AreEqual(output, input.RemoveSpecialChars());
+        }
+
+        [TestMethod]
+        public void Reverse()
+        {
+            const string input = "áBÇDefgHi";
+            const string output = "iHgfeDÇBá";
+            Assert.AreEqual(output, input.Reverse());
+        }
+
+        [TestMethod]
+        public void ToCrc32()
+        {
+            const string input = "abcdefghij12234567";
+            const int output = 1366991586;
+            Assert.AreEqual(output, input.ToCrc32());
+        }
+
+        [TestMethod]
+        public void FromHexToInt32()
+        {
+            Assert.AreEqual(999999999, "3B9AC9FF".FromHexToInt32());
+            Assert.AreEqual(0, "Vai dar zero!".FromHexToInt32());
+        }
+
+        [TestMethod]
+        public void FromHexToInt64()
+        {
+            Assert.AreEqual(48358587860608905, "ABCDE123456789".FromHexToInt64());
+            Assert.AreEqual(0, "Vai dar zero!".FromHexToInt64());
+        }
+
+        [TestMethod]
+        public void TestToMd5Safe()
+        {
+            Assert.AreEqual("8ED0900CFE623F1BAF5AB34EC77E9E5F", "Alô Mundo Imundo!!".ToMd5Safe());
+            Assert.AreEqual("9CB10DB7CEEF37FDD2F3955D05832108", Encoding.UTF7.GetString(Encoding.UTF7.GetBytes("Alo Mundo Imundo!!")).ToMd5Safe(Encoding.UTF8));
+        }        
     }
 }
