@@ -321,6 +321,9 @@ namespace Dongle.System
             return str;
         }
 
+        /// <summary>
+        /// Aliase para a função Take. Evita conflitos com o Take do Linq.
+        /// </summary>
         public static string Limit(this string str, int count)
         {
             return Take(str, count);
