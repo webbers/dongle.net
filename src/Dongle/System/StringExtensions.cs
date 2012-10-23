@@ -321,6 +321,11 @@ namespace Dongle.System
             return str;
         }
 
+        public static string Limit(this string str, int count)
+        {
+            return Take(str, count);
+        }
+
         public static List<int> IndexOfAll(this string str, string value)
         {
             int pos;
