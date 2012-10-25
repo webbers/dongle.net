@@ -69,6 +69,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DongleResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Serialization\XmlSimpleSerializer.cs" />
     <Compile Include="System\Collections\CircularConcurrentQueue.cs" />
     <Compile Include="System\DateTimeExtensions.cs" />
     <Compile Include="System\DynamicQueryable.cs" />

@@ -102,5 +102,13 @@ namespace Dongle.System
                 return DateTime.ParseExact(str, "dd/MMM/yyyy:HH:mm:ss", new CultureInfo("pt-BR"));
             }
         }
+
+        /// <summary>
+        /// Coverte uma data para string no formato especificado
+        /// </summary>
+        public static string ToString(this DateTime? value, string format)
+        {
+            return !value.HasValue ? "" : value.Value.ToString(format);
+        }
     }
 }
