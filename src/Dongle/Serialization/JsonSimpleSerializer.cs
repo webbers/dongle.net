@@ -2,6 +2,7 @@
 using System.Runtime.Serialization.Json;
 using System.Text;
 using Dongle.System.IO;
+using Newtonsoft.Json;
 
 namespace Dongle.Serialization
 {
@@ -10,21 +11,26 @@ namespace Dongle.Serialization
         public static void SerializeToFile<T>(FileInfo fileInfo, T obj)
         {
             fileInfo.Directory.CreateRecursively();
-            var serializer = new DataContractJsonSerializer(typeof(T));
             using (var fileStream = new FileStream(fileInfo.FullName, FileMode.Create))
+            using (var streamWriter = new StreamWriter(fileStream))
+            using (var jsonTextWriter = new JsonTextWriter(streamWriter))
             {
-                serializer.WriteObject(fileStream, obj);
+                jsonTextWriter.Formatting = Formatting.None;
+                jsonTextWriter.DateFormatHandling = DateFormatHandling.MicrosoftDateFormat;
+                var serializer = new JsonSerializer();
+                serializer.Serialize(jsonTextWriter, obj);
             }
         }
 
-        public static T UnserializeFromFile<T>(FileInfo fileInfo) where T: class
+        public static T UnserializeFromFile<T>(FileInfo fileInfo) where T : class
         {
-            var serializer = new DataContractJsonSerializer(typeof(T));
             if (fileInfo.Exists)
             {
                 using (var fileStream = new FileStream(fileInfo.FullName, FileMode.Open))
+                using (var streamReader = new StreamReader(fileStream))
                 {
-                    return (T) serializer.ReadObject(fileStream);
+                    string json = streamReader.ReadToEnd();
+                    return JsonConvert.DeserializeObject<T>(json);
                 }
             }
             return null;
@@ -32,16 +38,9 @@ namespace Dongle.Serialization
 
         public static string SerializeToString<T>(T obj)
         {
-            var serializer = new DataContractJsonSerializer(typeof(T));
-            using (var memoryStream = new MemoryStream())
-            {
-                serializer.WriteObject(memoryStream, obj);
-                memoryStream.Seek(0, SeekOrigin.Begin);
-                using (var reader = new StreamReader(memoryStream))
-                {
-                    return reader.ReadToEnd();
-                }
-            }
+            var settings = new JsonSerializerSettings();
+            settings.DateFormatHandling = DateFormatHandling.MicrosoftDateFormat;
+            return JsonConvert.SerializeObject(obj, settings);
         }
 
         public static T UnserializeFromString<T>(string raw) where T : class
@@ -49,11 +48,7 @@ namespace Dongle.Serialization
             var serializer = new DataContractJsonSerializer(typeof(T));
             if (raw != null)
             {
-                var bytes = Encoding.ASCII.GetBytes(raw);
-                using (var memoryStream = new MemoryStream(bytes))
-                {
-                    return (T)serializer.ReadObject(memoryStream);
-                }
+                return JsonConvert.DeserializeObject<T>(raw);
             }
             return null;
         }
