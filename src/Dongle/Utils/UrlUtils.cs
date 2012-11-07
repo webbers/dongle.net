@@ -9,10 +9,12 @@ namespace Dongle.Utils
         /// </summary>
         public static string GetUrlWithoutQueryString(string url)
         {
-            try
+            if (url == null)
             {
-                if (url == null)
-                    return null;
+                return "";
+            }
+            try
+            {                
                 Uri uri;
                 if (Uri.TryCreate(url, UriKind.Absolute, out uri))
                 {
@@ -34,10 +36,12 @@ namespace Dongle.Utils
         /// </summary>
         public static string GetUrlWithoutPortAndQueryString(string url)
         {
-            try
+            if (url == null)
             {
-                if (url == null)
-                    return null;
+                return "";
+            }
+            try
+            {                
                 Uri uri;
                 if (Uri.TryCreate(url, UriKind.Absolute, out uri))
                 {
