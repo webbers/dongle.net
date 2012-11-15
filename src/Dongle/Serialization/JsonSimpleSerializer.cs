@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Json;
-using System.Text;
 using Dongle.System.IO;
 using Newtonsoft.Json;
 
@@ -45,7 +44,6 @@ namespace Dongle.Serialization
 
         public static T UnserializeFromString<T>(string raw) where T : class
         {
-            var serializer = new DataContractJsonSerializer(typeof(T));
             if (raw != null)
             {
                 return JsonConvert.DeserializeObject<T>(raw);
