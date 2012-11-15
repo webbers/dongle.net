@@ -46,6 +46,10 @@ namespace Dongle.Serialization
         {
             if (raw != null)
             {
+                //necessário para deserializar forms com checkbox
+                //http://stackoverflow.com/questions/5462967/razor-viewengine-html-checkbox-method-creates-a-hidden-input-why
+                raw = raw.Replace("[\"true\",\"false\"]", "\"true\"");
+
                 return JsonConvert.DeserializeObject<T>(raw);
             }
             return null;
