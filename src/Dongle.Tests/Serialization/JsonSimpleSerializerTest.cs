@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using Dongle.Serialization;
 using Dongle.System.IO;
@@ -58,6 +59,18 @@ namespace Dongle.Tests.Serialization
                 var likeness = new Likeness<T, T>(objToSerialize);
                 Assert.AreEqual(likeness, unserialized);
             }
+        }
+
+        [TestMethod]
+        public void UnserializeFromStringTest()
+        {
+            const string fooString = @"{""Name"":""Wine"",""Age"":10,""CreatedAt"":""03/04/2001"",""Price"":1.25,""Enabled"":false,""Parent"":null}";
+
+            var fooDeserializedPtBr = JsonSimpleSerializer.UnserializeFromString<Foo>(fooString, new CultureInfo("pt-BR"));
+            var fooDeserializedEnUs = JsonSimpleSerializer.UnserializeFromString<Foo>(fooString, new CultureInfo("en-US"));
+
+            Assert.AreEqual(new DateTime(2001, 04, 03), fooDeserializedPtBr.CreatedAt);
+            Assert.AreEqual(new DateTime(2001, 03, 04), fooDeserializedEnUs.CreatedAt);
         }
     }
 }

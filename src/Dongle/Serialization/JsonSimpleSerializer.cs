@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Globalization;
+using System.IO;
 using System.Runtime.Serialization.Json;
 using Dongle.System.IO;
 using Newtonsoft.Json;
@@ -35,14 +36,18 @@ namespace Dongle.Serialization
             return null;
         }
 
-        public static string SerializeToString<T>(T obj)
+        public static string SerializeToString<T>(T obj, CultureInfo cultureInfo = null)
         {
-            var settings = new JsonSerializerSettings();
-            settings.DateFormatHandling = DateFormatHandling.MicrosoftDateFormat;
+            var settings = new JsonSerializerSettings
+                               {
+                                   Formatting = Formatting.None,
+                                   DateFormatHandling = DateFormatHandling.MicrosoftDateFormat,
+                                   Culture = cultureInfo ?? CultureInfo.CurrentUICulture
+                               };
             return JsonConvert.SerializeObject(obj, settings);
         }
 
-        public static T UnserializeFromString<T>(string raw) where T : class
+        public static T UnserializeFromString<T>(string raw, CultureInfo cultureInfo = null) where T : class
         {
             if (raw != null)
             {
@@ -50,7 +55,13 @@ namespace Dongle.Serialization
                 //http://stackoverflow.com/questions/5462967/razor-viewengine-html-checkbox-method-creates-a-hidden-input-why
                 raw = raw.Replace("[\"true\",\"false\"]", "\"true\"");
 
-                return JsonConvert.DeserializeObject<T>(raw);
+                var settings = new JsonSerializerSettings
+                {
+                    DateFormatHandling = DateFormatHandling.MicrosoftDateFormat,
+                    NullValueHandling = NullValueHandling.Ignore,
+                    Culture = cultureInfo ?? CultureInfo.CurrentUICulture
+                };
+                return JsonConvert.DeserializeObject<T>(raw, settings);
             }
             return null;
         }
