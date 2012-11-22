@@ -20,6 +20,15 @@ namespace Dongle.Configuration
         public static void ReinstallService(string serviceName, string displayName, string filePath)
         {
             StopService(serviceName);
+
+            var i = 0;
+
+            while (GetWindowsServiceStatus(serviceName) != ServiceControllerStatus.Stopped && i < 30)
+            {
+                i++;
+                Thread.CurrentThread.Join(1000);
+            }
+
             ExecuteCommand(Environment.SystemDirectory + @"\sc.exe", "config \"" + serviceName + "\" binPath= \"" + filePath + "\" start= auto DisplayName= \"" + displayName + "\"");
             SetServiceAutoStart(serviceName);
             SetServiceFailureAction(serviceName);
@@ -29,7 +38,7 @@ namespace Dongle.Configuration
         public static void RemoveService(string serviceName)
         {
             StopService(serviceName);
-            ExecuteCommand(Environment.SystemDirectory + @"\sc.exe", "delete \"" + serviceName + "\"");            
+            ExecuteCommand(Environment.SystemDirectory + @"\sc.exe", "delete \"" + serviceName + "\"");
         }
 
         public static void SetServiceAutoStart(string serviceName)
@@ -70,7 +79,7 @@ namespace Dongle.Configuration
                 }
                 trys++;
                 Thread.CurrentThread.Join(1000);
-            } 
+            }
             while (trys < timeout);
             return stopped;
         }
@@ -141,7 +150,7 @@ namespace Dongle.Configuration
             {
 #if DEBUG
                 Debug.WriteLine("Tread abortada. Nada a fazer.");
-#endif                
+#endif
             }
         }
     }
