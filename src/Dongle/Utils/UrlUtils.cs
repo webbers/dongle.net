@@ -95,5 +95,26 @@ namespace Dongle.Utils
                 return url;
             }
         }
+
+        /// <summary>
+        /// Valida se está em um formato parecido com IP v4. Não faz uma checagem completa pois seria mais lento, então apenas verifica se está no formato 999.999.999.999.
+        /// </summary>
+        public static bool IsIpV4Like(string text)
+        {
+            var chars = text.ToCharArray();
+            if (chars.Length > 15)
+            {
+                return false;
+            }
+            for (var i = 0; i < chars.Length; i++)
+            {
+                var chr = chars[i];
+                if ((chr < 48 || chr > 57) && chr != 46)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
