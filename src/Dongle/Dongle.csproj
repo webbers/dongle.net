@@ -68,12 +68,18 @@
   <ItemGroup>
     <Compile Include="Algorithms\Crc32.cs" />
     <Compile Include="Configuration\AppConfig.cs" />
+    <Compile Include="Reflection\MemberInfoExtensions.cs" />
     <Compile Include="Reflection\ObjectFiller.cs" />
     <Compile Include="Resources\DongleResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DongleResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Serialization\CsvSerializer.cs" />
+    <Compile Include="Serialization\FixedWidthTextSerializer.cs" />
+    <Compile Include="Serialization\IEnumerableSerializer.cs" />
+    <Compile Include="Serialization\Attributes\IgnoreAttribute.cs" />
+    <Compile Include="Serialization\ObjectFormatter.cs" />
     <Compile Include="Serialization\XmlSimpleSerializer.cs" />
     <Compile Include="System\Collections\CircularConcurrentQueue.cs" />
     <Compile Include="System\DateTimeExtensions.cs" />
@@ -97,6 +103,7 @@
     <Compile Include="System\TypeExtensions.cs" />
     <Compile Include="Utils\UrlUtils.cs" />
     <Compile Include="Utils\VersionUtils.cs" />
+    <EmbeddedResource Include="Resources\DongleResource.es-ES.resx" />
     <EmbeddedResource Include="Resources\DongleResource.pt-BR.resx" />
     <EmbeddedResource Include="Resources\DongleResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -113,7 +120,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Reporting\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using System.IO;
-using System.Runtime.Serialization.Json;
+
 using Dongle.System.IO;
 using Newtonsoft.Json;
 

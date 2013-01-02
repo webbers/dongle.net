@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="False" xml:space="preserve">
+    <value>Falso</value>
+  </data>
   <data name="FewSecondsAgo" xml:space="preserve">
     <value>Poucos segundos atrás</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="TheXFieldWasInvalid" xml:space="preserve">
     <value>Valor inválido para o campo {0}</value>
+  </data>
+  <data name="True" xml:space="preserve">
+    <value>Verdadeiro</value>
   </data>
   <data name="XDaysAgo" xml:space="preserve">
     <value>{0} dias atrás</value>
