@@ -84,6 +84,15 @@ namespace Dongle.Configuration
             return stopped;
         }
 
+        public static void RestartWindowsService(string serviceName, long timeout = 10)
+        {
+            var stopped = StopWindowsService(serviceName, timeout);
+            if (stopped)
+            {
+                StartService(serviceName);
+            }
+        }
+
         public static bool WindowsServiceExists(string serviceName)
         {
             return Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\" + serviceName) != null;
