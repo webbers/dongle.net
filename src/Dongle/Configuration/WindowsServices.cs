@@ -61,9 +61,9 @@ namespace Dongle.Configuration
             ExecuteCommand(Environment.SystemDirectory + @"\sc.exe", "stop \"" + serviceName + "\"");
         }
 
-        public static bool StopWindowsService(string serviceName, long timeout = 10)
+        public static bool StopWindowsService(string serviceFullName, long timeout = 10)
         {
-            if (!WindowsServiceExists(serviceName))
+            if (!WindowsServiceExists(serviceFullName))
             {
                 return true;
             }
@@ -71,8 +71,17 @@ namespace Dongle.Configuration
             bool stopped;
             do
             {
-                StopService(serviceName);
-                stopped = GetWindowsServiceStatus(serviceName) == ServiceControllerStatus.Stopped;
+                StopService(serviceFullName);
+
+                var status = GetWindowsServiceStatus(serviceFullName);
+
+                if (status == null)
+                {
+                    return false;
+                }
+
+                stopped = status == ServiceControllerStatus.Stopped;
+
                 if (stopped)
                 {
                     break;
@@ -84,12 +93,12 @@ namespace Dongle.Configuration
             return stopped;
         }
 
-        public static void RestartWindowsService(string serviceName, long timeout = 10)
+        public static void RestartWindowsService(string serviceFullName, long timeout = 10)
         {
-            var stopped = StopWindowsService(serviceName, timeout);
+            var stopped = StopWindowsService(serviceFullName, timeout);
             if (stopped)
             {
-                StartService(serviceName);
+                StartService(serviceFullName);
             }
         }
 
