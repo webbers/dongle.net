@@ -1,8 +1,10 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.IO;
 
 using Dongle.System.IO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Dongle.Serialization
 {
@@ -55,15 +57,43 @@ namespace Dongle.Serialization
                 //http://stackoverflow.com/questions/5462967/razor-viewengine-html-checkbox-method-creates-a-hidden-input-why
                 raw = raw.Replace("[\"true\",\"false\"]", "\"true\"");
 
-                var settings = new JsonSerializerSettings
-                {
-                    DateFormatHandling = DateFormatHandling.MicrosoftDateFormat,
-                    NullValueHandling = NullValueHandling.Ignore,
-                    Culture = cultureInfo ?? CultureInfo.CurrentUICulture
-                };
+                var settings = GetDefatultJsonSerializerSettings(cultureInfo);
+
                 return JsonConvert.DeserializeObject<T>(raw, settings);
             }
             return null;
+        }
+
+        public static Object UnserializeObject(string raw, Type type, CultureInfo cultureInfo = null)
+        {
+            if (raw != null)
+            {
+                //necessário para deserializar forms com checkbox
+                //http://stackoverflow.com/questions/5462967/razor-viewengine-html-checkbox-method-creates-a-hidden-input-why
+                raw = raw.Replace("[\"true\",\"false\"]", "\"true\"");
+
+                var settings = GetDefatultJsonSerializerSettings(cultureInfo);
+                
+                return JsonConvert.DeserializeObject(raw, type, settings);
+            }
+            return null;
+        }
+
+        public static string GetNodeValueFromJson(string raw,string nodeName)
+        {
+            var nodeValue = JObject.Parse(raw);
+            return (string)nodeValue[nodeName];
+        }
+
+        private static JsonSerializerSettings GetDefatultJsonSerializerSettings(CultureInfo cultureInfo)
+        {
+            var settings = new JsonSerializerSettings
+                               {
+                                   DateFormatHandling = DateFormatHandling.MicrosoftDateFormat,
+                                   NullValueHandling = NullValueHandling.Ignore,
+                                   Culture = cultureInfo ?? CultureInfo.CurrentUICulture
+                               };
+            return settings;
         }
     }
 }
