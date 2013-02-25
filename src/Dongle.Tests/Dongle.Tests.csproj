@@ -109,7 +109,6 @@
       <DependentUpon>FooResource.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\VersionUtilsTest.cs" />
-    <Compile Include="WindowsServicesTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dongle\Dongle.csproj">
