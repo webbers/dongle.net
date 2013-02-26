@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="Algorithms\LevensteinDistanceTest.cs" />
     <Compile Include="Reflection\ObjectFillerTest.cs" />
+    <Compile Include="System\EnumerableExtensionsTest.cs" />
     <Compile Include="System\IO\ApplicationPathsTest.cs" />
     <Compile Include="System\IO\FileInfoExtensionsTest.cs" />
     <Compile Include="System\NumericExtensions.cs" />
