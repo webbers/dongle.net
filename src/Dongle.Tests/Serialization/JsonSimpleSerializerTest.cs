@@ -72,5 +72,25 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual(new DateTime(2001, 04, 03), fooDeserializedPtBr.CreatedAt);
             Assert.AreEqual(new DateTime(2001, 03, 04), fooDeserializedEnUs.CreatedAt);
         }
+
+        [TestMethod]
+        public void UnserializeFromStringToObjectTest()
+        {
+            const string fooString = @"{""Name"":""Wine"",""Age"":10,""CreatedAt"":""03/04/2001"",""Price"":1.25,""Enabled"":false,""Parent"":null}";
+
+            var fooDeserializedPtBr = JsonSimpleSerializer.UnserializeObject(fooString, typeof(Foo), new CultureInfo("pt-BR"));
+            var fooDeserializedEnUs = JsonSimpleSerializer.UnserializeObject(fooString, typeof(Foo), new CultureInfo("en-US"));
+            Assert.AreEqual(typeof(Foo), fooDeserializedPtBr.GetType());
+            Assert.AreEqual(new DateTime(2001, 04, 03), ((Foo)fooDeserializedPtBr).CreatedAt);
+            Assert.AreEqual(new DateTime(2001, 03, 04), ((Foo)fooDeserializedEnUs).CreatedAt);
+        }
+
+        [TestMethod]
+        public void GetNodeValueFromJsonTest()
+        {
+            const string fooString = @"{""Name"":""Wine"",""Age"":10,""CreatedAt"":""03/04/2001"",""Price"":1.25,""Enabled"":false,""Parent"":null}";
+            var value = JsonSimpleSerializer.GetNodeValueFromJson(fooString, "Name");
+            Assert.AreEqual("Wine", value);
+        }
     }
 }

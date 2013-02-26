@@ -212,6 +212,21 @@ namespace Dongle.System.IO
         }
 
         /// <summary>
+        /// Procura o diretório mais próximo do diretório corrente
+        /// </summary>
+        public static DirectoryInfo ClosestDir(string dirname)
+        {
+            var directory = new DirectoryInfo(RootDirectory);
+            while (directory.GetDirectories(dirname).Length == 0)
+            {
+                directory = directory.Parent;
+                if (directory == null)
+                    return null;
+            }
+            return new DirectoryInfo(Path.Combine(directory.FullName, dirname));
+        }
+
+        /// <summary>
         /// Deleta os arquivos especificados. Aceita caminho relativo ou absoluto. Tenta apagar o arquivo várias vezes, caso ele esteja sendo utilizado.
         /// </summary>
         public static void DeleteFiles(params string[] files)

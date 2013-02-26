@@ -61,6 +61,15 @@ namespace Dongle.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to False.
+        /// </summary>
+        internal static string False {
+            get {
+                return ResourceManager.GetString("False", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Few seconds ago.
         /// </summary>
         internal static string FewSecondsAgo {
@@ -129,6 +138,15 @@ namespace Dongle.Resources {
         internal static string TheXFieldWasInvalid {
             get {
                 return ResourceManager.GetString("TheXFieldWasInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to True.
+        /// </summary>
+        internal static string True {
+            get {
+                return ResourceManager.GetString("True", resourceCulture);
             }
         }
         

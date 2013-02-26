@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Dongle.System
 {
@@ -28,6 +30,39 @@ namespace Dongle.System
             if (Type.GetTypeCode(type) == TypeCode.DateTime)
             {
                 return true;
+            }
+            return false;
+        }
+
+        public static bool IsDictionaryType(Type type)
+        {
+            if (typeof(IDictionary).IsAssignableFrom(type) || ImplementsGenericDefinition(type, typeof(IDictionary<,>)))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool ImplementsGenericDefinition(Type type, Type genericInterfaceDefinition)
+        {
+            if (type.IsInterface && type.IsGenericType)
+            {
+                var genericTypeDefinition = type.GetGenericTypeDefinition();
+                if (genericInterfaceDefinition == genericTypeDefinition)
+                {
+                    return true;
+                }
+            }
+            foreach (var type1 in type.GetInterfaces())
+            {
+                if (type1.IsGenericType)
+                {
+                    var genericTypeDefinition = type1.GetGenericTypeDefinition();
+                    if (genericInterfaceDefinition == genericTypeDefinition)
+                    {
+                        return true;
+                    }
+                }
             }
             return false;
         }
