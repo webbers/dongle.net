@@ -157,7 +157,7 @@ namespace Dongle.System.IO
         /// <summary>
         /// Copia um diretório recursivamente
         /// </summary>
-        public static void CopyDirectory(string source, string destination, bool replaceFiles = true, bool recursive = true, string fileFilter = "*.*")
+        public static void CopyDirectory(string source, string destination, bool replaceFiles = true, bool recursive = true, string fileFilter = "*.*", bool throwException = false)
         {
             if (!Path.IsPathRooted(source))
             {
@@ -175,37 +175,78 @@ namespace Dongle.System.IO
             {
                 destination += Path.DirectorySeparatorChar;
             }
-            var parentDirectory = new DirectoryInfo(destination).Parent;
-            if (parentDirectory != null)
+            CreatePath(destination);
+            foreach (var entry in Directory.EnumerateFileSystemEntries(source, fileFilter))
             {
-                if (!Directory.Exists(parentDirectory.FullName))
-                {
-                    Directory.CreateDirectory(parentDirectory.FullName);
-                }
-            }
-            if (!Directory.Exists(destination))
-            {
-                Directory.CreateDirectory(destination);
-            }
-            var files = Directory.GetFileSystemEntries(source, fileFilter);
-            foreach (var element in files)
-            {
-                if (Directory.Exists(element))
+                var dest = Path.Combine(destination, Path.GetFileName(entry) ?? "");
+                if (Directory.Exists(entry))
                 {
                     if (recursive)
                     {
-                        CopyDirectory(element, destination + Path.GetFileName(element));
+                        CopyDirectory(entry, dest);
                     }
                 }
                 else
                 {
                     try
                     {
-                        File.Copy(element, destination + Path.GetFileName(element), replaceFiles);
+                        File.Copy(entry, dest, replaceFiles);
                     }
                     catch (IOException)
                     {
-                        
+                        if (throwException)
+                        {
+                            throw;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Move os arquivos de um diretório recursivamente
+        /// </summary>
+        public static void MoveDirectoryFiles(string source, string destination, bool replaceFiles = true, bool recursive = true, string fileFilter = "*.*", bool throwException = false)
+        {
+            if (!Path.IsPathRooted(source))
+            {
+                source = CurrentPathCombine(source);
+            }
+            if (!Path.IsPathRooted(destination))
+            {
+                destination = CurrentPathCombine(destination);
+            }
+            if (!Directory.Exists(source))
+            {
+                return;
+            }
+            CreatePath(destination);
+            foreach (var entry in Directory.EnumerateFileSystemEntries(source, fileFilter))
+            {
+                var dest = Path.Combine(destination, Path.GetFileName(entry) ?? "");
+                if (Directory.Exists(entry))
+                {
+                    if (recursive)
+                    {
+                        MoveDirectoryFiles(entry, dest, replaceFiles, true, fileFilter);
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        if (File.Exists(dest))
+                        {
+                            DeleteFiles(dest);
+                        }
+                        File.Move(entry, dest);
+                    }
+                    catch (IOException)
+                    {
+                        if (throwException)
+                        {
+                            throw;
+                        }
                     }
                 }
             }

@@ -24,6 +24,9 @@ namespace Dongle.Tests.System
 
             values = new[] { 100d, 200d }.Distribute(100);
             Assert.AreEqual(100, values.Sum());
+
+            values = new[] { 0d, 0d }.Distribute(100);
+            Assert.AreEqual(100, values.Sum());
         }
     }
 }
