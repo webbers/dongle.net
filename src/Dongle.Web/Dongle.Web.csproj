@@ -84,6 +84,7 @@
     <Compile Include="Html\WResourceLabelExtensions.cs" />
     <Compile Include="Html\WSpinButtonExtensions.cs" />
     <Compile Include="Html\WSwitchButtonExtensions.cs" />
+    <Compile Include="ModelAttributes\WDateRange.cs" />
     <Compile Include="ModelAttributes\WCompare.cs" />
     <Compile Include="ModelAttributes\WDomainAttribute.cs" />
     <Compile Include="ModelAttributes\WEmailAttribute.cs" />

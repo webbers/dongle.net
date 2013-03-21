@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
 using Dongle.Web.ModelAttributes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -85,6 +86,14 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
             }
             Assert.IsTrue(attrib.IsValid(builder.ToString()));
             Assert.IsFalse(attrib.IsValid(builder + "a"));
+        }
+
+        [TestMethod]
+        public void TestDateRange()
+        {
+            var attrib = new WDateRangeAttribute();
+            Assert.IsFalse(attrib.IsValid(DateTime.Now.AddDays(2)));
+            Assert.IsTrue(attrib.IsValid(DateTime.Now.AddDays(-2)));
         }
     }
 }

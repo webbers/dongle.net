@@ -138,6 +138,9 @@
   <data name="InvalidUrl" xml:space="preserve">
     <value>Invalid URL</value>
   </data>
+  <data name="TheDatePeriodMustBeBetween" xml:space="preserve">
+    <value>The date may be between {0} and {1}</value>
+  </data>
   <data name="TheValueMustBeBetween" xml:space="preserve">
     <value>The value must be between {0} and {1}</value>
   </data>
