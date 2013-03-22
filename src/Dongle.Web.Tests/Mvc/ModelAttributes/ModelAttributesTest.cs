@@ -95,5 +95,13 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
             Assert.IsFalse(attrib.IsValid(DateTime.Now.AddDays(2)));
             Assert.IsTrue(attrib.IsValid(DateTime.Now.AddDays(-2)));
         }
+
+        [TestMethod]
+        public void TestStringlength()
+        {
+            var attrib = new WStringLength(8);
+            Assert.IsFalse(attrib.IsValid("123456789"));
+            Assert.IsTrue(attrib.IsValid("1234"));
+        }
     }
 }

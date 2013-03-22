@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Dongle.Web.Resources;
@@ -7,22 +8,21 @@ namespace Dongle.Web.ModelAttributes
 {
     public class WStringLength : StringLengthAttribute, IClientValidatable
     {
-        private readonly RequiredAttribute _requiredAttribute = new RequiredAttribute();
+        private readonly int _maxlength;
 
         public WStringLength(int maximumLength)
             : base(maximumLength)
         {
+            _maxlength = maximumLength;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var msg = ErrorMessage ?? DongleResource.InvalidStringLength;
-
-            if (!_requiredAttribute.IsValid(value))
+            if (Convert.ToInt32(value) <= _maxlength)
             {
-                return new ValidationResult(msg, new[] { validationContext.MemberName });
+                return null;
             }
-            return ValidationResult.Success;
+            return new ValidationResult(FormatErrorMessage(ErrorMessage));
         }
 
         public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
@@ -34,6 +34,7 @@ namespace Dongle.Web.ModelAttributes
                 ErrorMessage = msg,
                 ValidationType = "wstringlength",
             };
+            rule.ValidationParameters.Add("maxlength", _maxlength);
             yield return rule;
         }
     }
