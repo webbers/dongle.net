@@ -35,7 +35,7 @@ namespace Dongle.Web.ModelAttributes
             var rule = new ModelClientValidationRule
             {
                 ErrorMessage = msg,
-                ValidationType = "stringlength",
+                ValidationType = "length-max",
             };
             yield return rule;
         }
