@@ -75,20 +75,6 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
         }
 
         [TestMethod]
-        public void TestStringLength()
-        {
-            const int maxLenght = 3;
-            var attrib = new WStringLengthAttribute(maxLenght);
-            var builder = new StringBuilder();
-            for (var i = 0; i < maxLenght; i++)
-            {
-                builder.Append("a");
-            }
-            Assert.IsTrue(attrib.IsValid(builder.ToString()));
-            Assert.IsFalse(attrib.IsValid(builder + "a"));
-        }
-
-        [TestMethod]
         public void TestDateRange()
         {
             var attrib = new WDateRangeAttribute();
@@ -97,7 +83,7 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
         }
 
         [TestMethod]
-        public void TestStringlength()
+        public void TestStringLength()
         {
             var attrib = new WStringLengthAttribute(8);
             Assert.IsFalse(attrib.IsValid("123456789"));
