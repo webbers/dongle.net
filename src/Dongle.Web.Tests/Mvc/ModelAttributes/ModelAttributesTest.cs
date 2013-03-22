@@ -78,7 +78,7 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
         public void TestStringLength()
         {
             const int maxLenght = 3;
-            var attrib = new WStringLength(maxLenght);
+            var attrib = new WStringLengthAttribute(maxLenght);
             var builder = new StringBuilder();
             for (var i = 0; i < maxLenght; i++)
             {
@@ -99,7 +99,7 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
         [TestMethod]
         public void TestStringlength()
         {
-            var attrib = new WStringLength(8);
+            var attrib = new WStringLengthAttribute(8);
             Assert.IsFalse(attrib.IsValid("123456789"));
             Assert.IsTrue(attrib.IsValid("1234"));
         }

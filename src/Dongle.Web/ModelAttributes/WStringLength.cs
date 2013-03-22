@@ -6,12 +6,12 @@ using Dongle.Web.Resources;
 
 namespace Dongle.Web.ModelAttributes
 {
-    public class WStringLength : ValidationAttribute, IClientValidatable
+    public class WStringLengthAttribute : ValidationAttribute, IClientValidatable
     {
         private readonly StringLengthAttribute _stringLengthAttribute;
         private readonly int _maximumLength;
 
-        public WStringLength(int maximumLength)
+        public WStringLengthAttribute(int maximumLength)
         {
             _maximumLength = maximumLength;
             _stringLengthAttribute = new StringLengthAttribute(maximumLength);
@@ -35,8 +35,9 @@ namespace Dongle.Web.ModelAttributes
             var rule = new ModelClientValidationRule
             {
                 ErrorMessage = msg,
-                ValidationType = "stringlength",
+                ValidationType = "length",
             };
+            rule.ValidationParameters.Add("max", _maximumLength);
             yield return rule;
         }
     }
