@@ -88,11 +88,20 @@ namespace Dongle.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid hexadecimal.
+        ///   Looks up a localized string similar to The value must be a hexadecimal with {0} octet (s).
         /// </summary>
         internal static string InvalidHexadecimal {
             get {
                 return ResourceManager.GetString("InvalidHexadecimal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value must be a hexadecimal with {0} to {1} octet (s).
+        /// </summary>
+        internal static string InvalidHexadecimalRange {
+            get {
+                return ResourceManager.GetString("InvalidHexadecimalRange", resourceCulture);
             }
         }
         

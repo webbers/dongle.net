@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Text;
 using Dongle.Web.ModelAttributes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -24,13 +23,22 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
         [TestMethod]
         public void TestHexadecimalAttribute()
         {
-            var attrib = new WHexadecimalAttribute();
+            var attrib = new WHexadecimalAttribute(1);
             Assert.IsTrue(attrib.IsValid("ABCDEF11"));
             Assert.IsFalse(attrib.IsValid("ZCXASD01"));
 
+            var attrib2 = new WHexadecimalAttribute(2);
+            Assert.IsTrue(attrib2.IsValid("FFDF896700004712"));
+            Assert.IsFalse(attrib2.IsValid("FFDF8X67000Z4712"));
+            Assert.IsFalse(attrib2.IsValid("FFDF8367000A47122"));
+
+            var attrib3 = new WHexadecimalAttribute(1,2);
+            Assert.IsTrue(attrib3.IsValid("ABCDEF11"));
+            Assert.IsTrue(attrib3.IsValid("FFDF896700004712"));
+
             var rules = attrib.GetClientValidationRules(null, null);
 
-            Assert.AreEqual("Invalid hexadecimal", rules.First().ErrorMessage);
+            Assert.AreEqual("The value must be a hexadecimal with 1 octet (s)", rules.First().ErrorMessage);
         }
 
         [TestMethod]

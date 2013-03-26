@@ -127,7 +127,10 @@
     <value>Invalid e-mail</value>
   </data>
   <data name="InvalidHexadecimal" xml:space="preserve">
-    <value>Invalid hexadecimal</value>
+    <value>The value must be a hexadecimal with {0} octet (s)</value>
+  </data>
+  <data name="InvalidHexadecimalRange" xml:space="preserve">
+    <value>The value must be a hexadecimal with {0} to {1} octet (s)</value>
   </data>
   <data name="InvalidIpAddress" xml:space="preserve">
     <value>Invalid IP address</value>
