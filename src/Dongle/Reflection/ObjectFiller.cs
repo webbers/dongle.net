@@ -2,34 +2,15 @@
 
 namespace Dongle.Reflection
 {
-    public class ObjectFiller<TSource, TDestination> 
-        where TSource : class
-        where TDestination : class
+    public static class ObjectFiller
     {
-        public static void Fill(TSource sourceObj, TDestination destObj)
+        public static void Fill(Type typeOfSource, object sourceObj, Type typeOfDestination, object destObj, bool overwriteWithNullValues = true)
         {
-            FillerHelper(sourceObj, destObj);
-        }
-
-        public static TDestination Fill(TSource sourceObj)
-        {
-            var destObj = Activator.CreateInstance<TDestination>();
-            Fill(sourceObj, destObj);
-            return destObj;
-        }
-
-        public static void Merge(TSource sourceObj, TDestination destObj)
-        {
-            FillerHelper(sourceObj, destObj, false);
-        }
-
-        private static void FillerHelper(TSource sourceObj, TDestination destObj, bool overwriteWithNullValues = true)
-        {
-            var sourceProperties = typeof(TSource).GetProperties();
+            var sourceProperties = typeOfSource.GetProperties();
 
             foreach (var sourceProperty in sourceProperties)
             {
-                var destProperty = typeof(TDestination).GetProperty(sourceProperty.Name);
+                var destProperty = typeOfDestination.GetProperty(sourceProperty.Name);
 
                 if (destProperty == null || destProperty.CanWrite == false)
                 {
@@ -82,6 +63,26 @@ namespace Dongle.Reflection
                 return true;
             }
             return Nullable.GetUnderlyingType(type) != null;
+        }
+    }
+
+    public class ObjectFiller<TSource, TDestination> where TSource : class where TDestination : class
+    {
+        public static void Fill(TSource sourceObj, TDestination destObj)
+        {
+            ObjectFiller.Fill(typeof(TSource), sourceObj, typeof(TDestination), destObj);
+        }
+
+        public static TDestination Fill(TSource sourceObj)
+        {
+            var destObj = Activator.CreateInstance<TDestination>();
+            Fill(sourceObj, destObj);
+            return destObj;
+        }
+
+        public static void Merge(TSource sourceObj, TDestination destObj)
+        {
+            ObjectFiller.Fill(typeof(TSource), sourceObj, typeof(TDestination), destObj, false);
         }
     }
 }
