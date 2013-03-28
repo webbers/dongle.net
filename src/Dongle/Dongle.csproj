@@ -68,6 +68,13 @@
   <ItemGroup>
     <Compile Include="Algorithms\Crc32.cs" />
     <Compile Include="Configuration\AppConfig.cs" />
+    <Compile Include="System\Networking\NamedPipes\PipeClient.cs" />
+    <Compile Include="System\Networking\NamedPipes\PipeServer.cs" />
+    <Compile Include="System\Networking\NamedPipes\StringStream.cs" />
+    <Compile Include="System\Networking\Tcp\TcpClient.cs" />
+    <Compile Include="System\Networking\Tcp\TcpClientSync.cs" />
+    <Compile Include="System\Networking\Tcp\TcpCommunication.cs" />
+    <Compile Include="System\Networking\Tcp\TcpServer.cs" />
     <Compile Include="Reflection\MemberInfoExtensions.cs" />
     <Compile Include="Reflection\ObjectFiller.cs" />
     <Compile Include="Resources\DongleResource.Designer.cs">

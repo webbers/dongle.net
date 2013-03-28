@@ -133,6 +133,33 @@ namespace Dongle.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The connection was closed. Check if server is available..
+        /// </summary>
+        internal static string TcpConnectionClosedError {
+            get {
+                return ResourceManager.GetString("TcpConnectionClosedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while connecting to remote host {0}:{1}.
+        /// </summary>
+        internal static string TcpConnectionError {
+            get {
+                return ResourceManager.GetString("TcpConnectionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The server could not be started. Make sure the provided IP/Port are no longer being used by another application..
+        /// </summary>
+        internal static string TcpServerStartError {
+            get {
+                return ResourceManager.GetString("TcpServerStartError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid value for field {0}.
         /// </summary>
         internal static string TheXFieldWasInvalid {

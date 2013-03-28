@@ -94,6 +94,8 @@
     <Compile Include="Serialization\ObjectFormatterTest.cs" />
     <Compile Include="System\IO\ApplicationPathsTest.cs" />
     <Compile Include="System\IO\FileInfoExtensionsTest.cs" />
+    <Compile Include="System\Networking\TcpFunctionsTest.cs" />
+    <Compile Include="System\Networking\TcpSystemTest.cs" />
     <Compile Include="System\NumericExtensions.cs" />
     <Compile Include="System\Tree\TreeNodeTest.cs">
       <SubType>Code</SubType>

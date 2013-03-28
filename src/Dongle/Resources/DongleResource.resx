@@ -141,6 +141,15 @@
   <data name="SourceDirectoryNotFound" xml:space="preserve">
     <value>Source directory does not exist or could not be found</value>
   </data>
+  <data name="TcpConnectionClosedError" xml:space="preserve">
+    <value>The connection was closed. Check if server is available.</value>
+  </data>
+  <data name="TcpConnectionError" xml:space="preserve">
+    <value>Error while connecting to remote host {0}:{1}</value>
+  </data>
+  <data name="TcpServerStartError" xml:space="preserve">
+    <value>The server could not be started. Make sure the provided IP/Port are no longer being used by another application.</value>
+  </data>
   <data name="TheXFieldWasInvalid" xml:space="preserve">
     <value>Invalid value for field {0}</value>
   </data>
