@@ -12,7 +12,8 @@ namespace Dongle.Serialization
                 return null;
             }
             var communicationT = default(TEntity);
-            var type = GetTypeFromJson(command, "CurrentTypeFullName");
+            var assembly = typeof(TEntity).Assembly;
+            var type = GetTypeFromJson(command, "CurrentTypeFullName", assembly);
             if (type != null)
             {
                 communicationT = JsonSimpleSerializer.UnserializeObject(command, type) as TEntity;
@@ -34,6 +35,12 @@ namespace Dongle.Serialization
         {
             var typeFullName = JsonSimpleSerializer.GetNodeValueFromJson(json, typePropertyName);
             return Type.GetType(typeFullName);
+        }
+
+        public static Type GetTypeFromJson(string json, string typePropertyName, Assembly assembly)
+        {
+            var typeFullName = JsonSimpleSerializer.GetNodeValueFromJson(json, typePropertyName);
+            return assembly.GetType(typeFullName);
         }
 
         public static Type GetTypeFromJson(string json, string typePropertyName, string assemblyPathPropertyName)

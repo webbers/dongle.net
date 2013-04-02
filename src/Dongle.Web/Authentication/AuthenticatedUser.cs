@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 
 namespace Dongle.Web.Authentication
 {
+    [Serializable]
     public class AuthenticatedUser
     {
         public int Id { get; set; }
