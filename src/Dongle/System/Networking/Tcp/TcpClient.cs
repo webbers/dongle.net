@@ -114,7 +114,14 @@ namespace Dongle.System.Networking.Tcp
                 Connect(RemoteAdress, RemotePort);
                 if (!IsConnected)
                 {
-                    throw new Exception(DongleResource.TcpConnectionClosedError);
+                    if (OnErrorOcurred != null)
+                    {
+                        OnErrorOcurred(_socket, new Exception(DongleResource.TcpConnectionClosedError));
+                    }
+                    else
+                    {
+                        throw new Exception(DongleResource.TcpConnectionClosedError);
+                    }
                 }
             }
         }

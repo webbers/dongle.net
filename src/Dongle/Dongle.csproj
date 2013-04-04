@@ -111,11 +111,16 @@
     <Compile Include="System\TypeExtensions.cs" />
     <Compile Include="Utils\UrlUtils.cs" />
     <Compile Include="Utils\VersionUtils.cs" />
-    <EmbeddedResource Include="Resources\DongleResource.es-ES.resx" />
-    <EmbeddedResource Include="Resources\DongleResource.pt-BR.resx" />
+    <EmbeddedResource Include="Resources\DongleResource.es-ES.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DongleResource.pt-BR.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\DongleResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DongleResource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
