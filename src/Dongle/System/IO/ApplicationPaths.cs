@@ -130,7 +130,7 @@ namespace Dongle.System.IO
         }
 
         /// <summary>
-        /// Cria uma pasta recursivamente. Se já existir, apaga antes de criar
+        /// Apaga todos os arquivos de um diretório
         /// </summary>     
         public static void RemoveAllFiles(string path)
         {
@@ -138,7 +138,7 @@ namespace Dongle.System.IO
             {
                 return;
             }
-            foreach (var file in Directory.GetFiles(path))
+            foreach (var file in Directory.EnumerateFiles(path))
             {
                 File.Delete(file);
             }
