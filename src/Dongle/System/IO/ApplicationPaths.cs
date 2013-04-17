@@ -151,7 +151,7 @@ namespace Dongle.System.IO
         {
             if (extension != "" && !extension.StartsWith("."))
                 extension = "." + extension;
-            return DateTime.Now.ToString("yyyy-MM-ddTHH-mm-ss.FFFFFF_") + new Random().Next() + "." + extension;
+            return DateTime.Now.ToString("yyyy-MM-ddTHH-mm-ss.FFFFFF_") + new Random().Next() + extension;
         }
 
         /// <summary>
