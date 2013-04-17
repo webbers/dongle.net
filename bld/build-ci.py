@@ -26,7 +26,7 @@ assemblyPath2 = os.path.abspath( os.path.join( os.path.dirname( __file__ ), '../
 pubDir = os.path.abspath( os.path.join( os.path.dirname( __file__ ), '../pub' ) )
 tempDir = os.path.abspath( os.path.join( os.path.dirname( __file__ ), '../temp' ) )
 resDir = os.path.abspath( os.path.join( os.path.dirname( __file__ ), '../res' ) )
-repoUrl = 'http://cronos:9090/gasrd/Web/pub/Dongle.Net/trunk'
+repoUrl = 'https://cronos/svn/Web/pub/Dongle.Net/trunk'
 
 #--------------------------------------------------------------------
 bp = Builder( "Dongle.Net" )
