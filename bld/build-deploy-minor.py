@@ -28,7 +28,7 @@ assemblyDir2 = os.path.abspath( os.path.join( os.path.dirname( __file__ ), '../s
 
 pubDir = os.path.abspath( os.path.join( os.path.dirname( __file__ ), '../pub' ) )
 tempDir = os.path.abspath( os.path.join( os.path.dirname( __file__ ), '../temp' ) )
-repoUrl = 'http://cronos:9090/gasrd/Web/pub/Dongle.Net/trunk'
+repoUrl = 'https://cronos/svn/Web/pub/Dongle.Net/trunk'
 
 #--------------------------------------------------------------------
 bp = Builder( "Dongle.Net" )
@@ -45,7 +45,7 @@ bp.addStep( DelTreeStep( tempDir ) )
 
 bp.addStep( SvnDeleteStep(repoUrl))
 bp.addStep( SvnImportDirStep( pubDir, repoUrl ) )
-bp.addStep( SvnCreateTagDirStep( repoUrl,  'http://cronos:9090/gasrd/Web/pub/Dongle.Net/tags', assemblyPath1 ) )
+bp.addStep( SvnCreateTagDirStep( repoUrl,  'https://cronos/svn/Web/pub/Dongle.Net/tags', assemblyPath1 ) )
 
 bp.addStep( SvnCommitDirStep( assemblyDir1, 1, sys.argv[1], sys.argv[2]  ) )
 
