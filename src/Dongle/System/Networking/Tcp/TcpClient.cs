@@ -220,7 +220,7 @@ namespace Dongle.System.Networking.Tcp
         {
             try
             {
-                if (IsConnected)
+                if (IsConnected && _socket != null)
                 {
                     try
                     {
@@ -239,9 +239,12 @@ namespace Dongle.System.Networking.Tcp
                 }
                 if (!reuseSocket)
                 {
-                    _closing = true;                    
-                    _socket.Dispose();
-                    _socket = null;
+                    _closing = true;
+                    if (_socket != null)
+                    {
+                        _socket.Dispose();
+                        _socket = null;   
+                    }                    
                     _connectDone.Set();
                 }                
             }
