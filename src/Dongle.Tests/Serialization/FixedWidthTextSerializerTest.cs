@@ -21,11 +21,11 @@ namespace Dongle.Tests.Serialization
             + "Hebe Camargo                   83         1929-03-08 12:00:00  1.6        FALSE                ";
 
         private const string ExpectedWithResource =
-            "-----------------------------------------------------------------------------------------------\r\n"
-            + "Name From Resource             Age From R CreatedAt            Price      Enabled              \r\n"
-            + "-----------------------------------------------------------------------------------------------\r\n"
-            + "Silvio Santos                  82         1930-12-12           1,72       VERDADEIRO           \r\n"
-            + "Hebe Camargo                   83         1929-03-08 12:00:00  1,6        FALSO                ";
+            "------------------------------------------------------------------------------------------------------\r\n"
+            + "Name From Resource             Age From Resource CreatedAt            Price      Enabled              \r\n"
+            + "------------------------------------------------------------------------------------------------------\r\n"
+            + "Silvio Santos                  82                1930-12-12           1,72       VERDADEIRO           \r\n"
+            + "Hebe Camargo                   83                1929-03-08 12:00:00  1,6        FALSO                ";
 
         [TestMethod]
         public void FixedWidthSerializeFooList()
