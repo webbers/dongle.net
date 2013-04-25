@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Resources;
 using System.Text;
 
@@ -13,8 +14,11 @@ namespace Dongle.Serialization
     {
         private const int DefaultWidth = 20;
         private readonly Dictionary<string, int> _fieldWidths = new Dictionary<string, int>();
-
         private readonly ResourceManager _resourceManager;
+
+        public string[] ColumnHeaderTexts;
+
+        public bool UseDynamicSizes;
 
         public FixedWidthTextSerializer(ResourceManager resourceManager = null)
         {
@@ -30,36 +34,53 @@ namespace Dongle.Serialization
 
             var totalWidth = 0;
             var colBuilder = new StringBuilder();
+            var i = 0;
             foreach (var propertyInfo in properties)
             {
                 if (propertyInfo.HasAttribute<IgnoreAttribute>())
                 {
                     continue;
                 }
-                var attr = Attribute.GetCustomAttribute(propertyInfo, typeof(FixedWidthAttribute)) as FixedWidthAttribute;
-                
-                var width = (attr == null ? DefaultWidth : attr.Width) + 1;
-                _fieldWidths[propertyInfo.Name] = width;
+                int width;
+                if (UseDynamicSizes)
+                {
+                    width = items.Max(it => ObjectFormatter.Format(propertyInfo.GetValue(it, null), cultureInfo, false).Length) + 2;
+                }
+                else
+                {
+                    var attr = Attribute.GetCustomAttribute(propertyInfo, typeof(FixedWidthAttribute)) as FixedWidthAttribute;
+                    width = (attr == null ? DefaultWidth : attr.Width) + 1;                       
+                }                
 
                 var name = propertyInfo.Name;
-                if (_resourceManager != null)
+                if (ColumnHeaderTexts != null && ColumnHeaderTexts.Length > i)
                 {
-                    var tempName = this._resourceManager.GetString(propertyInfo.Name);
+                    name = ColumnHeaderTexts[i];
+                }
+                else if (_resourceManager != null)
+                {
+                    var tempName = _resourceManager.GetString(propertyInfo.Name);
                     if (!string.IsNullOrEmpty(tempName))
                     {
                         name = tempName;
                     }
                 }
+                if (width < name.Length + 1)
+                {
+                    width = name.Length + 1;
+                }
+                _fieldWidths[propertyInfo.Name] = width;
                 colBuilder.Append(Pad(name, width));
                 totalWidth += width;
+                i++;
             }
-            for (var i = 0; i < totalWidth; i++)
+            for (i = 0; i < totalWidth; i++)
             {
                 builder.Append("-");
             }
             builder.AppendLine();
             builder.AppendLine(colBuilder.ToString());
-            for (var i = 0; i < totalWidth; i++)
+            for (i = 0; i < totalWidth; i++)
             {
                 builder.Append("-");
             }
