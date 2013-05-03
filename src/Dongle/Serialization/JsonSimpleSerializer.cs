@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-
+using System.Text;
 using Dongle.System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -14,7 +14,7 @@ namespace Dongle.Serialization
         {
             fileInfo.Directory.CreateRecursively();
             using (var fileStream = new FileStream(fileInfo.FullName, FileMode.Create))
-            using (var streamWriter = new StreamWriter(fileStream))
+            using (var streamWriter = new StreamWriter(fileStream, Encoding.Default))
             using (var jsonTextWriter = new JsonTextWriter(streamWriter))
             {
                 jsonTextWriter.Formatting = Formatting.None;
@@ -29,7 +29,7 @@ namespace Dongle.Serialization
             if (fileInfo.Exists)
             {
                 using (var fileStream = new FileStream(fileInfo.FullName, FileMode.Open))
-                using (var streamReader = new StreamReader(fileStream))
+                using (var streamReader = new StreamReader(fileStream, Encoding.Default))
                 {
                     string json = streamReader.ReadToEnd();
                     return JsonConvert.DeserializeObject<T>(json);
@@ -43,7 +43,7 @@ namespace Dongle.Serialization
             var settings = new JsonSerializerSettings
                                {
                                    Formatting = Formatting.None,
-                                   DateFormatHandling = DateFormatHandling.MicrosoftDateFormat,
+                                   DateFormatHandling = DateFormatHandling.MicrosoftDateFormat,                                   
                                    Culture = cultureInfo ?? CultureInfo.CurrentUICulture
                                };
             return JsonConvert.SerializeObject(obj, settings);

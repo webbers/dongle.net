@@ -16,7 +16,7 @@ namespace Dongle.System.Networking.NamedPipes
 
         public string ReadLine()
         {
-            using (var reader = new StreamReader(_ioStream))
+            using (var reader = new StreamReader(_ioStream, _streamEncoding))
             {
                 return reader.ReadLine();
             }
@@ -24,7 +24,7 @@ namespace Dongle.System.Networking.NamedPipes
 
         public void WriteLine(string outString)
         {
-            using (var writer = new StreamWriter(_ioStream))
+            using (var writer = new StreamWriter(_ioStream, _streamEncoding))
             {
                 writer.WriteLine(outString);
                 writer.Flush();
