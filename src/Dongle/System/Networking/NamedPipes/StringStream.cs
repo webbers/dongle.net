@@ -7,7 +7,7 @@ namespace Dongle.System.Networking.NamedPipes
     public class StringStream : IDisposable
     {
         private readonly Stream _ioStream;
-        private readonly UnicodeEncoding _streamEncoding = new UnicodeEncoding();
+        private readonly Encoding _streamEncoding = Encoding.Default;
 
         public StringStream(Stream ioStream)
         {
