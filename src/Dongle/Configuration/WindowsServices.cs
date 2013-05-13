@@ -67,29 +67,27 @@ namespace Dongle.Configuration
             {
                 return true;
             }
-            var trys = 0;
+            var timeElapsed = 0;
             bool stopped;
+
+            StopService(serviceFullName);
+
             do
             {
-                StopService(serviceFullName);
-
                 var status = GetWindowsServiceStatus(serviceFullName);
-
                 if (status == null)
                 {
                     return false;
                 }
-
                 stopped = status == ServiceControllerStatus.Stopped;
 
                 if (stopped)
                 {
                     break;
                 }
-                trys++;
+                timeElapsed++;
                 Thread.CurrentThread.Join(1000);
-            }
-            while (trys < timeout);
+            } while (timeElapsed < timeout);
             return stopped;
         }
 
