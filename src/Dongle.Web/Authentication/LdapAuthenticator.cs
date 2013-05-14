@@ -32,7 +32,7 @@ namespace Dongle.Web.Authentication
 
                 if (result != null)
                 {
-                    var email = result.Properties["email"].Count > 0 ? result.Properties["email"][0] : "";
+                    var email = result.Properties["mail"].Count > 0 ? result.Properties["mail"][0] : "";
                     var name = result.Properties["displayName"].Count > 0 ? result.Properties["displayName"][0] : "";
 
                     return new AuthenticatedUser
