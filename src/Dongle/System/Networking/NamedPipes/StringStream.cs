@@ -11,11 +11,14 @@ namespace Dongle.System.Networking.NamedPipes
         private readonly PipeStream _ioStream;
         private readonly Encoding _streamEncoding = Encoding.Default;
 
-        public StringStream(PipeStream ioStream)
+        public StringStream(PipeStream ioStream, int timeout = -1)
         {
             _ioStream = ioStream;
             _ioStream.ReadMode = PipeTransmissionMode.Message;
+            Timeout = timeout;
         }
+
+        public int Timeout { get; set; }
 
         public string ReadLine()
         {
@@ -34,22 +37,22 @@ namespace Dongle.System.Networking.NamedPipes
             }
         }
 
-        public string ReadStringAsync(int timeout = 2000)
+        public string ReadStringAsync()
         {
             var readTask = Task.Factory.StartNew(() => ReadString());
 
-            if (readTask.Wait(timeout))
+            if (readTask.Wait(Timeout))
             {
                 return readTask.Result;
             }
             throw new TimeoutException();
         }
 
-        public void WriteStringAsync(string outString, int timeout = 2000)
+        public void WriteStringAsync(string outString)
         {
             var writeTask = Task.Factory.StartNew(() => WriteString(outString));
 
-            if (!writeTask.Wait(timeout))
+            if (!writeTask.Wait(Timeout))
             {
                 throw new TimeoutException();
             }

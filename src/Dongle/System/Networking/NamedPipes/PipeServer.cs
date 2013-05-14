@@ -65,7 +65,7 @@ namespace Dongle.System.Networking.NamedPipes
                                                           thread.Start(pipeStream);
                                                       }, null);
                 _allDone.WaitOne();
-            }            
+            }
         }
 
         private void ProcessClientThread(object o)
@@ -91,6 +91,6 @@ namespace Dongle.System.Networking.NamedPipes
                 }
                 pipeStream.Close();
             }
-        }        
-    }    
+        }
+    }
 }
