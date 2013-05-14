@@ -27,7 +27,7 @@ namespace Dongle.Web.Authentication
 
                 search.PropertiesToLoad.Add("cn");
                 search.PropertiesToLoad.Add("displayName");
-                search.PropertiesToLoad.Add("email");
+                search.PropertiesToLoad.Add("mail");
                 var result = search.FindOne();
 
                 if (result != null)
