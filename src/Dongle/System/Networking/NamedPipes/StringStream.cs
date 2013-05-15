@@ -3,13 +3,14 @@ using System.IO;
 using System.IO.Pipes;
 using System.Text;
 using System.Threading.Tasks;
+using Dongle.System.IO;
 
 namespace Dongle.System.Networking.NamedPipes
 {
     public class StringStream : IDisposable
     {
         private readonly PipeStream _ioStream;
-        private readonly Encoding _streamEncoding = Encoding.Default;
+        private readonly Encoding _streamEncoding = DongleEncoding.Default;
 
         public StringStream(PipeStream ioStream, int timeout = -1)
         {

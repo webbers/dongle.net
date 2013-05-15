@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Text;
 
 using Dongle.Serialization;
+using Dongle.System.IO;
 using Dongle.Tests.Tools;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -28,7 +29,7 @@ namespace Dongle.Tests.Serialization
         public void SerializeFooList()
         {
             var serializer = new CsvSerializer<Foo>();
-            var actual = Encoding.UTF8.GetString(serializer.Serialize(Foo.FooArray));
+            var actual = DongleEncoding.Default.GetString(serializer.Serialize(Foo.FooArray));
             Assert.AreEqual(CsvExpected, actual);
         }
 
@@ -36,7 +37,7 @@ namespace Dongle.Tests.Serialization
         public void SerializeDicionary()
         {
             var serializer = new CsvSerializer<Dictionary<string, object>>();
-            var actual = Encoding.UTF8.GetString(serializer.Serialize(Foo.FooDictionary));
+            var actual = DongleEncoding.Default.GetString(serializer.Serialize(Foo.FooDictionary));
             Assert.AreEqual(CsvExpected, actual);
         }
 
@@ -44,7 +45,7 @@ namespace Dongle.Tests.Serialization
         public void SerializeFooListWithResourceAndCulture()
         {
             var serializer = new CsvSerializer<Foo>(FooResource.ResourceManager);
-            var actual = Encoding.UTF8.GetString(serializer.Serialize(Foo.FooArray, CultureInfo.GetCultureInfo("pt-BR")));
+            var actual = DongleEncoding.Default.GetString(serializer.Serialize(Foo.FooArray, CultureInfo.GetCultureInfo("pt-BR")));
             Assert.AreEqual(CsvExpectedWithResource, actual);
         }
     }

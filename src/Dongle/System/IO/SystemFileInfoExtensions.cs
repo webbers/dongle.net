@@ -77,7 +77,7 @@ namespace Dongle.System.IO
             {
                 throw new ArgumentException("fileInfo");
             }
-            using (var streamReader = new StreamReader(fileInfo.FullName, Encoding.UTF8))
+            using (var streamReader = new StreamReader(fileInfo.FullName, DongleEncoding.Default))
             {
                 return streamReader.ReadToEnd();
             }
@@ -95,7 +95,7 @@ namespace Dongle.System.IO
                 throw new ArgumentException("content");
             }
             fileInfo.Directory.CreateRecursively();
-            using (var writer = new StreamWriter(fileInfo.FullName, false, Encoding.UTF8))
+            using (var writer = new StreamWriter(fileInfo.FullName, false, DongleEncoding.Default))
             {
                 writer.Write(content);
             }

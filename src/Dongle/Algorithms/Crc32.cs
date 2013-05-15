@@ -2,6 +2,7 @@
 using System.Collections;
 using System.IO;
 using System.Text;
+using Dongle.System.IO;
 
 namespace Dongle.Algorithms
 {
@@ -106,7 +107,7 @@ namespace Dongle.Algorithms
         /// <remarks>The computation preserves the internal state between the calls, so it can be used for computation of a stream data.</remarks>
         public byte[] ComputeHash(string asciiString)
         {
-            var rawBytes = Encoding.ASCII.GetBytes(asciiString);
+            var rawBytes = DongleEncoding.Default.GetBytes(asciiString);
             return ComputeHash(rawBytes);
         }
 

@@ -7,6 +7,7 @@ using System.Text;
 using Dongle.Reflection;
 using Dongle.Serialization.Attributes;
 using Dongle.System;
+using Dongle.System.IO;
 
 namespace Dongle.Serialization
 {
@@ -21,7 +22,7 @@ namespace Dongle.Serialization
 
         public byte[] Serialize(IEnumerable<TEntity> items, CultureInfo cultureInfo = null, Encoding encoding = null)
         {
-            encoding = encoding ?? Encoding.GetEncoding(1252);
+            encoding = encoding ?? DongleEncoding.Default;
             cultureInfo = cultureInfo ?? CultureInfo.InvariantCulture;
 
             var properties = typeof(TEntity).GetProperties();

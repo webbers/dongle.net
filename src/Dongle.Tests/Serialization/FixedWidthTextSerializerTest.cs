@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Text;
 
 using Dongle.Serialization;
+using Dongle.System.IO;
 using Dongle.Tests.Tools;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -31,7 +32,7 @@ namespace Dongle.Tests.Serialization
         public void FixedWidthSerializeFooList()
         {
             var serializer = new FixedWidthTextSerializer<Foo>();
-            var actual = Encoding.UTF8.GetString(serializer.Serialize(Foo.FooArray));
+            var actual = DongleEncoding.Default.GetString(serializer.Serialize(Foo.FooArray));
             Assert.AreEqual(Expected, actual);
         }
 
@@ -40,7 +41,7 @@ namespace Dongle.Tests.Serialization
         {
             //Todo: Make work with dictionaries
             /*var serializer = new FixedWidthTextSerializer<Dictionary<string, object>>();
-            var actual = Encoding.UTF8.GetString(serializer.Serialize(Foo.FooDictionary));
+            var actual = DongleEncoding.Default.GetString(serializer.Serialize(Foo.FooDictionary));
             Assert.AreEqual(Expected, actual);*/
         }
 
@@ -48,7 +49,7 @@ namespace Dongle.Tests.Serialization
         public void FixedWidthSerializeFooListWithResourceAndCulture()
         {
             var serializer = new FixedWidthTextSerializer<Foo>(FooResource.ResourceManager);
-            var actual = Encoding.UTF8.GetString(serializer.Serialize(Foo.FooArray, CultureInfo.GetCultureInfo("pt-BR")));
+            var actual = DongleEncoding.Default.GetString(serializer.Serialize(Foo.FooArray, CultureInfo.GetCultureInfo("pt-BR")));
             Assert.AreEqual(ExpectedWithResource, actual);
         }
     }
