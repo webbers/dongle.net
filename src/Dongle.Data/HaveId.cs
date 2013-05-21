@@ -1,4 +1,4 @@
-﻿namespace Dongle.Data
+namespace Dongle.Data
 {
     public interface IHaveId
     {
