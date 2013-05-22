@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 using Dongle.Resources;
@@ -126,7 +127,7 @@ namespace Dongle.System.IO
                 return null;
             }
 
-            if(parent.Name.Replace("/", "").Equals(name.Replace("/", ""), StringComparison.CurrentCultureIgnoreCase))
+            if (parent.Name.Replace("/", "").Equals(name.Replace("/", ""), StringComparison.CurrentCultureIgnoreCase))
             {
                 return parent;
             }
@@ -178,6 +179,26 @@ namespace Dongle.System.IO
             {
                 directoryInfo.Create();
             }
+        }
+
+        /// <summary>
+        /// Obtém o tamanho total em bytes de um diretório e de seus subdiretórios
+        /// </summary>
+        /// <returns>Retorna o tamanho total em bytes. Retorna o valor 0 caso o diretório não exista</returns>
+        public static long GetFolderSize(this DirectoryInfo directoryInfo, bool includeSubdirectories = true)
+        {
+            if (directoryInfo == null || !directoryInfo.Exists)
+            {
+                return 0;
+            }
+            var totalSize = directoryInfo.EnumerateFiles().Sum(file => file.Length);
+
+            if (includeSubdirectories)
+            {
+                totalSize += directoryInfo.EnumerateDirectories().Sum(dir => GetFolderSize(dir));
+            }
+
+            return totalSize;
         }
     }
 }
