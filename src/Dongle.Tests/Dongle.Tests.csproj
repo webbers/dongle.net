@@ -127,6 +127,7 @@
     <EmbeddedResource Include="Tools\FooResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FooResource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
