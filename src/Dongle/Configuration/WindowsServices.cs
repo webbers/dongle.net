@@ -47,7 +47,7 @@ namespace Dongle.Configuration
         {
             using (var service = GetWindowsService(serviceName))
             {
-                if (service != null)
+                if (service != null && service.Status != ServiceControllerStatus.Running && service.Status != ServiceControllerStatus.StartPending)
                 {
                     service.Start();
                 }
@@ -58,7 +58,7 @@ namespace Dongle.Configuration
         {
             using (var service = GetWindowsService(serviceName))
             {
-                if (service != null)
+                if (service != null && service.Status != ServiceControllerStatus.Stopped && service.Status != ServiceControllerStatus.StopPending)
                 {
                     service.Stop();
                 }
@@ -70,7 +70,7 @@ namespace Dongle.Configuration
             var service = GetWindowsService(serviceFullName);
             var timeElapsed = 0;
 
-            if (service == null)
+            if (service == null || service.Status == ServiceControllerStatus.Stopped || service.Status == ServiceControllerStatus.StopPending)
             {
                 return true;
             }
