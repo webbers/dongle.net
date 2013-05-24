@@ -45,24 +45,12 @@ namespace Dongle.Configuration
 
         public static void StartService(string serviceName)
         {
-            using (var service = GetWindowsService(serviceName))
-            {
-                if (service != null && service.Status != ServiceControllerStatus.Running && service.Status != ServiceControllerStatus.StartPending)
-                {
-                    service.Start();
-                }
-            }
+            ExecuteCommand(Environment.SystemDirectory + @"\sc.exe", "start \"" + serviceName + "\"");
         }
 
         public static void StopService(string serviceName)
         {
-            using (var service = GetWindowsService(serviceName))
-            {
-                if (service != null && service.Status != ServiceControllerStatus.Stopped && service.Status != ServiceControllerStatus.StopPending)
-                {
-                    service.Stop();
-                }
-            }
+            ExecuteCommand(Environment.SystemDirectory + @"\sc.exe", "stop \"" + serviceName + "\"");
         }
 
         public static bool StopWindowsService(string serviceFullName, long timeout = 10)
@@ -70,12 +58,14 @@ namespace Dongle.Configuration
             var service = GetWindowsService(serviceFullName);
             var timeElapsed = 0;
 
-            if (service == null || service.Status == ServiceControllerStatus.Stopped || service.Status == ServiceControllerStatus.StopPending)
+            if (service == null || service.Status == ServiceControllerStatus.Stopped)
             {
                 return true;
             }
 
-            service.Stop();
+            StopService(serviceFullName);
+
+            service.Refresh();
 
             while (service.Status != ServiceControllerStatus.Stopped && timeElapsed < timeout)
             {
