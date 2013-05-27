@@ -19,15 +19,7 @@ namespace Dongle.Configuration
 
         public static void ReinstallService(string serviceName, string displayName, string filePath)
         {
-            StopService(serviceName);
-
-            var i = 0;
-
-            while (GetWindowsServiceStatus(serviceName) != ServiceControllerStatus.Stopped && i < 30)
-            {
-                i++;
-                Thread.CurrentThread.Join(1000);
-            }
+            StopWindowsService(serviceName);
 
             ExecuteCommand(Environment.SystemDirectory + @"\sc.exe", "config \"" + serviceName + "\" binPath= \"" + filePath + "\" start= auto DisplayName= \"" + displayName + "\"");
             SetServiceAutoStart(serviceName);
@@ -37,7 +29,7 @@ namespace Dongle.Configuration
 
         public static void RemoveService(string serviceName)
         {
-            StopService(serviceName);
+            StopWindowsService(serviceName);
             ExecuteCommand(Environment.SystemDirectory + @"\sc.exe", "delete \"" + serviceName + "\"");
         }
 
@@ -63,40 +55,31 @@ namespace Dongle.Configuration
 
         public static bool StopWindowsService(string serviceFullName, long timeout = 10)
         {
-            if (!WindowsServiceExists(serviceFullName))
+            var service = GetWindowsService(serviceFullName);
+            var timeElapsed = 0;
+
+            if (service == null || service.Status == ServiceControllerStatus.Stopped)
             {
                 return true;
             }
-            var trys = 0;
-            bool stopped;
-            do
+
+            StopService(serviceFullName);
+
+            service.Refresh();
+
+            while (service.Status != ServiceControllerStatus.Stopped && timeElapsed < timeout)
             {
-                StopService(serviceFullName);
-
-                var status = GetWindowsServiceStatus(serviceFullName);
-
-                if (status == null)
-                {
-                    return false;
-                }
-
-                stopped = status == ServiceControllerStatus.Stopped;
-
-                if (stopped)
-                {
-                    break;
-                }
-                trys++;
+                timeElapsed++;
                 Thread.CurrentThread.Join(1000);
+
+                service.Refresh();
             }
-            while (trys < timeout);
-            return stopped;
+            return service.Status == ServiceControllerStatus.Stopped;
         }
 
         public static void RestartWindowsService(string serviceFullName, long timeout = 10)
         {
-            var stopped = StopWindowsService(serviceFullName, timeout);
-            if (stopped)
+            if (StopWindowsService(serviceFullName, timeout))
             {
                 StartService(serviceFullName);
             }
@@ -109,12 +92,17 @@ namespace Dongle.Configuration
 
         public static ServiceControllerStatus? GetWindowsServiceStatus(string serviceName)
         {
-            var service = ServiceController.GetServices().FirstOrDefault(s => s.ServiceName == serviceName);
+            var service = GetWindowsService(serviceName);
             if (service != null)
             {
                 return service.Status;
             }
             return null;
+        }
+
+        public static ServiceController GetWindowsService(string serviceName)
+        {
+            return ServiceController.GetServices().FirstOrDefault(s => s.ServiceName == serviceName);
         }
 
         public static string GetServiceImagePath(string serviceName, string machineName)

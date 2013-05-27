@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.DirectoryServices.AccountManagement;
+using System.DirectoryServices.ActiveDirectory;
 using System.Web;
 using System.Web.Mvc;
 using Dongle.Web.Authentication;
@@ -65,10 +67,66 @@ namespace Dongle.Web.Tests.Mvc.Authentication
                 controller.ControllerContext, "Details"));
         }
 
+        /*[TestMethod]
+        public void TestLdapGroups()
+        {
+            var sut = new LdapAuthenticator(Domain, Container);
+            var result = sut.GetUserGroups("rodrigo.rodrigues");
+            Assert.IsTrue(result.Count > 0);
+        }
+
+        [TestMethod]
+        public void TestLdapInvalidUsername()
+        {
+            var sut = new LdapAuthenticator(Domain, Container);
+            var result = sut.GetUserGroups("invalid.username");
+            Assert.AreEqual(0, result.Count);
+        }
+
+        [TestMethod]
+        public void TestLdapInvalidUsernameThrowException()
+        {
+            const string invalidUsername = "invalid.username";
+            var sut = new LdapAuthenticator(Domain, Container);
+            try
+            {
+                sut.GetUserGroups(invalidUsername, true);
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual(ex.Message, invalidUsername);
+                Assert.IsInstanceOfType(ex, typeof(ActiveDirectoryObjectNotFoundException));
+            }
+        }
+
+        [TestMethod]
+        public void TestLdapInvalidDomainThrowException()
+        {
+            const string invalidUsername = "invalid.username";
+            var sut = new LdapAuthenticator("INVALID.DOMAIN", "LDAP://invalidpath");
+            try
+            {
+                sut.GetUserGroups(invalidUsername, true);
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(PrincipalServerDownException));
+            }
+        }
+
+        [TestMethod]
+        public void TestLdapInvalidDomain()
+        {
+            const string invalidUsername = "invalid.username";
+            var sut = new LdapAuthenticator("INVALID.DOMAIN", "LDAP://invalidpath");
+            var result = sut.GetUserGroups(invalidUsername);
+            Assert.AreEqual(0, result.Count);
+        }*/
+
         [TestMethod]
         public void TestSetRules()
         {
-            var sessionAuthorizeAttribute = new SessionAuthorizeAttribute {Roles = "abc"};
+            var sessionAuthorizeAttribute = new SessionAuthorizeAttribute { Roles = "abc" };
             Assert.AreEqual("abc", sessionAuthorizeAttribute.Roles);
 
             sessionAuthorizeAttribute.Roles = "";
@@ -92,11 +150,9 @@ namespace Dongle.Web.Tests.Mvc.Authentication
         }*/
 
         [TestMethod]
-        public void GetPrincipalContextTet()
+        public void GetPrincipalContextTest()
         {
             //fixture setup
-            var sut = new LdapAuthenticator("", "");
-
             //exercize
             //var result = sut.GetPrincipalContext();
 
@@ -104,17 +160,17 @@ namespace Dongle.Web.Tests.Mvc.Authentication
             //Assert.IsNotNull(result);
         }
 
-    /*[TestMethod]
-        public void TestLdapAuthenticatorValidateCredentials()
-        {
-            //fixture setup
-            var sut = new LdapAuthenticator(Domain, Container);
+        /*[TestMethod]
+            public void TestLdapAuthenticatorValidateCredentials()
+            {
+                //fixture setup
+                var sut = new LdapAuthenticator(Domain, Container);
 
-            //exercize
-            var result = sut.ValidateCredentials("unknown.user", "");
+                //exercize
+                var result = sut.ValidateCredentials("unknown.user", "");
 
-            //verify outcome
-            Assert.IsFalse(result);
-        }*/
+                //verify outcome
+                Assert.IsFalse(result);
+            }*/
     }
 }

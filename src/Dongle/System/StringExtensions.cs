@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using Dongle.Algorithms;
+using Dongle.System.IO;
 
 namespace Dongle.System
 {
@@ -16,14 +17,12 @@ namespace Dongle.System
 
         public static byte[] ToBytes(this String str)
         {
-            var encoding = new UTF8Encoding();
-            return encoding.GetBytes(str);
+            return DongleEncoding.Default.GetBytes(str);
         }
 
         public static string FromBytesToString(this byte[] bytes)
         {
-            var encoding = new UTF8Encoding();
-            var value = encoding.GetString(bytes);
+            var value = DongleEncoding.Default.GetString(bytes);
             return value.IndexOf('\0') > -1 ? value.Substring(0, value.IndexOf('\0')) : value;
         }
 
@@ -50,7 +49,7 @@ namespace Dongle.System
         {
             if (encoding == null)
             {
-                encoding = Encoding.UTF8;
+                encoding = DongleEncoding.Default;
             }
             var md5 = MD5.Create();
             var inputBytes = encoding.GetBytes(value);
@@ -121,7 +120,7 @@ namespace Dongle.System
         {
             if (encoding == null)
             {
-                encoding = Encoding.UTF8;
+                encoding = DongleEncoding.Default;
             }
             return Convert.ToBase64String(encoding.GetBytes(value));
         }
@@ -133,7 +132,7 @@ namespace Dongle.System
         {
             if (encoding == null)
             {
-                encoding = Encoding.UTF8;
+                encoding = DongleEncoding.Default;
             }
             return encoding.GetString(Convert.FromBase64String(value.Replace("+", " ").Replace(";", "/")));
         }

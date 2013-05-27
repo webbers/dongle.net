@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using Dongle.System;
+using Dongle.System.IO;
 using Dongle.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -33,18 +34,15 @@ namespace Dongle.Tests.System
 
             //Acentuação
             bytes = "á".ToBytes();
-            Assert.AreEqual(2, bytes.Length);
-            Assert.AreEqual(195, bytes[0]);
-            Assert.AreEqual(161, bytes[1]);
+            Assert.AreEqual(1, bytes.Length);
+            Assert.AreEqual(225, bytes[0]);
             Assert.AreEqual("á", bytes.FromBytesToString());
 
             //Unicode
-            bytes = "❤".ToBytes();
-            Assert.AreEqual(3, bytes.Length);
-            Assert.AreEqual(226, bytes[0]);
-            Assert.AreEqual(157, bytes[1]);
-            Assert.AreEqual(164, bytes[2]);
-            Assert.AreEqual("❤", bytes.FromBytesToString());
+            bytes = "®".ToBytes();
+            Assert.AreEqual(1, bytes.Length);
+            Assert.AreEqual(174, bytes[0]);
+            Assert.AreEqual("®", bytes.FromBytesToString());
         }
 
         [TestMethod]
@@ -53,10 +51,10 @@ namespace Dongle.Tests.System
             Assert.AreEqual("827ccb0eea8a706c4c34a16891f84e7b", "12345".ToMd5());
 
             //Acentuação
-            Assert.AreEqual("36b7148acc1b607c473a15a47fa17706", "á".ToMd5());
+            Assert.AreEqual("2eece4376cee1433d0e9f200deb75408", "á".ToMd5());
 
             //Unicode
-            Assert.AreEqual("7aba075adb50a589f94c87fb569882dc", "❤".ToMd5());
+            Assert.AreEqual("d1457b72c3fb323a2671125aef3eab5d", "❤".ToMd5());
         }
 
         [TestMethod]
@@ -80,12 +78,13 @@ namespace Dongle.Tests.System
             Assert.AreEqual("12345", base64.FromBase64ToString());
 
             base64 = "á".ToBase64();
-            Assert.AreEqual("w6E=", base64);
+            Assert.AreEqual("4Q==", base64);
             Assert.AreEqual("á", base64.FromBase64ToString());
 
-            base64 = "❤".ToBase64();
-            Assert.AreEqual("4p2k", base64);
-            Assert.AreEqual("❤", base64.FromBase64ToString());
+            base64 = "®".ToBase64();
+            Assert.AreEqual("rg==", base64);
+            Assert.AreEqual("®", base64.FromBase64ToString());
+            
         }
 
         [TestMethod]
@@ -174,9 +173,9 @@ namespace Dongle.Tests.System
         public void Base64Methods()
         {
             var inputUtf7 = Encoding.UTF7.GetString(Encoding.UTF7.GetBytes("Alo Mundo Imundo!! áéç^íóú"));
-            var inputUtf8 = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes("Alo Mundo Imundo!! áéç^íóú"));
+            var inputUtf8 = DongleEncoding.Default.GetString(Encoding.Default.GetBytes("Alo Mundo Imundo!! áéç^íóú"));
             const string outputUtf7 = "QWxvIE11bmRvIEltdW5kbytBQ0VBSVEtICtBT0VBNlFEbkFGNEE3UUR6QVBvLQ==";
-            const string outputUtf8 = "QWxvIE11bmRvIEltdW5kbyEhIMOhw6nDp17DrcOzw7o=";
+            const string outputUtf8 = "QWxvIE11bmRvIEltdW5kbyEhIOHp517t8/o=";
 
             Assert.AreEqual(outputUtf8, inputUtf8.ToBase64());
             Assert.AreEqual(outputUtf7, inputUtf7.ToBase64(Encoding.UTF7));
@@ -226,8 +225,8 @@ namespace Dongle.Tests.System
         [TestMethod]
         public void TestToMd5Safe()
         {
-            Assert.AreEqual("8ED0900CFE623F1BAF5AB34EC77E9E5F", "Alô Mundo Imundo!!".ToMd5Safe());
-            Assert.AreEqual("9CB10DB7CEEF37FDD2F3955D05832108", Encoding.UTF7.GetString(Encoding.UTF7.GetBytes("Alo Mundo Imundo!!")).ToMd5Safe(Encoding.UTF8));
-        }        
+            Assert.AreEqual("63807B7DE13A99416BAC5C2BEBCA7782", "Alô Mundo Imundo!!".ToMd5Safe());
+            Assert.AreEqual("9CB10DB7CEEF37FDD2F3955D05832108", DongleEncoding.Default.GetString(DongleEncoding.Default.GetBytes("Alo Mundo Imundo!!")).ToMd5Safe(DongleEncoding.Default));
+        }
     }
 }

@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="Algorithms\Crc32.cs" />
     <Compile Include="Configuration\AppConfig.cs" />
+    <Compile Include="System\IO\DongleEncoding.cs" />
     <Compile Include="System\Networking\NamedPipes\PipeClient.cs" />
     <Compile Include="System\Networking\NamedPipes\PipeServer.cs" />
     <Compile Include="System\Networking\NamedPipes\StringStream.cs" />

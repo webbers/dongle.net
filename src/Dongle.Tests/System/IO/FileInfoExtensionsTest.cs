@@ -204,6 +204,28 @@ namespace Dongle.Tests.System.IO
             Assert.IsTrue(Directory.Exists(directory + @"\moved\path"));
         }
 
+        [TestMethod]
+        public void GetFolderSizeTest()
+        {
+            var testSizeFolder = new DirectoryInfo(ApplicationPaths.CurrentPathCombine("FolderSizeTest"));
+            testSizeFolder.Create();
+
+            var testSizeSubFolder = new DirectoryInfo(ApplicationPaths.CurrentPathCombine(testSizeFolder.FullName, "SubFolderSizeTest"));
+            testSizeSubFolder.Create();
+
+            using (var f = File.CreateText(Path.Combine(testSizeFolder.FullName, "test.txt")))
+            {
+                f.Write("teste");
+            }
+            using (var f = File.CreateText(Path.Combine(testSizeSubFolder.FullName, "test.txt")))
+            {
+                f.Write("teste");
+            }
+            Assert.AreEqual(10, testSizeFolder.GetFolderSize());
+            Assert.AreEqual(5, testSizeFolder.GetFolderSize(false));
+            Assert.AreEqual(0, new DirectoryInfo("FakeDirectory").GetFolderSize(false));
+        }
+
         private static void CreateFoo(string folder = "")
         {
             var directory = ApplicationPaths.RootDirectory;

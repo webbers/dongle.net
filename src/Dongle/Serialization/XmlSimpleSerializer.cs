@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
+using Dongle.System.IO;
 
 namespace Dongle.Serialization
 {
@@ -34,11 +35,11 @@ namespace Dongle.Serialization
             using (var memoryStream = new MemoryStream())
             {
                 var serializer = new XmlSerializer(typeof(T));
-                var xmlTextWriter = new XmlTextWriter(memoryStream, Encoding.UTF8) {Formatting = Formatting.Indented};
+                var xmlTextWriter = new XmlTextWriter(memoryStream, DongleEncoding.Default) {Formatting = Formatting.Indented};
                 serializer.Serialize(xmlTextWriter, obj);
                 var baseStream = (MemoryStream)xmlTextWriter.BaseStream;
                 var xmlText = Utf8ByteArrayToString(baseStream.ToArray());
-                File.WriteAllText(filename, xmlText, Encoding.UTF8);
+                File.WriteAllText(filename, xmlText, DongleEncoding.Default);
             }
         }
 

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using Dongle.System.IO;
 
 namespace Dongle.System.Networking.Tcp
 {
@@ -71,7 +72,7 @@ namespace Dongle.System.Networking.Tcp
             try
             {
                 Wait();
-                var byteData = Encoding.Default.GetBytes(command);
+                var byteData = DongleEncoding.Default.GetBytes(command);
                 socket.BeginSend(byteData, 0, byteData.Length, 0, asyncResult =>
                 {
                     int bytesSent;
@@ -216,7 +217,7 @@ namespace Dongle.System.Networking.Tcp
                                                 }
                                                 return;
                                             }
-                                            var command = Encoding.Default.GetString(commandBuffer, 0, bytesRead);
+                                            var command = DongleEncoding.Default.GetString(commandBuffer, 0, bytesRead);
                                             if (callback != null)
                                             {
                                                 try

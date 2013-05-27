@@ -1,18 +1,25 @@
 ﻿using System;
 using System.IO;
+using System.IO.Pipes;
 using System.Text;
+using System.Threading.Tasks;
+using Dongle.System.IO;
 
 namespace Dongle.System.Networking.NamedPipes
 {
     public class StringStream : IDisposable
     {
-        private readonly Stream _ioStream;
-        private readonly Encoding _streamEncoding = Encoding.Default;
+        private readonly PipeStream _ioStream;
+        private readonly Encoding _streamEncoding = DongleEncoding.Default;
 
-        public StringStream(Stream ioStream)
+        public StringStream(PipeStream ioStream, int timeout = -1)
         {
-            _ioStream = ioStream;            
+            _ioStream = ioStream;
+            _ioStream.ReadMode = PipeTransmissionMode.Message;
+            Timeout = timeout;
         }
+
+        public int Timeout { get; set; }
 
         public string ReadLine()
         {
@@ -31,35 +38,50 @@ namespace Dongle.System.Networking.NamedPipes
             }
         }
 
-        public string ReadString()
+        public string ReadStringAsync()
         {
-            var lenBytes = new byte[20];
-            _ioStream.Read(lenBytes, 0, 20);
-            var len = Convert.ToInt32(_streamEncoding.GetString(lenBytes));            
-            if (len <= 0)
-                return "";
-            var inBuffer = new byte[len];
-            _ioStream.Read(inBuffer, 0, len);
-            return _streamEncoding.GetString(inBuffer);
+            var readTask = Task.Factory.StartNew(() => ReadString());
+
+            if (readTask.Wait(Timeout))
+            {
+                return readTask.Result;
+            }
+            throw new TimeoutException();
         }
 
-        public int WriteString(string outString)
+        public void WriteStringAsync(string outString)
+        {
+            var writeTask = Task.Factory.StartNew(() => WriteString(outString));
+
+            if (!writeTask.Wait(Timeout))
+            {
+                throw new TimeoutException();
+            }
+        }
+
+        public string ReadString()
+        {
+            var memoryStream = new MemoryStream();
+            var buffer = new byte[1024];
+            do
+            {
+                var bytesRead = _ioStream.Read(buffer, 0, buffer.Length);
+                memoryStream.Write(buffer, 0, bytesRead);
+            } while (!_ioStream.IsMessageComplete);
+            return _streamEncoding.GetString(memoryStream.ToArray());
+        }
+
+        public void WriteString(string outString)
         {
             var outBuffer = _streamEncoding.GetBytes(outString);
-            var len = outBuffer.Length;
-            var lenStr = outBuffer.Length.ToString().PadLeft(10, '0');
-            var lenBuffer = _streamEncoding.GetBytes(lenStr);
-            _ioStream.Write(lenBuffer, 0, lenBuffer.Length);
+            _ioStream.Write(outBuffer, 0, outBuffer.Length);
             _ioStream.Flush();
-            _ioStream.Write(outBuffer, 0, len);
-            _ioStream.Flush();
-            return outBuffer.Length + 2;
         }
 
         public void Dispose()
         {
             _ioStream.Close();
-            _ioStream.Dispose();            
+            _ioStream.Dispose();
         }
     }
 }
