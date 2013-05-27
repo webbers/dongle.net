@@ -31,7 +31,7 @@ namespace Dongle.System.Networking.NamedPipes
         public void Start()
         {
             _stopRequired = true;
-            _runningThread = new Thread(ServerLoop);
+            _runningThread = new Thread(ServerLoop) { Name = "PipeServer." + PipeName };
             _runningThread.Start();
         }
 

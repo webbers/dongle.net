@@ -178,7 +178,7 @@ namespace Dongle.System.Networking.Tcp
             _ipAddress = ipAddress;
             _backlogSize = backlogSize;
 
-            _serverThread = new Thread(StartServerThread);
+            _serverThread = new Thread(StartServerThread) {Name = "TcpServer." + _ipAddress + ".At." + _portNumber};
             _serverThread.Start();
         }
 
