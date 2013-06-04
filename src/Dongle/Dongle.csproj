@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\Crc32.cs" />
+    <Compile Include="Algorithms\HumanReadableHash.cs" />
     <Compile Include="Configuration\AppConfig.cs" />
     <Compile Include="System\IO\DongleEncoding.cs" />
     <Compile Include="System\Networking\NamedPipes\PipeClient.cs" />
