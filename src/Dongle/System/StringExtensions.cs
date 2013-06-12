@@ -337,10 +337,10 @@ namespace Dongle.System
 
             while ((pos = str.IndexOf(value, StringComparison.Ordinal)) > 0)
             {
-                str = str.Substring(pos+ value.Length);
+                str = str.Substring(pos + value.Length);
                 offset += pos;
 
-                if(indexes.Count > 0)
+                if (indexes.Count > 0)
                 {
                     offset += value.Length;
                 }
@@ -348,6 +348,15 @@ namespace Dongle.System
             }
 
             return indexes;
+        }
+
+        public static string Right(this string str, int count)
+        {
+            if (count <= 0)
+            {
+                return "";
+            }
+            return count >= str.Length ? str : str.Substring(str.Length - count, count);
         }
     }
 }

@@ -228,5 +228,15 @@ namespace Dongle.Tests.System
             Assert.AreEqual("63807B7DE13A99416BAC5C2BEBCA7782", "Alô Mundo Imundo!!".ToMd5Safe());
             Assert.AreEqual("9CB10DB7CEEF37FDD2F3955D05832108", DongleEncoding.Default.GetString(DongleEncoding.Default.GetBytes("Alo Mundo Imundo!!")).ToMd5Safe(DongleEncoding.Default));
         }
+
+        [TestMethod]
+        public void TestRightChars()
+        {
+            Assert.AreEqual("", "123456789".Right(-1));
+            Assert.AreEqual("", "123456789".Right(0));
+            Assert.AreEqual("12345", "12345".Right(10));
+            Assert.AreEqual("789","0123456789".Right(3));
+            Assert.AreEqual("234", "01234".Right(3));
+        }
     }
 }
