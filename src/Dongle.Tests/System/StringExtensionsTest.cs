@@ -232,11 +232,25 @@ namespace Dongle.Tests.System
         [TestMethod]
         public void TestRightChars()
         {
+            Assert.AreEqual("", "".Right(0));
+            Assert.AreEqual("", "".Right(4));
             Assert.AreEqual("", "123456789".Right(-1));
             Assert.AreEqual("", "123456789".Right(0));
             Assert.AreEqual("12345", "12345".Right(10));
-            Assert.AreEqual("789","0123456789".Right(3));
+            Assert.AreEqual("789", "0123456789".Right(3));
             Assert.AreEqual("234", "01234".Right(3));
+        }
+
+        [TestMethod]
+        public void TestLeftChars()
+        {
+            Assert.AreEqual("", "".Left(0));
+            Assert.AreEqual("", "".Left(4));
+            Assert.AreEqual("", "123456789".Left(-1));
+            Assert.AreEqual("", "123456789".Left(0));
+            Assert.AreEqual("12345", "12345".Left(10));
+            Assert.AreEqual("012", "0123456789".Left(3));
+            Assert.AreEqual("012", "01234".Left(3));
         }
     }
 }

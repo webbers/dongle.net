@@ -358,5 +358,23 @@ namespace Dongle.System
             }
             return count >= str.Length ? str : str.Substring(str.Length - count, count);
         }
+
+        public static string Left(this string value, int length)
+        {
+            if (length <= 0)
+            {
+                return "";
+            }
+            if (string.IsNullOrEmpty(value))
+            {
+                return "";
+            }
+            if (value.Length <= length)
+            {
+                return value;
+            }
+
+            return value.Substring(0, length);
+        }
     }
 }
