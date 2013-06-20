@@ -239,6 +239,7 @@ namespace Dongle.Tests.System
             Assert.AreEqual("12345", "12345".Right(10));
             Assert.AreEqual("789", "0123456789".Right(3));
             Assert.AreEqual("234", "01234".Right(3));
+            Assert.AreEqual("", ((string)null).Right(3));
         }
 
         [TestMethod]
@@ -251,6 +252,7 @@ namespace Dongle.Tests.System
             Assert.AreEqual("12345", "12345".Left(10));
             Assert.AreEqual("012", "0123456789".Left(3));
             Assert.AreEqual("012", "01234".Left(3));
+            Assert.AreEqual("", ((string)null).Left(3));
         }
     }
 }

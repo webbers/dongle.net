@@ -352,7 +352,7 @@ namespace Dongle.System
 
         public static string Right(this string str, int count)
         {
-            if (count <= 0)
+            if (count <= 0 || string.IsNullOrEmpty(str))
             {
                 return "";
             }
