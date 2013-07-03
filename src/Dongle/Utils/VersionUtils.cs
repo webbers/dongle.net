@@ -33,7 +33,7 @@ namespace Dongle.Utils
             }
             var newVersionArray = newVersion.Split('.');
             var oldVersionArray = oldVersion.Split('.');
-            for (var i = 0; i < newVersion.Length; i++)
+            for (var i = 0; i < newVersionArray.Length; i++)
             {
                 if (i >= oldVersionArray.Length)
                 {

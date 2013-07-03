@@ -17,6 +17,8 @@ namespace Dongle.Tests.Utils
             Assert.IsTrue("2.5.1.6700.0.0.1.256".CompareWithPreviousVersionSplit(""));
             Assert.IsTrue("2.5.1".CompareWithPreviousVersionSplit("1.3.A"));
             Assert.IsFalse("1.33.A".CompareWithPreviousVersionSplit("1.48.B"));
+            Assert.IsTrue("xpto".CompareWithPreviousVersionSplit("1.0"));
+            Assert.IsTrue("1.0".CompareWithPreviousVersionSplit("xpto"));
         }
 
         [TestMethod]
