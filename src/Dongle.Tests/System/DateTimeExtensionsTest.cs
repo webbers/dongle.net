@@ -68,6 +68,12 @@ namespace Dongle.Tests.System
         }
         
         [TestMethod]
+        public void TestFromDosTimeStampToDateTime()
+        {
+            Assert.AreEqual(new DateTime(2012, 04, 13, 11, 56, 04), 1083006722L.FromDosTimeStampToDateTime());
+        }
+        
+        [TestMethod]
         public void TestToTimeStamp()
         {
             var timestamp = _now.ToTimeStamp();

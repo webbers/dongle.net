@@ -6,6 +6,19 @@ namespace Dongle.System
 {
     public static class DateTimeExtensions
     {
+        public static DateTime FromDosTimeStampToDateTime(this long timestamp)
+        {
+            var date = (timestamp & 0xFFFF0000) >> 16;
+            var time = (timestamp & 0x0000FFFF);
+            var year = (date >> 9) + 1980;
+            var month = (date & 0x01e0) >> 5;
+            var day = date & 0x1F;
+            var hour = time >> 11;
+            var minute = (time & 0x07e0) >> 5;
+            var second = (time & 0x1F) * 2;
+            return new DateTime((int)year, (int)month, (int)day, (int)hour, (int)minute, (int)second);
+        }
+
         public static DateTime FromTimeStampToDateTime(this long timestamp)
         {
             var origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
