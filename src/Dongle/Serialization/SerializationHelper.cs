@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 
 namespace Dongle.Serialization
@@ -47,6 +48,10 @@ namespace Dongle.Serialization
         {
             var typeFullName = JsonSimpleSerializer.GetNodeValueFromJson(json, typePropertyName);
             var assemblyPath = JsonSimpleSerializer.GetNodeValueFromJson(json, assemblyPathPropertyName);
+            if ((Path.GetFileName(assemblyPath)??"").ToLower() == Path.GetFileName(Assembly.GetCallingAssembly().Location).ToLower())
+            {
+                return Assembly.GetCallingAssembly().GetType(typeFullName);
+            }
             return Assembly.LoadFrom(assemblyPath).GetType(typeFullName);
         }
     }
