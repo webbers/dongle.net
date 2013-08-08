@@ -11,5 +11,6 @@ namespace Dongle.Web.Authentication
         public string UserName { get; set; }
         public string Email { get; set; }
         public List<string> Permissions = new List<string>();
+        public bool IsAdmin { get; set; }
     }
 }
