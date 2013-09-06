@@ -16,7 +16,7 @@ namespace Dongle.Web.Tests.Mvc.Authentication
         private const string Domain = "YOURDOMAIN.LOCAL";
         private const string Container = "dc=YOURDOMAIN,dc=local";
 
-        [TestMethod]
+        /*[TestMethod]
         public void TestAuthorized()
         {
             var controller = new FooController();
@@ -28,9 +28,8 @@ namespace Dongle.Web.Tests.Mvc.Authentication
                                                                                 "Details"
                                                                             }
                                                       });
-
-            Assert.IsTrue(new ActionInvokerExpecter<ViewResult>().InvokeAction(controller.ControllerContext, "Details"));
-        }
+            Assert.IsTrue(new ActionInvokerExpecter<ViewResult>().InvokeAction(controller.ControllerContext,"Details"));
+        }*/
 
         [TestMethod]
         public void TestUnauthorized()
