@@ -7,7 +7,7 @@ namespace Dongle.Web.ModelAttributes
 {
     public sealed class WUrlAttribute : RegularExpressionAttribute, IClientValidatable
     {
-        private const string PatternStr = @"((https?):((//)|(\\\\))+[\w\d:#@%/;$()~_?\+-=\\\.&]*)";
+        private const string PatternStr = @"((https?):((//)|(\\\\))+[\w\d:#@%/;$()~_?*\+-=\\\.]*)";
 
         public WUrlAttribute()
             : base(PatternStr)
