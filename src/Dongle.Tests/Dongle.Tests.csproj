@@ -101,6 +101,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Serialization\JsonSimpleSerializerTest.cs" />
+    <Compile Include="System\OsVersionTests.cs" />
     <Compile Include="Tools\Foo.cs" />
     <Compile Include="System\StringExtensionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
