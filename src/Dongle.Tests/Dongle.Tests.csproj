@@ -88,6 +88,8 @@
   <ItemGroup>
     <Compile Include="Algorithms\LevensteinDistanceTest.cs" />
     <Compile Include="Reflection\ObjectFillerTest.cs" />
+    <Compile Include="Serialization\MaxLengthAttribute.cs" />
+    <Compile Include="Serialization\PropertySettersTest.cs" />
     <Compile Include="System\EnumerableExtensionsTest.cs" />
     <Compile Include="Serialization\CsvSerializerTest.cs" />
     <Compile Include="Serialization\FixedWidthTextSerializerTest.cs" />

@@ -59,6 +59,7 @@
       <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
@@ -69,6 +70,14 @@
     <Compile Include="Algorithms\Crc32.cs" />
     <Compile Include="Algorithms\HumanReadableHash.cs" />
     <Compile Include="Configuration\AppConfig.cs" />
+    <Compile Include="Reflection\PropertySetters\BrowserSetter.cs" />
+    <Compile Include="Reflection\PropertySetters\BypassSetter.cs" />
+    <Compile Include="Reflection\PropertySetters\DateTimeSetter.cs" />
+    <Compile Include="Reflection\PropertySetters\HexToLongDWordSetter.cs" />
+    <Compile Include="Reflection\PropertySetters\HextoLongQWordSetter.cs" />
+    <Compile Include="Reflection\PropertySetters\OperatingSystemSetter.cs" />
+    <Compile Include="Reflection\PropertySetters\PropertySetterBase.cs" />
+    <Compile Include="Reflection\PropertySetters\VarCharSetter.cs" />
     <Compile Include="System\IO\DongleEncoding.cs" />
     <Compile Include="System\Networking\NamedPipes\PipeClient.cs" />
     <Compile Include="System\Networking\NamedPipes\PipeServer.cs" />
