@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.MaxLengthAttribute;
+using System.Globalization;
 using Dongle.Reflection.PropertySetters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -7,7 +8,16 @@ namespace Dongle.Tests.Serialization
 {
     [TestClass]
     public class PropertySettersTest
-    {        
+    {
+        [Flags]
+        public enum SimpleEnum
+        {
+            None = 0,
+            Number1 = 1,
+            Number2 = 2,
+            Number4 = 4
+        }
+
         public class SimpleClass
         {
             public string StringField;
@@ -22,6 +32,8 @@ namespace Dongle.Tests.Serialization
             public long LongProperty { get; set; }
             
             public DateTime DateTimeProperty { get; set; }
+
+            public SimpleEnum EnumProperty { get; set; }
         }
 
         [TestMethod]
@@ -106,11 +118,11 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual("alo mundo", obj.StringProperty);
 
             var setter2 = new BypassSetter(new PropertySetterBase.FieldMapData (typeof(SimpleClass).GetProperty("IntProperty")));
-            setter2.Set(obj, int.MaxValue.ToString());
+            setter2.Set(obj, int.MaxValue.ToString(CultureInfo.InvariantCulture));
             Assert.AreEqual(int.MaxValue, obj.IntProperty);
 
             var setter3 = new BypassSetter(new PropertySetterBase.FieldMapData (typeof(SimpleClass).GetProperty("LongProperty") ));
-            setter3.Set(obj, Int64.MaxValue.ToString());
+            setter3.Set(obj, Int64.MaxValue.ToString(CultureInfo.InvariantCulture));
             Assert.AreEqual(Int64.MaxValue, obj.LongProperty);
 
             var setter4 = new BypassSetter(new PropertySetterBase.FieldMapData (typeof(SimpleClass).GetProperty("LongProperty") ));
@@ -250,6 +262,29 @@ namespace Dongle.Tests.Serialization
             var setter = new VarCharSetter(fieldMap);
             setter.Set(obj, stringBig);
             Assert.AreEqual(stringBig.Substring(0, 20), obj.StringProperty);
+        }
+
+        [TestMethod]
+        public void TestEnumSetter()
+        {
+            var fieldMap = new PropertySetterBase.FieldMapData(typeof(SimpleClass).GetProperty("EnumProperty"));
+            var setter = new EnumSetter<SimpleEnum>(fieldMap);
+            
+            var obj = new SimpleClass();
+            setter.Set(obj, "1");
+            Assert.AreEqual(SimpleEnum.Number1, obj.EnumProperty);
+
+            obj = new SimpleClass();
+            setter.Set(obj, "3");
+            Assert.AreEqual(SimpleEnum.Number1 | SimpleEnum.Number2, obj.EnumProperty);
+
+            obj = new SimpleClass();
+            setter.Set(obj, "9999");
+            Assert.AreEqual((SimpleEnum)9999, obj.EnumProperty);
+
+            obj = new SimpleClass();
+            setter.Set(obj, "asfdsdafadf");
+            Assert.AreEqual(SimpleEnum.None, obj.EnumProperty);
         }
     }
 }

@@ -73,6 +73,7 @@
     <Compile Include="Reflection\PropertySetters\BrowserSetter.cs" />
     <Compile Include="Reflection\PropertySetters\BypassSetter.cs" />
     <Compile Include="Reflection\PropertySetters\DateTimeSetter.cs" />
+    <Compile Include="Reflection\PropertySetters\EnumSetter.cs" />
     <Compile Include="Reflection\PropertySetters\HexToLongDWordSetter.cs" />
     <Compile Include="Reflection\PropertySetters\HextoLongQWordSetter.cs" />
     <Compile Include="Reflection\PropertySetters\OperatingSystemSetter.cs" />
