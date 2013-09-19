@@ -309,7 +309,7 @@ namespace Dongle.System
 
         public static string Take(this string str, int count)
         {
-            if (count == 0)
+            if (count == 0 || str == null)
             {
                 return str;
             }

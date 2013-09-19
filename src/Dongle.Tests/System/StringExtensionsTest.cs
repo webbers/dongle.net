@@ -149,6 +149,10 @@ namespace Dongle.Tests.System
             Assert.AreEqual("a", "abc".Take(1));
             Assert.AreEqual("abc", "abc".Take(3));
             Assert.AreEqual("abc", "abc".Take(4));
+
+            string xx = null;
+            Assert.IsNull(xx.Take(4));
+
         }
 
         [TestMethod]
