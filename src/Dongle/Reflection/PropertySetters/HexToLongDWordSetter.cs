@@ -30,6 +30,14 @@ namespace Dongle.Reflection.PropertySetters
                 {
                     SetValue(obj, (long)newValue);
                 }
+                else
+                {
+                    long longValue;
+                    if (long.TryParse(value, NumberStyles.HexNumber, null, out longValue)) //Não deu, tenta fazer o Parse com Int64
+                    {
+                        SetValue(obj, longValue);
+                    }
+                }
             }
             catch (Exception)
             {

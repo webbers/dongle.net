@@ -166,6 +166,9 @@ namespace Dongle.Tests.Serialization
             var setter = new HexToLongDWordSetter(fieldMap);
             setter.Set(obj, "21C5431");
             Assert.AreEqual(35410993, obj.LongProperty);
+
+            setter.Set(obj, "1408407672");
+            Assert.AreEqual(86037788274, obj.LongProperty);            
         }
 
         [TestMethod]
