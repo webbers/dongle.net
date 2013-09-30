@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Resources;
 using System.Text;
-
 using Dongle.Reflection;
 using Dongle.Serialization.Attributes;
 using Dongle.System;
@@ -15,9 +14,17 @@ namespace Dongle.Serialization
     {
         private readonly ResourceManager _resourceManager;
 
-        public CsvSerializer(ResourceManager resourceManager = null)
+        public string Separator { get; set; }
+
+        public CsvSerializer(ResourceManager resourceManager = null, string separator = ",")
         {
             _resourceManager = resourceManager;
+            Separator = separator;
+        }
+
+        public CsvSerializer(string separator)
+        {
+            Separator = separator;
         }
 
         public byte[] Serialize(IEnumerable<TEntity> items, CultureInfo cultureInfo = null, Encoding encoding = null)
@@ -87,7 +94,7 @@ namespace Dongle.Serialization
 
         #region PrivateMethods
 
-        private static byte[] Serialize(IList<string> fields, IEnumerable<Dictionary<string, object>> rows, CultureInfo cultureInfo, Encoding encoding)
+        private byte[] Serialize(IList<string> fields, IEnumerable<Dictionary<string, object>> rows, CultureInfo cultureInfo, Encoding encoding)
         {
             var builder = new StringBuilder();
 
@@ -97,7 +104,7 @@ namespace Dongle.Serialization
                 builder.Append(field);
                 if (i < fields.Count - 1)
                 {
-                    builder.Append(",");
+                    builder.Append(Separator);
                 }
             }
             builder.AppendLine();
@@ -110,7 +117,7 @@ namespace Dongle.Serialization
                     builder.Append(ObjectFormatter.Format(row[field], cultureInfo));
                     if (i < fields.Count - 1)
                     {
-                        builder.Append(",");
+                        builder.Append(Separator);
                     }
                 }
                 builder.AppendLine();

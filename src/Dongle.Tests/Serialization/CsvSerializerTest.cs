@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
-
 using Dongle.Serialization;
 using Dongle.System.IO;
 using Dongle.Tests.Tools;
@@ -20,6 +17,10 @@ namespace Dongle.Tests.Serialization
             "Name,Age,CreatedAt,Price,Enabled\r\n" + "Silvio Santos,82,1930-12-12,1.72,TRUE\r\n"
             + "Hebe Camargo,83,1929-03-08 12:00:00,1.6,FALSE\r\n";
 
+        private const string CsvWithPipeExpected =
+            "Name|Age|CreatedAt|Price|Enabled\r\n" + "Silvio Santos|82|1930-12-12|1.72|TRUE\r\n"
+            + "Hebe Camargo|83|1929-03-08 12:00:00|1.6|FALSE\r\n";
+
         private const string CsvExpectedWithResource =
             "Name From Resource,Age From Resource,CreatedAt,Price,Enabled\r\n"
             + "Silvio Santos,82,1930-12-12,\"1,72\",VERDADEIRO\r\n"
@@ -31,6 +32,14 @@ namespace Dongle.Tests.Serialization
             var serializer = new CsvSerializer<Foo>();
             var actual = DongleEncoding.Default.GetString(serializer.Serialize(Foo.FooArray));
             Assert.AreEqual(CsvExpected, actual);
+        }
+
+        [TestMethod]
+        public void SerializeFooListWithPipe()
+        {
+            var serializer = new CsvSerializer<Foo>("|");
+            var actual = DongleEncoding.Default.GetString(serializer.Serialize(Foo.FooArray));
+            Assert.AreEqual(CsvWithPipeExpected, actual);
         }
 
         [TestMethod]
