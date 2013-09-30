@@ -24,7 +24,8 @@ namespace Dongle.Web.Tests.Mvc.Html
             Assert.AreEqual("<input class=\"wdatetimepicker\" id=\"abc\" name=\"abc\" type=\"text\" value=\"\" />", html.ToHtmlString());
 
             html = hh.WDateTimePickerFor(m=>m.CreatedAt);
-            Assert.AreEqual("<input class=\"wdatetimepicker\" id=\"CreatedAt\" name=\"CreatedAt\" type=\"text\" value=\"15/08/2011 12:30:15\" />", html.ToHtmlString());
+            Assert.IsTrue(html.ToHtmlString() == "<input class=\"wdatetimepicker\" id=\"CreatedAt\" name=\"CreatedAt\" type=\"text\" value=\"15/08/2011 12:30:15\" />" ||
+                          html.ToHtmlString() == "<input class=\"wdatetimepicker\" id=\"CreatedAt\" name=\"CreatedAt\" type=\"text\" value=\"8/15/2011 12:30:15 PM\" />");
         }
 
         [TestMethod]
