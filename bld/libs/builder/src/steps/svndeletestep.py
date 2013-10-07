@@ -30,7 +30,7 @@ class SvnDeleteStep(AbstractStep):
         self.reporter.message( "DELETE: %s" % self.dir )
         
         for path in svnList(self.dir, self.reporter):
-            command = "svn delete --force \"%s\" -m \"Build\"" % (self.dir + "/" + path)
+            command = "svn delete --non-interactive --trust-server-cert --force \"%s\" -m \"Build\"" % (self.dir + "/" + path)
             print command
             ExecProg( command, self.reporter ) == 0
         return 1

@@ -10,4 +10,4 @@ class SvnUpdateDirStep(AbstractStep):
 
     def do( self ):
         self.reporter.message( "SVN UPDATE DIR: %s" % self.dir )
-        return ExecProg( "svn update", self.reporter, self.dir ) == 0
+        return ExecProg( "svn update --non-interactive --trust-server-cert", self.reporter, self.dir ) == 0

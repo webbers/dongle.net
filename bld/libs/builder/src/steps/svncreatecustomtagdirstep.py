@@ -18,5 +18,5 @@ class SvnCreateCustomTagDirStep(AbstractStep):
         self.reporter.message( "TRUNK DIR: %s" % self.dirTrunk )
         self.reporter.message( "TAG DIR: %s" % self.dirTag )        
         commitMessage = "Created by Build"
-        command = 'svn copy ' + self.dirTrunk + ' ' + self.dirTag + ' -m \"'+commitMessage+'\"'
+        command = 'svn copy --non-interactive --trust-server-cert ' + self.dirTrunk + ' ' + self.dirTag + ' -m \"'+commitMessage+'\"'
         return ExecProg( command, self.reporter, self.dirTrunk ) == 0
