@@ -167,8 +167,8 @@ namespace Dongle.Tests.Serialization
             setter.Set(obj, "21C5431");
             Assert.AreEqual(35410993, obj.LongProperty);
 
-            setter.Set(obj, "1408407672");
-            Assert.AreEqual(86037788274, obj.LongProperty);            
+            setter.Set(obj, "2F15DB8A4C");
+            Assert.AreEqual(202230172236, obj.LongProperty);            
         }
 
         [TestMethod]

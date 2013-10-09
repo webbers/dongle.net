@@ -61,6 +61,7 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
         {
             var attrib = new WUrlAttribute();
             Assert.IsTrue(attrib.IsValid("http://ab.com"));
+            Assert.IsTrue(attrib.IsValid("file:///c:/xxx.exe"));
             Assert.IsFalse(attrib.IsValid("silvio santos"));
 
             var rules = attrib.GetClientValidationRules(null, null);
