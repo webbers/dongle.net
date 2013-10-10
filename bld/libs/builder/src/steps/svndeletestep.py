@@ -13,7 +13,7 @@ def execProg(command):
     return -1
 
 def svnList(path, reporter):
-    list = execProg('svn list ' + path)
+    list = execProg('svn list --non-interactive --trust-server-cert ' + path)
     if list == -1:
         printError('Erro ao ler o caminho: ' + path)
         return []
