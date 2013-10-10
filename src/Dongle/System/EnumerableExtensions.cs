@@ -81,5 +81,25 @@ namespace Dongle.System
 
             return rounded;
         }
+
+        public static string ToJson(Type type, bool valueFirst)
+        {
+            var ret = "{";
+            foreach (var val in Enum.GetValues(type))
+            {
+                var name = Enum.GetName(type, val);
+                if (valueFirst)
+                {
+                    ret += ((int)val) + ":'" + name + "',";
+                }
+                else
+                {
+                    ret += name + ":" + ((int)val) + ",";
+                }
+
+            }
+            ret += "}";
+            return ret;
+        }
     }
 }
