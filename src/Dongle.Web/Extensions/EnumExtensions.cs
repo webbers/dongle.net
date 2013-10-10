@@ -13,7 +13,8 @@ namespace Dongle.Web.Extensions
 
         public static IEnumerable<SelectListItem> ToSelectList(this Type enumType, Func<SelectListItem, bool> filter = null)
         {
-            var elementsValue = (long[])enumType.GetEnumValues();
+            var values = Enum.GetValues(enumType);
+            var elementsValue = values.Cast<object>().Select((t, i) => Convert.ToInt32(values.GetValue(i))).ToList();
 
             var listItems = elementsValue.Select(element => new SelectListItem
             {

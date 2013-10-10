@@ -78,6 +78,7 @@
     <Compile Include="Authentication\IAuthenticator.cs" />
     <Compile Include="Authentication\LdapAuthenticator.cs" />
     <Compile Include="Authentication\SessionAuthorizeAttribute.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Html\WButtonExtensions.cs" />
     <Compile Include="Html\WDateTimeLabelExtensions.cs" />
     <Compile Include="Html\WDateTimePickerExtensions.cs" />
