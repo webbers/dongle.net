@@ -8,6 +8,7 @@ from mainbuild import *
 from steps.incrementrevisionversionstep import *
 from steps.svncommitdirstep import *
 from steps.svnimportdirstep import *
+from steps.svnupdatedirstep import *
 from steps.svncreatetagdirstep import *
 from steps.runcommandstep import *
 from filters.pythonfilefilter import *
@@ -32,6 +33,9 @@ repoUrl = 'https://cronos/svn/Web/pub/Dongle.Net/trunk'
 
 #--------------------------------------------------------------------
 bp = Builder( "Dongle.Net" )
+bp.addStep( DelTreeStep( assemblyPath1 ) )
+bp.addStep( DelTreeStep( assemblyPath2 ) )
+bp.addStep( SvnUpdateDirStep(projectRootDir))
 bp.addStep( IncrementRevisionVersionStep( assemblyPath1, projectRootDir ) )
 bp.addStep( IncrementRevisionVersionStep( assemblyPath2, projectRootDir ) )
 bp.addStep( MainBuild() )
