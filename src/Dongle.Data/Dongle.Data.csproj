@@ -40,8 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GenericFactory.cs" />
     <Compile Include="HaveId.cs" />
+    <Compile Include="IFactory.cs" />
     <Compile Include="IHaveOrder.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="MessageType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -166,5 +166,33 @@ namespace Dongle.System
         {
             return Convert.ToInt32(value);
         }
+
+        /// <summary>
+        /// Percentual
+        /// </summary>
+        public static double Ratio(this long i, long bottom)
+        {
+            if (bottom.Equals(0))
+            {
+                return 0;
+            }
+            double dTop = i;
+            double dBottom = bottom;
+            return Math.Round((dTop / dBottom) * 100, 2);
+        }
+
+        /// <summary>
+        /// Percentual
+        /// </summary>
+        public static double Ratio(this int i, double bottom)
+        {
+            if (bottom.Equals(0))
+            {
+                return 0;
+            }
+            double dTop = i;
+            double dBottom = bottom;
+            return Math.Round((dTop / dBottom) * 100, 2);
+        }
     }
 }

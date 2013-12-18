@@ -78,6 +78,7 @@
     <Compile Include="Authentication\IAuthenticator.cs" />
     <Compile Include="Authentication\LdapAuthenticator.cs" />
     <Compile Include="Authentication\SessionAuthorizeAttribute.cs" />
+    <Compile Include="DongleJsonResult.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Html\WButtonExtensions.cs" />
     <Compile Include="Html\WDateTimeLabelExtensions.cs" />
@@ -129,6 +130,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dongle.Data\Dongle.Data.csproj">
+      <Project>{DB9CC4FF-D804-4A07-B08B-AEDD0EF2A737}</Project>
+      <Name>Dongle.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dongle\Dongle.csproj">
       <Project>{56CF536E-2136-4E13-B987-2A76304BEC08}</Project>
       <Name>Dongle</Name>
@@ -136,6 +141,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Messaging\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

@@ -13,16 +13,14 @@ namespace Dongle.Web.Extensions
 
         public static IEnumerable<SelectListItem> ToSelectList(this Type enumType, Func<SelectListItem, bool> filter = null)
         {
-            var values = Enum.GetValues(enumType);
-            var elementsValue = values.Cast<object>().Select((t, i) => Convert.ToInt32(values.GetValue(i))).ToList();
-
-            var listItems = elementsValue.Select(element => new SelectListItem
+            var elementsValue = (long[])enumType.GetEnumValues();
+            var retVal = elementsValue.Select(element => new SelectListItem
             {
                 Selected = false,
                 Value = Convert.ToString(element, CultureInfo.InvariantCulture),
                 Text = GetIdNameResource(element, enumType)
             });
-            return listItems;
+            return retVal;
         }
 
         public static string GetIdNameResource(long id, Type enumType)

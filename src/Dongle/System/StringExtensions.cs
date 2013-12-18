@@ -350,6 +350,9 @@ namespace Dongle.System
             return indexes;
         }
 
+        /// <summary>
+        /// Retorna os N ultimos caracteres da string. Caso a string possua menos caracteres que N, a string original é retornada.
+        /// </summary>
         public static string Right(this string str, int count)
         {
             if (count <= 0 || string.IsNullOrEmpty(str))
@@ -359,6 +362,9 @@ namespace Dongle.System
             return count >= str.Length ? str : str.Substring(str.Length - count, count);
         }
 
+        /// <summary>
+        /// Retorna os N primeiros caracteres da string. Caso a string possua menos caracteres que N, a string original é retornada.
+        /// </summary>
         public static string Left(this string value, int length)
         {
             if (length <= 0)
@@ -375,6 +381,28 @@ namespace Dongle.System
             }
 
             return value.Substring(0, length);
+        }
+
+        /// <summary>
+        /// Limita o tamanho de uma string e adiciona "..." caso necessário
+        /// </summary>
+        public static string CropTextWithEllipsis(this string text, int count)
+        {
+            if (text == null)
+            {
+                return "";
+            }
+            if (text.Length > count)
+            {
+                return text.Take(count) + "...";
+            }
+            return text;
+        }
+
+        public static string GetDomainOfUrl(this string url)
+        {
+            var groups = Regex.Match(url, @"https?://([^/:]+)").Groups;
+            return groups.Count == 2 ? groups[1].Value : url;
         }
     }
 }
