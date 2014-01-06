@@ -47,6 +47,10 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
             var attrib = new WDomainAttribute();
             Assert.IsTrue(attrib.IsValid("abc.com.br"));
             Assert.IsTrue(attrib.IsValid("google.com"));
+            Assert.IsTrue(attrib.IsValid("*.google.com"));
+            Assert.IsTrue(attrib.IsValid("www*.google.com"));
+            Assert.IsTrue(attrib.IsValid("?.google.com"));
+            Assert.IsTrue(attrib.IsValid("www?.google.com"));
             Assert.IsTrue(attrib.IsValid("google.co.ke"));
             Assert.IsFalse(attrib.IsValid("silvio"));
             Assert.IsFalse(attrib.IsValid("silvio santos"));
@@ -60,9 +64,14 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
         public void TestUrl()
         {
             var attrib = new WUrlAttribute();
-            Assert.IsTrue(attrib.IsValid("http://ab.com"));
-            Assert.IsTrue(attrib.IsValid("file:///c:/xxx.exe"));
-            Assert.IsFalse(attrib.IsValid("silvio santos"));
+            Assert.IsTrue(attrib.IsValid("http://ab.com"),"Minimun neh!!! normal url");
+            Assert.IsTrue(attrib.IsValid("file:///c:/xxx.exe"), "Can be a file");
+            Assert.IsTrue(attrib.IsValid("http://ab.com/ teste.html"), "Can have whitespace");
+            Assert.IsTrue(attrib.IsValid("*://*.dominio.com.br*"), "asterix in any place");
+
+            Assert.IsFalse(attrib.IsValid("**://*.dominio.com.br*"), "Can have whitespace");
+            Assert.IsFalse(attrib.IsValid("silvio santos"), "need to be a url powww");
+            Assert.IsFalse(attrib.IsValid("http://ab.com/%20teste.html"),"can not have %");
 
             var rules = attrib.GetClientValidationRules(null, null);
 

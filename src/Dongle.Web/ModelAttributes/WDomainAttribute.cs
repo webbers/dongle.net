@@ -7,7 +7,7 @@ namespace Dongle.Web.ModelAttributes
 {
     public sealed class WDomainAttribute : RegularExpressionAttribute, IClientValidatable
     {
-        private const string PatternStr = @"^([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$|^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$";
+        private const string PatternStr = @"^([a-zA-Z0-9\?\*]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9\*\?])?\.)+([a-zA-Z]{2,6}$)|^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$";
 
         public WDomainAttribute()
             : base(PatternStr)
