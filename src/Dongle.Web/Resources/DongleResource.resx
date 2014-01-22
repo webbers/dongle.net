@@ -135,6 +135,9 @@
   <data name="InvalidIpAddress" xml:space="preserve">
     <value>Invalid IP address</value>
   </data>
+  <data name="InvalidProxy" xml:space="preserve">
+    <value>Invalid proxy</value>
+  </data>
   <data name="InvalidStringLength" xml:space="preserve">
     <value>Invalid string length. Max {0} characters.</value>
   </data>

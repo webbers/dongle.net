@@ -79,6 +79,22 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
         }
 
         [TestMethod]
+        public void TestProxy()
+        {
+            var attrib = new WProxyAttribute();
+            Assert.IsTrue(attrib.IsValid("192.168.0.20"), "Can be a ip");
+            Assert.IsTrue(attrib.IsValid("ns1.dominio.com"), "Can have DNS");
+            Assert.IsTrue(attrib.IsValid("http://www.dominio.com.br/"), "Can be a URL");
+
+            Assert.IsFalse(attrib.IsValid("*.dominio.com"), "Can not have a *");
+            Assert.IsFalse(attrib.IsValid("?.dominio.com"), "Can not have a ?");
+ 
+            var rules = attrib.GetClientValidationRules(null, null);
+
+            Assert.AreEqual("Invalid proxy", rules.First().ErrorMessage);
+        }
+
+        [TestMethod]
         public void TestIpV4()
         {
             var attrib = new WIpV4Attribute();
