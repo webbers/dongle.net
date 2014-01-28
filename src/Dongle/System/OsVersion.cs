@@ -50,6 +50,11 @@ namespace Dongle.System
                 name = "Android";
                 shortName = "ADR";
             }
+            else if (osType == 'R')
+            {
+                name = "Windows RT";
+                shortName = "WINRT";
+            }
             var osVersion = new OsVersion
             {
                 Name = name,
@@ -86,6 +91,19 @@ namespace Dongle.System
                         shortName = "2008";
                     }
                 }
+                else if (minor == 1)
+                {
+                    if (prodTypeServer == 0x1)
+                    {
+                        name = "Windows 7";
+                        shortName = "WIN7";
+                    }
+                    else
+                    {
+                        name = "Windows Server 2008 R2";
+                        shortName = "2008R2";
+                    }
+                }
                 else if (minor == 2)
                 {
                     if (prodTypeServer == 0x1)
@@ -99,17 +117,31 @@ namespace Dongle.System
                         shortName = "2012";
                     }
                 }
-                else
+                else if (minor == 3)
                 {
                     if (prodTypeServer == 0x1)
                     {
-                        name = "Windows 7";
-                        shortName = "WIN7";
+                        name = "Windows 8.1";
+                        shortName = "WIN8.1";
                     }
                     else
                     {
-                        name = "Windows Server 2008 R2";
-                        shortName = "2008R2";
+                        name = "Windows Server 2012 R2";
+                        shortName = "2012";
+                    }
+                }
+                else
+                {
+                    //Versão depois do 8.1, ainda nao saiu ne...
+                    if (prodTypeServer == 0x1)
+                    {
+                        name = "Windows 8.2";
+                        shortName = "WIN8.2";
+                    }
+                    else
+                    {
+                        name = "Windows Server 2012 R3";
+                        shortName = "2012";
                     }
                 }
             }
