@@ -362,7 +362,7 @@ namespace Dongle.System.Networking.Tcp
                     return;
                 }
                 ConnectionList[connectionId].PreviousCommand = command;
-            }, connection.CommandBuffer);
+            }, connection.CommandBuffer, Connection.CommandBufferSize);
             return true;
         }
 

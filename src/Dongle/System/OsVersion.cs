@@ -127,7 +127,7 @@ namespace Dongle.System
                     else
                     {
                         name = "Windows Server 2012 R2";
-                        shortName = "2012";
+                        shortName = "2012R2";
                     }
                 }
                 else
@@ -141,7 +141,7 @@ namespace Dongle.System
                     else
                     {
                         name = "Windows Server 2012 R3";
-                        shortName = "2012";
+                        shortName = "2012R3";
                     }
                 }
             }
