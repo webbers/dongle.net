@@ -157,7 +157,7 @@ namespace Dongle.System.IO
         /// <summary>
         /// Procura uma pasta de forma recursiva e a retorna
         /// </summary>
-        public static string GetBaseDirectory(string dirname)
+        public static DirectoryInfo GetBaseDirectory(string dirname)
         {
             var directory = new DirectoryInfo(ApplicationPaths.CurrentPath);
             while (directory.GetDirectories(dirname).Length == 0)
@@ -166,7 +166,7 @@ namespace Dongle.System.IO
                 if (directory == null)
                     return null;
             }
-            return new DirectoryInfo(Path.Combine(directory.FullName, dirname)) + @"\";
+            return new DirectoryInfo(Path.Combine(directory.FullName, dirname));
         }
 
         /// <summary>
