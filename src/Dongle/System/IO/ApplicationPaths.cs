@@ -155,6 +155,21 @@ namespace Dongle.System.IO
         }
 
         /// <summary>
+        /// Procura uma pasta de forma recursiva e a retorna
+        /// </summary>
+        public static string GetBaseDirectory(string dirname)
+        {
+            var directory = new DirectoryInfo(ApplicationPaths.CurrentPath);
+            while (directory.GetDirectories(dirname).Length == 0)
+            {
+                directory = directory.Parent;
+                if (directory == null)
+                    return null;
+            }
+            return new DirectoryInfo(Path.Combine(directory.FullName, dirname)) + @"\";
+        }
+
+        /// <summary>
         /// Copia um diretório recursivamente
         /// </summary>
         public static void CopyDirectory(string source, string destination, bool replaceFiles = true, bool recursive = true, string fileFilter = "*.*", bool throwException = false)
