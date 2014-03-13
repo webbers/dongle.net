@@ -88,6 +88,7 @@ namespace Dongle.Tests.Serialization
         public void TestHexToLongDWordSetter()
         {
             var obj = new SimpleClass();
+            
             var fieldMap = new PropertySetterBase.FieldMapData(typeof (SimpleClass).GetProperty("LongProperty"));
             
             var setter = new HexToLongDWordSetter(fieldMap);
@@ -95,7 +96,11 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual(35410993, obj.LongProperty);
 
             setter.Set(obj, "2F15DB8A4C");
-            Assert.AreEqual(202230172236, obj.LongProperty);            
+            Assert.AreEqual(202230172236, obj.LongProperty);
+
+            obj.LongProperty = -933489160;
+            var parsedValue = setter.Get(obj);
+            Assert.AreEqual("C85C15F8", parsedValue);
         }
 
         [TestMethod]

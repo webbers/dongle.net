@@ -50,6 +50,11 @@ namespace Dongle.System
                 name = "Android";
                 shortName = "ADR";
             }
+            else if (osType == 'C')
+            {
+                name = "Chrome OS";
+                shortName = "CROS";
+            }
             else if (osType == 'R')
             {
                 name = "Windows RT";

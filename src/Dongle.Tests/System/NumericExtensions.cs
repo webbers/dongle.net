@@ -25,5 +25,12 @@ namespace Dongle.Tests.System
             input = 12345678901234;
             Assert.AreEqual("B3A73CE2FF2", input.ToHexFast());
         }
+        
+        [TestMethod]
+        public void TestToFastHexFromNegativeDecimal()
+        {
+            long input = -933489160;
+            Assert.AreEqual("C85C15F8", input.ToHexFast());
+        }
     }
 }
