@@ -7,11 +7,11 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Dongle.Web")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Webbers")]
-[assembly: AssemblyProduct("Dongle.Web")]
-[assembly: AssemblyCopyright("Copyright © Webbers 2012")]
+[assembly: AssemblyDescription("A boosted util library")]
+[assembly: AssemblyConfiguration("Release")]
+[assembly: AssemblyCompany("Webbers Team")]
+[assembly: AssemblyProduct("Dongle")]
+[assembly: AssemblyCopyright("Copyright © Webbers Team 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,9 +32,9 @@ using System.Resources;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.7.3.32")]
-[assembly: AssemblyFileVersion("0.7.3.32")]
+// [assembly: AssemblyVersion("0.17.63.0")]
+[assembly: AssemblyVersion("0.17.63.0")]
+[assembly: AssemblyFileVersion("0.17.63.0")]
 
 
 
