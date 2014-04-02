@@ -1,12 +1,10 @@
-﻿{
+{
 	"name": "Dongle",
 	"title": "Dongle",
 	"description": "A boosted util library",
-	"version": "0.17.64",
+	"version": "0.17.65",
 	"homepage": "https://github.com/webbers/dongle.net",
-    
 	"author": "Webbers Team",
-    
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/webbers/dongle.net.git"
@@ -14,25 +12,18 @@
 	"bugs": {
 		"url": "https://github.com/webbers/dongle.net/issues"
 	},
-    
-    "homepage": "https://github.com/webbers/dongle.net",
-    
+	"homepage": "https://github.com/webbers/dongle.net",
 	"license": "MIT",
-    
-    "devDependencies": {
-        "grunt-nuget": "~0.1.1",
-        "grunt": "~0.4.2",
-        "grunt-dotnet-assembly-info": "~1.0.9",
-        "time-grunt": "~0.2.8",
-        "load-grunt-tasks": "~0.3.0",
-        "grunt-shell": "~0.6.4",
-        "grunt-nunit-runner": "~1.0.16",
-        "grunt-msbuild": "~0.1.9"
-    }
-
+	"devDependencies": {
+		"grunt-nuget": "~0.1.1",
+		"grunt": "~0.4.2",
+		"grunt-dotnet-assembly-info": "~1.0.9",
+		"time-grunt": "~0.2.8",
+		"load-grunt-tasks": "~0.3.0",
+		"grunt-shell": "~0.6.4",
+		"grunt-nunit-runner": "~1.0.16",
+		"grunt-msbuild": "~0.1.9",
+        "grunt-bump": "~0.0.13"
+	}
 }
-
-
-
-
 

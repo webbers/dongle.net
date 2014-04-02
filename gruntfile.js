@@ -23,19 +23,19 @@ module.exports = function(grunt) {
             options: {
                 stdout: true
             },
-            command: 'md pub & nuget pack src/Dongle/Dongle.csproj -Prop Configuration=Release -OutputDirectory pub'
+            command: 'md pub & nuget pack src/Dongle/Dongle.csproj -Prop Configuration=Release -OutputDirectory pub -IncludeReferencedProjects'
         },
         nugetpack_web: {
             options: {
                 stdout: true
             },
-            command: 'md pub & nuget pack src/Dongle.Web/Dongle.Web.csproj -Prop Configuration=Release -OutputDirectory pub'
+            command: 'md pub & nuget pack src/Dongle.Web/Dongle.Web.csproj -Prop Configuration=Release -OutputDirectory pub -IncludeReferencedProjects'
         },
         nugetpack_data: {
             options: {
                 stdout: true
             },
-            command: 'md pub & nuget pack src/Dongle.Data/Dongle.Data.csproj -Prop Configuration=Release -OutputDirectory pub'
+            command: 'md pub & nuget pack src/Dongle.Data/Dongle.Data.csproj -Prop Configuration=Release -OutputDirectory pub -IncludeReferencedProjects'
         },
         gitcommit: {
             options: {
@@ -74,11 +74,19 @@ module.exports = function(grunt) {
         options: {
             files: ['src/Dongle.Tests/bin/Release/Dongle.Tests.dll', 'src/Dongle.Web.Tests/bin/Release/Dongle.Web.Tests.dll']
         }
+    },
+    
+    bump: {
+        options: {
+            files: ['package.json'],
+            commit: false,
+            createTag: false,
+            push: false
+        }
     }
     
   });
-  grunt.registerTask('nugetpack', ['shell:nugetpack', 'shell:nugetpack_web', 'shell:nugetpack_data']);
-  
+  grunt.registerTask('nugetpack', ['shell:nugetpack', 'shell:nugetpack_web', 'shell:nugetpack_data']);  
   grunt.registerTask('default', ['assemblyinfo', 'msbuild', 'nunit', 'nugetpack']);
   grunt.registerTask('push', ['default', 'nugetpush', 'shell:gitcommit']);
 };

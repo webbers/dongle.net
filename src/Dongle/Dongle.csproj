@@ -83,7 +83,6 @@
     <Compile Include="Reflection\PropertySetters\HextoLongQWordSetter.cs" />
     <Compile Include="Reflection\PropertySetters\PropertySetterBase.cs" />
     <Compile Include="Reflection\PropertySetters\VarCharSetter.cs" />
-    <Compile Include="System\Collections\OrderedListExtensions.cs" />
     <Compile Include="System\CustomSelectListItem.cs" />
     <Compile Include="System\IO\DongleEncoding.cs" />
     <Compile Include="System\Networking\NamedPipes\PipeClient.cs" />
@@ -155,12 +154,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Reporting\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Dongle.Data\Dongle.Data.csproj">
-      <Project>{DB9CC4FF-D804-4A07-B08B-AEDD0EF2A737}</Project>
-      <Name>Dongle.Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

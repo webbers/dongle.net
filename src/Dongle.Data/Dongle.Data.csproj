@@ -46,6 +46,7 @@
     <Compile Include="IHaveOrder.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="MessageType.cs" />
+    <Compile Include="OrderedListExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Dongle.Data;
 
-namespace Dongle.System.Collections
+namespace Dongle.Data
 {
     public static class OrderedListExtensions
     {
