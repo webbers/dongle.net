@@ -52,7 +52,8 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
             Assert.IsTrue(attrib.IsValid("?.google.com"));
             Assert.IsTrue(attrib.IsValid("www?.google.com"));
             Assert.IsTrue(attrib.IsValid("google.co.ke"));
-            Assert.IsFalse(attrib.IsValid("silvio"));
+            Assert.IsTrue(attrib.IsValid("silvio"));
+            Assert.IsTrue(attrib.IsValid("stage.www2.gastecnologia"));
             Assert.IsFalse(attrib.IsValid("silvio santos"));
 
             var rules = attrib.GetClientValidationRules(null, null);
