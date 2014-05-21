@@ -72,7 +72,7 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
 
             Assert.IsFalse(attrib.IsValid("**://*.dominio.com.br*"), "Can have whitespace");
             Assert.IsFalse(attrib.IsValid("silvio santos"), "need to be a url powww");
-            Assert.IsFalse(attrib.IsValid("http://ab.com/%20teste.html"),"can not have %");
+            Assert.IsTrue(attrib.IsValid("http://ab.com/%20teste.html"),"must accept have %");
 
             var rules = attrib.GetClientValidationRules(null, null);
 
