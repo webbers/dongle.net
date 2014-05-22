@@ -86,8 +86,8 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
             Assert.IsTrue(attrib.IsValid("192.168.0.20"), "Can be a ip");
             Assert.IsTrue(attrib.IsValid("ns1.dominio.com"), "Can have DNS");
             Assert.IsTrue(attrib.IsValid("http://www.dominio.com.br/"), "Can be a URL");
+            Assert.IsTrue(attrib.IsValid("*.dominio.com"), "Can have a *");
 
-            Assert.IsFalse(attrib.IsValid("*.dominio.com"), "Can not have a *");
             Assert.IsFalse(attrib.IsValid("?.dominio.com"), "Can not have a ?");
  
             var rules = attrib.GetClientValidationRules(null, null);

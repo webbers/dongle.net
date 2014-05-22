@@ -7,7 +7,7 @@ namespace Dongle.Web.ModelAttributes
 {
     public sealed class WProxyAttribute : RegularExpressionAttribute, IClientValidatable
     {
-        private const string PatternStr = @"([^*?])+$";
+        private const string PatternStr = @"([^?])+$";
 
         public WProxyAttribute()
             : base(PatternStr)
