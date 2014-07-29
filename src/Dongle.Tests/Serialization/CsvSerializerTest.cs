@@ -10,8 +10,6 @@ using Assert = NUnit.Framework.Assert;
 namespace Dongle.Tests.Serialization
 {
     [TestFixture]
-    /*[DeploymentItem(@"pt-BR\Dongle.resources.dll", "pt-BR")]
-    [DeploymentItem(@"es-ES\Dongle.resources.dll", "es-ES")]*/
     public class CsvSerializerTest
     {
         private const string CsvExpected =

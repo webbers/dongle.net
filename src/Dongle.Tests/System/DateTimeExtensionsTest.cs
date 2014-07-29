@@ -12,7 +12,6 @@ namespace Dongle.Tests.System
     {
         private static DateTime _now = new DateTime(2011, 8, 15, 12, 30, 15);
 
-        //[Test, DeploymentItem(@"pt-BR\Dongle.resources.dll", "pt-BR")]
         public void TestToFriendlyString()
         {
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-BR");
