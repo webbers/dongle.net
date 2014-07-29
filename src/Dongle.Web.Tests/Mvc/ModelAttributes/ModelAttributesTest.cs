@@ -52,7 +52,8 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
             Assert.IsTrue(attrib.IsValid("?.google.com"));
             Assert.IsTrue(attrib.IsValid("www?.google.com"));
             Assert.IsTrue(attrib.IsValid("google.co.ke"));
-            Assert.IsFalse(attrib.IsValid("silvio"));
+            Assert.IsTrue(attrib.IsValid("silvio"));
+            Assert.IsTrue(attrib.IsValid("stage.www2.gastecnologia"));
             Assert.IsFalse(attrib.IsValid("silvio santos"));
 
             var rules = attrib.GetClientValidationRules(null, null);
@@ -66,12 +67,12 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
             var attrib = new WUrlAttribute();
             Assert.IsTrue(attrib.IsValid("http://ab.com"),"Minimun neh!!! normal url");
             Assert.IsTrue(attrib.IsValid("file:///c:/xxx.exe"), "Can be a file");
-            Assert.IsTrue(attrib.IsValid("http://ab.com/ teste.html"), "Can have whitespace");
+            Assert.IsFalse(attrib.IsValid("http://ab.com/ teste.html"), "Can't have whitespace");
             Assert.IsTrue(attrib.IsValid("*://*.dominio.com.br*"), "asterix in any place");
 
-            Assert.IsFalse(attrib.IsValid("**://*.dominio.com.br*"), "Can have whitespace");
+            Assert.IsFalse(attrib.IsValid("**://*.dominio.com.br*"), "Can't have double asteristcs");
             Assert.IsFalse(attrib.IsValid("silvio santos"), "need to be a url powww");
-            Assert.IsFalse(attrib.IsValid("http://ab.com/%20teste.html"),"can not have %");
+            Assert.IsTrue(attrib.IsValid("http://ab.com/%20teste.html"),"must accept %");
 
             var rules = attrib.GetClientValidationRules(null, null);
 
@@ -85,8 +86,9 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
             Assert.IsTrue(attrib.IsValid("192.168.0.20"), "Can be a ip");
             Assert.IsTrue(attrib.IsValid("ns1.dominio.com"), "Can have DNS");
             Assert.IsTrue(attrib.IsValid("http://www.dominio.com.br/"), "Can be a URL");
+            Assert.IsTrue(attrib.IsValid("*.dominio.com"), "Can have a *");
 
-            Assert.IsFalse(attrib.IsValid("*.dominio.com"), "Can not have a *");
+            Assert.IsFalse(attrib.IsValid("**.dominio.com"), "Can not have * sequentially");
             Assert.IsFalse(attrib.IsValid("?.dominio.com"), "Can not have a ?");
  
             var rules = attrib.GetClientValidationRules(null, null);

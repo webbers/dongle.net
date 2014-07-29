@@ -127,6 +127,7 @@
     <Compile Include="System\Tree\TreeRoot.cs" />
     <Compile Include="System\TypeExtensions.cs" />
     <Compile Include="System\OsVersion.cs" />
+    <Compile Include="Utils\Mailer.cs" />
     <Compile Include="Utils\UrlUtils.cs" />
     <Compile Include="Utils\VersionUtils.cs" />
     <EmbeddedResource Include="Resources\DongleResource.es-ES.resx">

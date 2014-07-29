@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using Dongle.Web.Resources;
 
@@ -7,8 +8,7 @@ namespace Dongle.Web.ModelAttributes
 {
     public sealed class WProxyAttribute : RegularExpressionAttribute, IClientValidatable
     {
-        private const string PatternStr = @"([^*?])+$";
-
+        private const string PatternStr = @"^(?:(?!(\*{2,}|\?)).)+$";
         public WProxyAttribute()
             : base(PatternStr)
         {
