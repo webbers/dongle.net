@@ -1,12 +1,12 @@
 ﻿using Dongle.System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dongle.Tests.System.IO
 {
-    [TestClass]
+    [TestFixture]
     public class ApplicationPathsTest
     {
-        [TestMethod]
+        [Test]
         public void Test()
         {
             Assert.IsNotNull(ApplicationPaths.RootDirectory);

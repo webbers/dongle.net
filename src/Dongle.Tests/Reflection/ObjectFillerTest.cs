@@ -1,10 +1,10 @@
 ﻿using Dongle.Reflection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Ploeh.SemanticComparison;
 
 namespace Dongle.Tests.Reflection
 {
-    [TestClass]
+    [TestFixture]
     public class ObjectFillerTest
     {
         internal class Foo
@@ -13,7 +13,7 @@ namespace Dongle.Tests.Reflection
             public int Id { get; set; }
         }
 
-        [TestMethod]
+        [Test]
         public void FillerWithSameObjectTest()
         {
             var f1 = new Foo
@@ -36,7 +36,7 @@ namespace Dongle.Tests.Reflection
             public string Name { get; set; }
         }
 
-        [TestMethod]
+        [Test]
         public void FillerWithDifferentObjectsTest()
         {
             var f1 = new Foo
@@ -55,7 +55,7 @@ namespace Dongle.Tests.Reflection
             public string Name { get; set; }
         }
 
-        [TestMethod]
+        [Test]
         public void FillerWithLessPropertiesTest()
         {
             var f1 = new Foo
@@ -76,7 +76,7 @@ namespace Dongle.Tests.Reflection
             public string Password { get; set; }
         }
 
-        [TestMethod]
+        [Test]
         public void FillerWithMorePropertiesTest()
         {
             var f1 = new Foo
@@ -100,7 +100,7 @@ namespace Dongle.Tests.Reflection
             public string Name { get; set; }
         }
 
-        [TestMethod]
+        [Test]
         public void FillerWithComplexTypesTest()
         {
             var f1 = new ComplexFoo
@@ -125,7 +125,7 @@ namespace Dongle.Tests.Reflection
             public int Id { get; set; }
         }
 
-        [TestMethod]
+        [Test]
         public void FillerWithNoSetterTest()
         {
             var f1 = new Foo
@@ -141,7 +141,7 @@ namespace Dongle.Tests.Reflection
             Assert.AreEqual(f1.Id, f2.Id);
         }
 
-        [TestMethod]
+        [Test]
         public void FillerOneParameter()
         {
             var f1 = new Foo1Property
@@ -153,7 +153,7 @@ namespace Dongle.Tests.Reflection
             Assert.AreEqual(f1.Name, f2.Name);
         }
 
-        [TestMethod]
+        [Test]
         public void FillerNonReplaceNullSourceProperty()
         {
             var f1 = new Foo
@@ -172,7 +172,7 @@ namespace Dongle.Tests.Reflection
             Assert.AreEqual(3, f2.Id);
         }
 
-        [TestMethod]
+        [Test]
         public void FillerMerge()
         {
             var f1 = new Foo
@@ -216,7 +216,7 @@ namespace Dongle.Tests.Reflection
             public string Enabled { get; set; }
         }
 
-        [TestMethod]
+        [Test]
         public void FillerDoesntFillDifferentTypes()
         {
             var f1 = new FooInt
@@ -228,7 +228,7 @@ namespace Dongle.Tests.Reflection
             Assert.AreEqual(null, f2.Enabled);
         }
 
-        [TestMethod]
+        [Test]
         public void FillerFillsIfDifferentTypesAreIntAndBoolean()
         {
             var f1 = new FooInt
@@ -240,7 +240,7 @@ namespace Dongle.Tests.Reflection
             Assert.AreEqual(true, f2.Enabled);
         }
 
-        [TestMethod]
+        [Test]
         public void FillerFillsIfDifferentTypesAreBooleanAndInt()
         {
             var f1 = new FooBoolean
@@ -252,7 +252,7 @@ namespace Dongle.Tests.Reflection
             Assert.AreEqual(1, f2.Enabled);
         }
 
-        [TestMethod]
+        [Test]
         public void FillerFillsNullableIntoNotNullable()
         {
             var f1 = new FooNullableBoolean
@@ -264,7 +264,7 @@ namespace Dongle.Tests.Reflection
             Assert.AreEqual(true, f2.Enabled);
         }
 
-        [TestMethod]
+        [Test]
         public void FillerDontFillNullableIntoNotNullableDifferentType()
         {
             var f1 = new FooNullableBoolean
@@ -276,7 +276,7 @@ namespace Dongle.Tests.Reflection
             Assert.AreEqual(0, f2.Enabled);
         }
 
-        [TestMethod]
+        [Test]
         public void FillerFillsWithDefaultValueNotNullableFromNullNullable()
         {
             var sourceObj = new FooNullableInt
@@ -293,7 +293,7 @@ namespace Dongle.Tests.Reflection
             Assert.AreEqual(0, destObj.Enabled);
         }
 
-        [TestMethod]
+        [Test]
         public void FillerFillsNotNullableIntoNullable()
         {
             var f1 = new FooBoolean

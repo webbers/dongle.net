@@ -4,13 +4,14 @@ using Dongle.Serialization;
 using Dongle.System.IO;
 using Dongle.Tests.Tools;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+using Assert = NUnit.Framework.Assert;
 
 namespace Dongle.Tests.Serialization
 {
-    [TestClass]
-    [DeploymentItem(@"pt-BR\Dongle.resources.dll", "pt-BR")]
-    [DeploymentItem(@"es-ES\Dongle.resources.dll", "es-ES")]
+    [TestFixture]
+    /*[DeploymentItem(@"pt-BR\Dongle.resources.dll", "pt-BR")]
+    [DeploymentItem(@"es-ES\Dongle.resources.dll", "es-ES")]*/
     public class CsvSerializerTest
     {
         private const string CsvExpected =
@@ -26,7 +27,7 @@ namespace Dongle.Tests.Serialization
             + "Silvio Santos,82,1930-12-12,\"1,72\",VERDADEIRO\r\n"
             + "Hebe Camargo,83,1929-03-08 12:00:00,\"1,6\",FALSO\r\n";
 
-        [TestMethod]
+        [Test]
         public void SerializeFooList()
         {
             var serializer = new CsvSerializer<Foo>();
@@ -34,7 +35,7 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual(CsvExpected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void SerializeFooListWithPipe()
         {
             var serializer = new CsvSerializer<Foo>("|");
@@ -42,7 +43,7 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual(CsvWithPipeExpected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void SerializeDicionary()
         {
             var serializer = new CsvSerializer<Dictionary<string, object>>();
@@ -50,7 +51,7 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual(CsvExpected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void SerializeFooListWithResourceAndCulture()
         {
             var serializer = new CsvSerializer<Foo>(FooResource.ResourceManager);

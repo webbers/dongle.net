@@ -1,22 +1,21 @@
 using System;
-using System.Data.SqlTypes;
 using System.Globalization;
 
 using Dongle.Serialization;
 using Dongle.Tests.Tools;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dongle.Tests.Serialization
 {
-    [TestClass]
+    [TestFixture]
     public class ObjectFormatterTest
     {
         private readonly CultureInfo _ptBr = CultureInfo.GetCultureInfo("pt-BR");
         private readonly CultureInfo _enUs = CultureInfo.GetCultureInfo("en-US");
         private readonly CultureInfo _esEs = CultureInfo.GetCultureInfo("es-ES");
 
-        [TestMethod]
+        [Test]
         public void FormatNumber()
         {
             Assert.AreEqual("1.5", ObjectFormatter.Format(1.5, CultureInfo.InvariantCulture));
@@ -28,7 +27,7 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual("-2", ObjectFormatter.Format(-2, CultureInfo.InvariantCulture));
         }
 
-        [TestMethod]
+        [Test]
         public void FormatDateTime()
         {
             //As datas precisam ser iguais indiferente da Culture para aumentar a compatibilidade com o Excel
@@ -41,7 +40,7 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual(Expected, ObjectFormatter.Format(sample, _esEs));
         }
 
-        [TestMethod]
+        [Test]
         public void FormatDate()
         {
             //As datas precisam ser iguais indiferente da Culture para aumentar a compatibilidade com o Excel
@@ -54,7 +53,7 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual(Expected, ObjectFormatter.Format(sample, _esEs));
         }
 
-        [TestMethod]
+        [Test]
         public void FormatNull()
         {
             Assert.AreEqual("", ObjectFormatter.Format(null, CultureInfo.InvariantCulture));
@@ -68,7 +67,7 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual("", ObjectFormatter.Format(new FooNullable(), _esEs));
         }
 
-        [TestMethod]
+        [Test]
         public void FormatList()
         {
             var sample = new object[] { 1.5, "abc", 3, new DateTime(2010, 5, 14), null };
@@ -78,22 +77,20 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual("\"1,5, abc, 3, 2010-05-14, \"", ObjectFormatter.Format(sample, _esEs));
         }
 
-        [TestMethod]
-        [DeploymentItem(@"pt-BR\Dongle.resources.dll", "pt-BR")]
-        [DeploymentItem(@"es-ES\Dongle.resources.dll", "es-ES")]
+        [Test]
         public void FormatBoolean()
         {
-            const bool SampleTrue = true;
-            Assert.AreEqual("TRUE", ObjectFormatter.Format(SampleTrue, CultureInfo.InvariantCulture));
-            Assert.AreEqual("VERDADEIRO", ObjectFormatter.Format(SampleTrue, _ptBr));
-            Assert.AreEqual("TRUE", ObjectFormatter.Format(SampleTrue, _enUs));
-            Assert.AreEqual("VERDADERO", ObjectFormatter.Format(SampleTrue, _esEs));
+            const bool sampleTrue = true;
+            Assert.AreEqual("TRUE", ObjectFormatter.Format(sampleTrue, CultureInfo.InvariantCulture));
+            Assert.AreEqual("VERDADEIRO", ObjectFormatter.Format(sampleTrue, _ptBr));
+            Assert.AreEqual("TRUE", ObjectFormatter.Format(sampleTrue, _enUs));
+            Assert.AreEqual("VERDADERO", ObjectFormatter.Format(sampleTrue, _esEs));
 
-            const bool SampleFalse = false;
-            Assert.AreEqual("FALSE", ObjectFormatter.Format(SampleFalse, CultureInfo.InvariantCulture));
-            Assert.AreEqual("FALSO", ObjectFormatter.Format(SampleFalse, _ptBr));
-            Assert.AreEqual("FALSE", ObjectFormatter.Format(SampleFalse, _enUs));
-            Assert.AreEqual("FALSO", ObjectFormatter.Format(SampleFalse, _esEs));
+            const bool sampleFalse = false;
+            Assert.AreEqual("FALSE", ObjectFormatter.Format(sampleFalse, CultureInfo.InvariantCulture));
+            Assert.AreEqual("FALSO", ObjectFormatter.Format(sampleFalse, _ptBr));
+            Assert.AreEqual("FALSE", ObjectFormatter.Format(sampleFalse, _enUs));
+            Assert.AreEqual("FALSO", ObjectFormatter.Format(sampleFalse, _esEs));
         }
     }
 }

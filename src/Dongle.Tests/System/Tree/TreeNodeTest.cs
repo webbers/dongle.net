@@ -1,24 +1,20 @@
 ﻿using Dongle.System.Tree;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System;
+using NUnit.Framework;
+using Assert = NUnit.Framework.Assert;
 
 namespace Dongle.Tests.System.Tree
 {
 
-    [TestClass]
+    [TestFixture]
     public class TreeNodeTest
     {
-        public void TreeNodeConstructorTestHelper<T>()
-        {
-            
-        }
-
-        [TestMethod]
+        [Test]
         public void TreeNodeConstructorTest()
         {
             const string key = "key";
-            Foo value = default(Foo);
+            var value = default(Foo);
             var rootNode = new TreeNode<Foo>("root");
             var root = new TreeRoot<Foo>(rootNode);
             var node = new TreeNode<Foo>(key, value, rootNode);
@@ -35,7 +31,7 @@ namespace Dongle.Tests.System.Tree
             Assert.IsTrue(root.RootNode.IsRoot);
         }
 
-        [TestMethod]
+        [Test]
         public void TreeRootConstructorTest()
         {
             TreeRootConstructorTestHelper<GenericParameterHelper>();
@@ -50,7 +46,7 @@ namespace Dongle.Tests.System.Tree
             Assert.AreEqual(node.Value, value);
         }
 
-        [TestMethod]
+        [Test]
         public void TreeNodeConstructorTest1()
         {
             TreeNodeConstructorTest1Helper<GenericParameterHelper>();
@@ -63,7 +59,7 @@ namespace Dongle.Tests.System.Tree
             Assert.IsTrue(node.Key == key);
         }
 
-        [TestMethod]
+        [Test]
         public void TreeNodeConstructorTest2()
         {
             TreeNodeConstructorTest2Helper<GenericParameterHelper>();
@@ -84,7 +80,7 @@ namespace Dongle.Tests.System.Tree
             Assert.IsTrue(node.IsRoot);
         }
 
-        [TestMethod]
+        [Test]
         public void DetachTest()
         {
             DetachTestHelper<GenericParameterHelper>();
@@ -109,7 +105,7 @@ namespace Dongle.Tests.System.Tree
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GetNodePathTest()
         {
             GetNodePathTestHelper<GenericParameterHelper>();
@@ -132,7 +128,7 @@ namespace Dongle.Tests.System.Tree
             Assert.AreEqual(nodePathAsString, node3.GetNodePathAsString('/'));
         }
 
-        [TestMethod]
+        [Test]
         public void GetNodePathAsStringTest()
         {
             GetNodePathAsStringTestHelper<GenericParameterHelper>();
@@ -152,7 +148,7 @@ namespace Dongle.Tests.System.Tree
             Assert.IsTrue(node1.IsAncestorOf(node2));
         }
 
-        [TestMethod]
+        [Test]
         public void IsAncestorOfTest()
         {
             IsAncestorOfTestHelper<GenericParameterHelper>();
@@ -171,7 +167,7 @@ namespace Dongle.Tests.System.Tree
             Assert.IsTrue(node2.IsChildOf(node1));
         }
 
-        [TestMethod]
+        [Test]
         public void IsChildOfTest()
         {
             IsChildOfTestHelper<GenericParameterHelper>();
@@ -188,7 +184,7 @@ namespace Dongle.Tests.System.Tree
             Assert.IsNull(node2.Parent);
         }
 
-        [TestMethod]
+        [Test]
         public void RemoveTest()
         {
             RemoveTestHelper<GenericParameterHelper>();
@@ -200,11 +196,10 @@ namespace Dongle.Tests.System.Tree
             root.RootNode.Remove();
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
+        [Test]
         public void AssertCannotRemoveRoot()
         {
-            AssertCannotRemoveRootHelper<GenericParameterHelper>();
+            Assert.Throws<InvalidOperationException>(AssertCannotRemoveRootHelper<GenericParameterHelper>);
         }
 
         public void SetRootLinkTestHelper<T>()
@@ -225,7 +220,7 @@ namespace Dongle.Tests.System.Tree
             Assert.AreSame(node4.Root, root);
         }
 
-        [TestMethod]
+        [Test]
         public void SetRootLinkTest()
         {
             SetRootLinkTestHelper<GenericParameterHelper>();
@@ -246,7 +241,7 @@ namespace Dongle.Tests.System.Tree
             Assert.AreEqual(2, node4.Depth);
         }
 
-        [TestMethod]
+        [Test]
         public void DepthTest()
         {
             DepthTestHelper<GenericParameterHelper>();
@@ -267,7 +262,7 @@ namespace Dongle.Tests.System.Tree
             Assert.IsFalse(node4.HasChildren);
         }
 
-        [TestMethod]
+        [Test]
         public void HasChildrenTest()
         {
             HasChildrenTestHelper<GenericParameterHelper>();
@@ -291,7 +286,7 @@ namespace Dongle.Tests.System.Tree
             Assert.IsFalse(node4.IsRoot);
         }
 
-        [TestMethod]
+        [Test]
         public void IsRootTest()
         {
             IsRootTestHelper<GenericParameterHelper>();
@@ -318,7 +313,7 @@ namespace Dongle.Tests.System.Tree
             }
         }
 
-        [TestMethod]
+        [Test]
         public void NodesTest()
         {
             NodesTestHelper<GenericParameterHelper>();
@@ -345,7 +340,7 @@ namespace Dongle.Tests.System.Tree
             }
         }
 
-        [TestMethod]
+        [Test]
         public void AssertNodesDontContainChildOfChildTest()
         {
             AssertNodesDontContainChildOfChildTestHelper<GenericParameterHelper>();
@@ -367,7 +362,7 @@ namespace Dongle.Tests.System.Tree
             Assert.AreSame(node2, node3.Parent);
         }
 
-        [TestMethod]
+        [Test]
         public void ParentTest()
         {
             ParentTestHelper<GenericParameterHelper>();
@@ -391,7 +386,7 @@ namespace Dongle.Tests.System.Tree
             Assert.AreSame(root.RootNode, node4.Root.RootNode);
         }
 
-        [TestMethod]
+        [Test]
         public void RootTest()
         {
             RootTestHelper<GenericParameterHelper>();
@@ -422,13 +417,13 @@ namespace Dongle.Tests.System.Tree
             }
         }
 
-        [TestMethod]
+        [Test]
         public void SiblingsTest()
         {
             SiblingsTestHelper<GenericParameterHelper>();
         }
 
-        [TestMethod]
+        [Test]
         public void ValueTest()
         {
             var stringList = new List<string> { "test1", "test2" };
@@ -447,10 +442,14 @@ namespace Dongle.Tests.System.Tree
         }
     }
 
-    [TestClass]
+    public class GenericParameterHelper
+    {
+    }
+
+    [TestFixture]
     public class TreeNodeCollectionTest
     {
-        [TestMethod]
+        [Test]
         public void TreeNodeCollectionConstructorTest()
         {
             var owner = new TreeNode<Foo>("owner");
@@ -459,14 +458,13 @@ namespace Dongle.Tests.System.Tree
             Assert.AreSame(owner, nodeCollection.Owner);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
         public void AssertTreeNodeCollectionHasOwner()
         {
-            var nodeCollection = new TreeNodeCollection<Foo>(null);
+            Assert.Throws<ArgumentNullException>((() => new TreeNodeCollection<Foo>(null)));
         }
 
-        [TestMethod]
+        [Test]
         public void TestEnumerator()
         {
             var node1 = new TreeNode<Foo>("node1");
@@ -487,7 +485,7 @@ namespace Dongle.Tests.System.Tree
             Assert.AreSame(node3, nodeCollectionEnumerator.Current);
     
         }
-        [TestMethod]
+        [Test]
         public void TestContains()
         {
             var node1 = new TreeNode<Foo>("node1");
@@ -496,7 +494,7 @@ namespace Dongle.Tests.System.Tree
             nodeCollection.Add(node1);
             Assert.IsTrue(nodeCollection.Contains(node1));
         }
-        [TestMethod]
+        [Test]
         public void TestInsert()
         {
             var node1 = new TreeNode<Foo>("node1");
@@ -508,15 +506,14 @@ namespace Dongle.Tests.System.Tree
             Assert.AreSame(node1, nodeCollection[0]);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [Test]
         public void AssertInsertCantExceedMaximumCollectionSize()
         {
             var node1 = new TreeNode<Foo>("node1");
             var nodeCollection = new TreeNodeCollection<Foo>(new TreeNode<Foo>("owner"));
-            nodeCollection.Insert(1, node1);
+            Assert.Throws<ArgumentOutOfRangeException>(()=>nodeCollection.Insert(1, node1));
         }
-        [TestMethod]
+        [Test]
         public void AssertNodeCollectionItemCanBeChangedByIndex()
         {
             var node1 = new TreeNode<Foo>("node1");
@@ -527,7 +524,7 @@ namespace Dongle.Tests.System.Tree
             nodeCollection[0] = node2;
             Assert.AreSame(node2, nodeCollection[0]);
         }
-        [TestMethod]
+        [Test]
         public void AssertNewNodeCanBeCreatedOnAdd()
         {
             var nodeCollection = new TreeNodeCollection<Foo>(new TreeNode<Foo>("owner"));
@@ -536,7 +533,7 @@ namespace Dongle.Tests.System.Tree
             Assert.AreEqual(1, nodeCollection.Count);
             Assert.AreEqual("key1", nodeCollection[0].Key);
         }
-        [TestMethod]
+        [Test]
         public void AssertNodeIsAddedByAdd()
         {
             var node1 = new TreeNode<Foo>("node1");
@@ -546,7 +543,7 @@ namespace Dongle.Tests.System.Tree
             Assert.AreEqual(1, nodeCollection.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void AssertNodeIsAddedWithGivenValueAtSpecifiedIndex()
         {
             var nodeCollection = new TreeNodeCollection<Foo>(new TreeNode<Foo>("owner"));
@@ -557,7 +554,7 @@ namespace Dongle.Tests.System.Tree
             Assert.AreEqual("key2", nodeCollection[1].Key);
         }
 
-        [TestMethod]
+        [Test]
         public void AssertNodeIsInsertedBefore()
         {
             var node2 = new TreeNode<Foo>("node2");
@@ -567,7 +564,7 @@ namespace Dongle.Tests.System.Tree
             Assert.AreEqual("key1", nodeCollection[0].Key);
         }
 
-        [TestMethod]
+        [Test]
         public void AssertNodeIsInsertedAfter()
         {
             var node1 = new TreeNode<Foo>("node1");
@@ -577,7 +574,7 @@ namespace Dongle.Tests.System.Tree
             Assert.AreEqual("key2", nodeCollection[1].Key);
         }
 
-        [TestMethod]
+        [Test]
         public void TestIndexOf()
         {
             var node1 = new TreeNode<Foo>("node1");
@@ -594,10 +591,10 @@ namespace Dongle.Tests.System.Tree
     {
     }
 
-    [TestClass]
+    [TestFixture]
     public class TreeNodeTestClass
     {
-        [TestMethod]
+        [Test]
         public void TestTreeNodeConstructor()
         {
             var node1 = new TreeNode<Foo>("root");

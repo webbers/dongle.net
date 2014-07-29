@@ -49,7 +49,7 @@ namespace Dongle.System.IO
             {
                 fullNameWithoutExtension = fileInfo.FullName.Substring(0, dotPos);
             }
-            var newFullName = fullNameWithoutExtension + extension;
+            var newFullName = fullNameWithoutExtension + "." + extension;
 
             fileInfo.MoveTo(newFullName);
             return new FileInfo(newFullName);

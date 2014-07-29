@@ -41,7 +41,7 @@ module.exports = function(grunt) {
             options: {
                 stdout: true
             },
-            command: 'git commit -a -m "version <%= pkg.version %>'
+            command: 'git commit -a -m "version <%= pkg.version %>" & git push'
         }
     },
     

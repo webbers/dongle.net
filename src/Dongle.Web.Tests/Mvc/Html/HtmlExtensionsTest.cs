@@ -1,14 +1,14 @@
 ﻿using System;
 using Dongle.Web.Html;
 using Dongle.Web.Tests.Tools;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dongle.Web.Tests.Mvc.Html
 {
-    [TestClass]
+    [TestFixture]
     public class HtmlExtensionsTest
     {
-        [TestMethod]
+        [Test]
         public void DateTimePicker()
         {
             var hh = new FakeHtmlHelper<Foo>();
@@ -28,7 +28,7 @@ namespace Dongle.Web.Tests.Mvc.Html
                           html.ToHtmlString() == "<input class=\"wdatetimepicker\" id=\"CreatedAt\" name=\"CreatedAt\" type=\"text\" value=\"8/15/2011 12:30:15 PM\" />");
         }
 
-        [TestMethod]
+        [Test]
         public void ResourceLabel()
         {
             var hh = new FakeHtmlHelper<Foo>();
@@ -47,7 +47,7 @@ namespace Dongle.Web.Tests.Mvc.Html
             Assert.AreEqual("<label for=\"Name\">Peguei do resource</label>", html.ToHtmlString());
         }
 
-        [TestMethod]
+        [Test]
         public void WSpinButton()
         {
             var hh = new FakeHtmlHelper<Foo>();
@@ -66,7 +66,7 @@ namespace Dongle.Web.Tests.Mvc.Html
             Assert.AreEqual("<input class=\"wspinbutton\" id=\"Price\" name=\"Price\" type=\"text\" value=\"10\" />", html.ToHtmlString());
         }
 
-        [TestMethod]
+        [Test]
         public void SwitchButtonExtensions()
         {
             var hh = new FakeHtmlHelper<Foo>();
@@ -83,7 +83,7 @@ namespace Dongle.Web.Tests.Mvc.Html
 
         }
 
-        [TestMethod]
+        [Test]
         public void ButtonExtensions()
         {
             var hh = new FakeHtmlHelper<Foo>();
@@ -113,7 +113,7 @@ namespace Dongle.Web.Tests.Mvc.Html
             Assert.AreEqual("<div class=\"wbutton-normal wbutton abc\" id=\"botao\" name=\"botao\" value=\"123\">Label</div>", html.ToHtmlString());
         }
 
-        [TestMethod]
+        [Test]
         public void LinkButtonExtensions()
         {
             var hh = new FakeHtmlHelper<Foo>();

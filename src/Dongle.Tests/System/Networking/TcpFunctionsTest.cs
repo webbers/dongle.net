@@ -6,7 +6,7 @@ using System.Net;
 using System.Threading;
 using Dongle.System.IO;
 using Dongle.System.Networking.Tcp;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dongle.Tests.System.Networking
 {

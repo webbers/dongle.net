@@ -4,16 +4,16 @@ using System.IO;
 using Dongle.Serialization;
 using Dongle.System.IO;
 using Dongle.Tests.Tools;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Ploeh.SemanticComparison;
 
 namespace Dongle.Tests.Serialization
 {
-    [TestClass]
+    [TestFixture]
     public class JsonSimpleSerializerTest
     {
 
-        [TestMethod]
+        [Test]
         public void SerializeToFile()
         {
             AssertFileSerialize("12345", "\"12345\"");
@@ -39,7 +39,7 @@ namespace Dongle.Tests.Serialization
             AssertFileSerialize(objectToSerialize, "{\"Name\":\"Wine\",\"Age\":10,\"CreatedAt\":\"\\/Date(1313422215000-0300)\\/\",\"Price\":1.25,\"Enabled\":false,\"Parent\":{\"Name\":\"Suco de Uva\",\"Age\":0,\"CreatedAt\":\"\\/Date(-62135596800000)\\/\",\"Price\":0.0,\"Enabled\":false,\"Parent\":null}}", false);
         }
 
-        [TestMethod]
+        [Test]
         public void UnserializeNull()
         {
             Assert.IsNull(JsonSimpleSerializer.UnserializeFromFile<object>(new FileInfo("arquivo inexistente")));
@@ -61,7 +61,7 @@ namespace Dongle.Tests.Serialization
             }
         }
 
-        [TestMethod]
+        [Test]
         public void UnserializeFromStringTest()
         {
             const string fooString = @"{""Name"":""Wine"",""Age"":10,""CreatedAt"":""03/04/2001"",""Price"":1.25,""Enabled"":false,""Parent"":null}";
@@ -73,7 +73,7 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual(new DateTime(2001, 03, 04), fooDeserializedEnUs.CreatedAt);
         }
 
-        [TestMethod]
+        [Test]
         public void UnserializeFromStringToObjectTest()
         {
             const string fooString = @"{""Name"":""Wine"",""Age"":10,""CreatedAt"":""03/04/2001"",""Price"":1.25,""Enabled"":false,""Parent"":null}";
@@ -85,7 +85,7 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual(new DateTime(2001, 03, 04), ((Foo)fooDeserializedEnUs).CreatedAt);
         }
 
-        [TestMethod]
+        [Test]
         public void GetNodeValueFromJsonTest()
         {
             const string fooString = @"{""Name"":""Wine"",""Age"":10,""CreatedAt"":""03/04/2001"",""Price"":1.25,""Enabled"":false,""Parent"":null}";

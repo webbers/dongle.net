@@ -1,13 +1,13 @@
 ﻿using System;
 using Dongle.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dongle.Tests.Utils
 {
-    [TestClass]
+    [TestFixture]
     public class VersionUtilsTest
     {
-        [TestMethod]
+        [Test]
         public void CompareWithPreviousVersionSplit()
         {
             Assert.IsTrue("2.6.0.6000.0.0.1.256".CompareWithPreviousVersionSplit("2.5.1.6700.0.0.1.256"));
@@ -21,7 +21,7 @@ namespace Dongle.Tests.Utils
             Assert.IsTrue("1.0".CompareWithPreviousVersionSplit("xpto"));
         }
 
-        [TestMethod]
+        [Test]
         public void CompareWithPreviousVersion()
         {
             Assert.IsTrue("6.0.4.5".CompareWithPreviousVersion("5.1.5.1") <= 0);
@@ -32,7 +32,7 @@ namespace Dongle.Tests.Utils
             Assert.IsTrue("2.5.1".CompareWithPreviousVersion("1.3.A") <= 0);
         }
 
-        [TestMethod]
+        [Test]
         public void CompareVersionMethods()
         {
             var start = DateTime.Now;

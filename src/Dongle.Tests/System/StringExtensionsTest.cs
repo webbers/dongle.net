@@ -1,17 +1,15 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using Dongle.System;
 using Dongle.System.IO;
-using Dongle.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dongle.Tests.System
 {
-    [TestClass]
+    [TestFixture]
     public class StringExtensionsTest
     {
-        [TestMethod]
+        [Test]
         public void ToBytes()
         {
             var bytes = "123\045".ToBytes();
@@ -45,7 +43,7 @@ namespace Dongle.Tests.System
             Assert.AreEqual("®", bytes.FromBytesToString());
         }
 
-        [TestMethod]
+        [Test]
         public void ToMd5()
         {
             Assert.AreEqual("827ccb0eea8a706c4c34a16891f84e7b", "12345".ToMd5());
@@ -57,20 +55,20 @@ namespace Dongle.Tests.System
             Assert.AreEqual("d1457b72c3fb323a2671125aef3eab5d", "❤".ToMd5());
         }
 
-        [TestMethod]
+        [Test]
         public void RemoveAccents()
         {
             Assert.AreEqual("aeiouyaoaeiouaeiouaeiouy", "áéíóúýãõàèìòùâêîôûäëïöüÿ".RemoveAccents());
         }
 
-        [TestMethod]
+        [Test]
         public void RemovePunctuation()
         {
             Assert.AreEqual("", ".!,;?".RemovePunctuation());
             Assert.AreEqual("abcde", "a.b!c,d;e?".RemovePunctuation());
         }
 
-        [TestMethod]
+        [Test]
         public void FromBase64ToString()
         {
             var base64 = "12345".ToBase64();
@@ -87,7 +85,7 @@ namespace Dongle.Tests.System
             
         }
 
-        [TestMethod]
+        [Test]
         public void Capitalize()
         {
             Assert.AreEqual("", "".Capitalize());
@@ -98,14 +96,14 @@ namespace Dongle.Tests.System
             Assert.AreEqual("Vamos Corrigir As Palavras", "vamos corrigir as palavras".Capitalize());
         }
 
-        [TestMethod]
+        [Test]
         public void OnlyNumbers()
         {
             Assert.AreEqual("12345", "1a2b3c4d5e".OnlyNumbers());
             Assert.AreEqual("12345678900", "123.456.789-00".OnlyNumbers());
         }
 
-        [TestMethod]
+        [Test]
         public void ToSlug()
         {
             //Máximo de caracteres
@@ -133,7 +131,7 @@ namespace Dongle.Tests.System
             Assert.AreEqual("casa-branca", "cása!❤?❤!brânca".ToSlug());
         }
 
-        [TestMethod]
+        [Test]
         public void StripTags()
         {
             Assert.AreEqual("casa", "<a>casa</a>".StripTags());
@@ -142,7 +140,7 @@ namespace Dongle.Tests.System
             Assert.AreEqual("casa", "<a href=\"abc\"><b>casa</a>".StripTags());
         }
 
-        [TestMethod]
+        [Test]
         public void Take()
         {
             Assert.AreEqual("abc", "abc".Take(0));
@@ -155,7 +153,7 @@ namespace Dongle.Tests.System
 
         }
 
-        [TestMethod]
+        [Test]
         public void IndexOfAllTest()
         {
             var search = "123.456.789.012";
@@ -173,7 +171,7 @@ namespace Dongle.Tests.System
             Assert.AreEqual(15, indexes[2]);
         }
 
-        [TestMethod]
+        [Test]
         public void Base64Methods()
         {
             var inputUtf7 = Encoding.UTF7.GetString(Encoding.UTF7.GetBytes("Alo Mundo Imundo!! áéç^íóú"));
@@ -188,7 +186,7 @@ namespace Dongle.Tests.System
             Assert.AreEqual(inputUtf7, outputUtf7.FromBase64ToString(Encoding.UTF7));
         }
 
-        [TestMethod]
+        [Test]
         public void RemoveSpecialChars()
         {
             const string input = "ZYÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç ?#\"'\\/:<>|*-+";
@@ -196,7 +194,7 @@ namespace Dongle.Tests.System
             Assert.AreEqual(output, input.RemoveSpecialChars());
         }
 
-        [TestMethod]
+        [Test]
         public void Reverse()
         {
             const string input = "áBÇDefgHi";
@@ -204,7 +202,7 @@ namespace Dongle.Tests.System
             Assert.AreEqual(output, input.Reverse());
         }
 
-        [TestMethod]
+        [Test]
         public void ToCrc32()
         {
             const string input = "abcdefghij12234567";
@@ -212,28 +210,28 @@ namespace Dongle.Tests.System
             Assert.AreEqual(output, input.ToCrc32());
         }
 
-        [TestMethod]
+        [Test]
         public void FromHexToInt32()
         {
             Assert.AreEqual(999999999, "3B9AC9FF".FromHexToInt32());
             Assert.AreEqual(0, "Vai dar zero!".FromHexToInt32());
         }
 
-        [TestMethod]
+        [Test]
         public void FromHexToInt64()
         {
             Assert.AreEqual(48358587860608905, "ABCDE123456789".FromHexToInt64());
             Assert.AreEqual(0, "Vai dar zero!".FromHexToInt64());
         }
 
-        [TestMethod]
+        [Test]
         public void TestToMd5Safe()
         {
             Assert.AreEqual("63807B7DE13A99416BAC5C2BEBCA7782", "Alô Mundo Imundo!!".ToMd5Safe());
             Assert.AreEqual("9CB10DB7CEEF37FDD2F3955D05832108", DongleEncoding.Default.GetString(DongleEncoding.Default.GetBytes("Alo Mundo Imundo!!")).ToMd5Safe(DongleEncoding.Default));
         }
 
-        [TestMethod]
+        [Test]
         public void TestRightChars()
         {
             Assert.AreEqual("", "".Right(0));
@@ -246,7 +244,7 @@ namespace Dongle.Tests.System
             Assert.AreEqual("", ((string)null).Right(3));
         }
 
-        [TestMethod]
+        [Test]
         public void TestLeftChars()
         {
             Assert.AreEqual("", "".Left(0));

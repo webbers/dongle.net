@@ -2,11 +2,11 @@
 using System.ComponentModel.DataAnnotations.MaxLengthAttribute;
 using System.Globalization;
 using Dongle.Reflection.PropertySetters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dongle.Tests.Serialization
 {
-    [TestClass]
+    [TestFixture]
     public class PropertySettersTest
     {
         [Flags]
@@ -36,7 +36,7 @@ namespace Dongle.Tests.Serialization
             public SimpleEnum EnumProperty { get; set; }
         }
         
-        [TestMethod]
+        [Test]
         public void TestBypassSetter()
         {
             var obj = new SimpleClass();
@@ -61,7 +61,7 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual(DateTime.Parse("2011-05-01T07:34:42-5:00"), obj.DateTimeProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void TestDateTimeSetter()
         {
             var obj = new SimpleClass();
@@ -84,7 +84,7 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual(DateTime.Parse("2013-04-26T17:16:26"), obj.DateTimeProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void TestHexToLongDWordSetter()
         {
             var obj = new SimpleClass();
@@ -103,7 +103,7 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual("C85C15F8", parsedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void TestHexToLongQWordSetter()
         {
             var obj = new SimpleClass();
@@ -114,7 +114,7 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual(35410993, obj.LongProperty);
         }
         
-        [TestMethod]
+        [Test]
         public void TestVarCharSetter()
         {
             const string stringBig = "Esta string tem mais de 20 caracteres e precisa ser cortada aqui senão vai gerar uma exception.";
@@ -127,7 +127,7 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual(stringBig.Substring(0, 20), obj.StringProperty);
         }
 
-        [TestMethod]
+        [Test]
         public void TestEnumSetter()
         {
             var fieldMap = new PropertySetterBase.FieldMapData(typeof(SimpleClass).GetProperty("EnumProperty"));

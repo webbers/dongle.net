@@ -1,13 +1,12 @@
-﻿using System;
-using Dongle.System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Dongle.System;
+using NUnit.Framework;
 
 namespace Dongle.Tests.System
 {
-    [TestClass]
+    [TestFixture]
     public class OsVersionTests
     {
-        [TestMethod]
+        [Test]
         public void TestOsVersionShortName()
         {
             var version = OsVersion.GetFromVersion("2.6.2.8250.0.0.1.256");
@@ -39,7 +38,7 @@ namespace Dongle.Tests.System
         }
 
 
-        [TestMethod]
+        [Test]
         public void TestOsVersionName()
         {
             var version = OsVersion.GetFromVersion("2.6.2.8250.0.0.1.256");

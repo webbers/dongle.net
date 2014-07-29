@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using Dongle.Algorithms;
 using Dongle.Tests.Tools;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dongle.Tests.Algorithms
 {
-    [TestClass]
+    [TestFixture]
     public class LevensteinDistanceTest
     {
-        [TestMethod]
+        [Test]
         public void Similarity()
         {
             Assert.AreEqual(0, LevensteinDistance.Similarity("abcd", "AB"));
@@ -20,7 +20,7 @@ namespace Dongle.Tests.Algorithms
             Assert.AreEqual(0, LevensteinDistance.Similarity("", ""));
         }
 
-        [TestMethod]
+        [Test]
         public void Calculate()
         {
             Assert.AreEqual(2, LevensteinDistance.Calculate("abcd", "ab"));
@@ -28,7 +28,7 @@ namespace Dongle.Tests.Algorithms
             Assert.AreEqual(4, LevensteinDistance.Calculate("abcd", ""));
         }
 
-        [TestMethod]
+        [Test]
         public void GetMostSimilarTo()
         {
             var silvio = new Foo {Name = "Silvio"};

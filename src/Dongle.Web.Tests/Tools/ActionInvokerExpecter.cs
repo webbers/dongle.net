@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dongle.Web.Tests.Tools
 {
@@ -17,7 +17,7 @@ namespace Dongle.Web.Tests.Tools
 		/// <param name="actionResult"></param>
 		protected override void InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
 		{
-			Assert.IsInstanceOfType(actionResult, typeof (TResult));
+            Assert.IsInstanceOf<TResult>(actionResult);
 		}
 	}
 }

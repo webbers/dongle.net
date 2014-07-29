@@ -1,17 +1,15 @@
 using System.Globalization;
-using System.Text;
-
 using Dongle.Serialization;
 using Dongle.System.IO;
 using Dongle.Tests.Tools;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dongle.Tests.Serialization
 {
-    [TestClass]
-    [DeploymentItem(@"pt-BR\Dongle.resources.dll", "pt-BR")]
-    [DeploymentItem(@"es-ES\Dongle.resources.dll", "es-ES")]
+    [TestFixture]
+    /*[DeploymentItem(@"pt-BR\Dongle.resources.dll", "pt-BR")]
+    [DeploymentItem(@"es-ES\Dongle.resources.dll", "es-ES")]*/
     public class FixedWidthTextSerializerTest
     {
         private const string Expected =
@@ -28,7 +26,7 @@ namespace Dongle.Tests.Serialization
             + "Silvio Santos                  82                1930-12-12           1,72       VERDADEIRO           \r\n"
             + "Hebe Camargo                   83                1929-03-08 12:00:00  1,6        FALSO                ";
 
-        [TestMethod]
+        [Test]
         public void FixedWidthSerializeFooList()
         {
             var serializer = new FixedWidthTextSerializer<Foo>();
@@ -36,7 +34,7 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual(Expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void FixedWidthSerializeDicionary()
         {
             //Todo: Make work with dictionaries
@@ -45,7 +43,7 @@ namespace Dongle.Tests.Serialization
             Assert.AreEqual(Expected, actual);*/
         }
 
-        [TestMethod]
+        [Test]
         public void FixedWidthSerializeFooListWithResourceAndCulture()
         {
             var serializer = new FixedWidthTextSerializer<Foo>(FooResource.ResourceManager);

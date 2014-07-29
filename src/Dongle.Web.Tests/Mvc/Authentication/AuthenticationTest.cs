@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.DirectoryServices.AccountManagement;
-using System.DirectoryServices.ActiveDirectory;
+﻿using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using Dongle.Web.Authentication;
 using Dongle.Web.Tests.Tools;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dongle.Web.Tests.Mvc.Authentication
 {
-    [TestClass]
+    [TestFixture]
     public class AuthenticationTest
     {
         private const string Domain = "YOURDOMAIN.LOCAL";
         private const string Container = "dc=YOURDOMAIN,dc=local";
 
-        /*[TestMethod]
+        /*[Test]
         public void TestAuthorized()
         {
             var controller = new FooController();
@@ -31,7 +28,7 @@ namespace Dongle.Web.Tests.Mvc.Authentication
             Assert.IsTrue(new ActionInvokerExpecter<ViewResult>().InvokeAction(controller.ControllerContext,"Details"));
         }*/
 
-        [TestMethod]
+        [Test]
         public void TestUnauthorized()
         {
             var controller = new FooController();
@@ -57,7 +54,7 @@ namespace Dongle.Web.Tests.Mvc.Authentication
             }
         }
 
-        [TestMethod]
+        [Test]
         public void TestUnauthenticated()
         {
             var controller = new FooController();
@@ -66,7 +63,7 @@ namespace Dongle.Web.Tests.Mvc.Authentication
                 controller.ControllerContext, "Details"));
         }
 
-        /*[TestMethod]
+        /*[Test]
         public void TestLdapGroups()
         {
             var sut = new LdapAuthenticator(Domain, Container);
@@ -74,7 +71,7 @@ namespace Dongle.Web.Tests.Mvc.Authentication
             Assert.IsTrue(result.Count > 0);
         }
 
-        [TestMethod]
+        [Test]
         public void TestLdapInvalidUsername()
         {
             var sut = new LdapAuthenticator(Domain, Container);
@@ -82,7 +79,7 @@ namespace Dongle.Web.Tests.Mvc.Authentication
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void TestLdapInvalidUsernameThrowException()
         {
             const string invalidUsername = "invalid.username";
@@ -98,7 +95,7 @@ namespace Dongle.Web.Tests.Mvc.Authentication
             }
         }
 
-        [TestMethod]
+        [Test]
         public void TestLdapInvalidDomainThrowException()
         {
             const string invalidUsername = "invalid.username";
@@ -113,7 +110,7 @@ namespace Dongle.Web.Tests.Mvc.Authentication
             }
         }
 
-        [TestMethod]
+        [Test]
         public void TestLdapInvalidDomain()
         {
             const string invalidUsername = "invalid.username";
@@ -122,7 +119,7 @@ namespace Dongle.Web.Tests.Mvc.Authentication
             Assert.AreEqual(0, result.Count);
         }*/
 
-        [TestMethod]
+        [Test]
         public void TestSetRules()
         {
             var sessionAuthorizeAttribute = new SessionAuthorizeAttribute { Roles = "abc" };
@@ -132,7 +129,7 @@ namespace Dongle.Web.Tests.Mvc.Authentication
             Assert.AreEqual("", sessionAuthorizeAttribute.Roles);
         }
 
-        /*[TestMethod]
+        /*[Test]
         public void TestLdapAuthenticatorGetUser()
         {   //fixture setup
             var sut = new LdapAuthenticator(Domain, Container);
@@ -148,7 +145,7 @@ namespace Dongle.Web.Tests.Mvc.Authentication
             result.Dispose();
         }*/
 
-        [TestMethod]
+        [Test]
         public void GetPrincipalContextTest()
         {
             //fixture setup
@@ -159,7 +156,7 @@ namespace Dongle.Web.Tests.Mvc.Authentication
             //Assert.IsNotNull(result);
         }
 
-        /*[TestMethod]
+        /*[Test]
             public void TestLdapAuthenticatorValidateCredentials()
             {
                 //fixture setup

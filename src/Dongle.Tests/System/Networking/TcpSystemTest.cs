@@ -5,11 +5,11 @@ using System.Linq;
 using System.Threading;
 using Dongle.System.IO;
 using Dongle.System.Networking.Tcp;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dongle.Tests.System.Networking
 {
-    [TestClass]
+    [TestFixture]
     public class TcpSystemTest : TcpFunctionsTest
     {
         public Thread ServerThread;
@@ -17,7 +17,7 @@ namespace Dongle.Tests.System.Networking
         public const string Server = "Server";
         public const string Client = "Client";
 
-        [TestMethod]
+        [Test]
         public void SystemTestTcp()
         {
             ServerThread = new Thread(StartServer);
@@ -84,7 +84,7 @@ namespace Dongle.Tests.System.Networking
             TcpServer.Stop();
         }
 
-        [TestMethod]
+        [Test]
         public void TestTwoServerSamePort()
         {
             var randomPort = 56000 + new Random().Next(1, 999);

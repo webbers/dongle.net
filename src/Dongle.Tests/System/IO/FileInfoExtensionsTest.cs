@@ -2,14 +2,14 @@
 using System.IO;
 using Dongle.System;
 using Dongle.System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dongle.Tests.System.IO
 {
-    [TestClass]
+    [TestFixture]
     public class FileInfoExtensionsTest
     {
-        [TestMethod]
+        [Test]
         public void BruteMoveIfAlreadyExists()
         {
             var directory = ApplicationPaths.RootDirectory;
@@ -22,14 +22,13 @@ namespace Dongle.Tests.System.IO
             Assert.IsTrue(File.Exists(path1));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void BruteMoveException1()
         {
-            SystemFileInfoExtensions.BruteMove(null, "foo");
+            Assert.Throws<ArgumentException>(() => SystemFileInfoExtensions.BruteMove(null, "foo"));
         }
 
-        [TestMethod]
+        [Test]
         public void BruteMove1()
         {
             var directory = ApplicationPaths.RootDirectory;
@@ -46,7 +45,7 @@ namespace Dongle.Tests.System.IO
             Assert.IsTrue(File.Exists(path2));
         }
 
-        [TestMethod]
+        [Test]
         public void BruteMove2()
         {
             var directory = ApplicationPaths.RootDirectory;
@@ -63,34 +62,33 @@ namespace Dongle.Tests.System.IO
             Assert.IsTrue(File.Exists(path2 + "\\foo.bar"));
         }
 
-        [TestMethod]
+        [Test]
         public void ChangeExtension()
         {
             var directory = ApplicationPaths.RootDirectory;
             var fileInfo = new FileInfo(directory + "\\foo.bar");
 
             CreateFoo();
+            if (File.Exists(directory + "\\foo.foo")) File.Delete(directory + "\\foo.foo");
 
             Assert.IsTrue(fileInfo.Exists);
             fileInfo = fileInfo.ChangeExtension("foo");
-            Assert.IsTrue(fileInfo.Exists);
+            Assert.IsTrue(File.Exists(directory + "\\foo.foo"));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void ChangeException1()
         {
-            SystemFileInfoExtensions.ChangeExtension(null, "foo");
+            Assert.Throws<ArgumentException>(() => SystemFileInfoExtensions.ChangeExtension(null, "foo"));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void ChangeException2()
         {
-            SystemFileInfoExtensions.ChangeExtension(new FileInfo("foo"), null);
+            Assert.Throws<ArgumentException>(() => SystemFileInfoExtensions.ChangeExtension(new FileInfo("foo"), null));
         }
 
-        [TestMethod]
+        [Test]
         public void ReadBytes()
         {
             var directory = ApplicationPaths.RootDirectory;
@@ -104,14 +102,13 @@ namespace Dongle.Tests.System.IO
             Assert.AreEqual("teste", bytes.FromBytesToString());
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void ReadBytesException()
         {
-            SystemFileInfoExtensions.ReadBytes(null);
+            Assert.Throws<ArgumentException>(() => SystemFileInfoExtensions.ReadBytes(null));
         }
 
-        [TestMethod]
+        [Test]
         public void GetContent()
         {
             var directory = ApplicationPaths.RootDirectory;
@@ -121,14 +118,13 @@ namespace Dongle.Tests.System.IO
             Assert.AreEqual("teste", fileInfo.GetContent());
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void GetContentException()
         {
-            SystemFileInfoExtensions.GetContent(null);
+            Assert.Throws<ArgumentException>(() => SystemFileInfoExtensions.GetContent(null));
         }
 
-        [TestMethod]
+        [Test]
         public void PutContent()
         {
             var directory = ApplicationPaths.RootDirectory;
@@ -140,21 +136,19 @@ namespace Dongle.Tests.System.IO
             Assert.AreEqual("abcde", fileInfo.GetContent());
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void PutContentException1()
         {
-            SystemFileInfoExtensions.PutContent(null, "foo");
+            Assert.Throws<ArgumentException>(() => SystemFileInfoExtensions.PutContent(null, "foo"));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void PutContentException2()
         {
-            new FileInfo("foo").PutContent(null);
+            Assert.Throws<ArgumentException>(() => new FileInfo("foo").PutContent(null));
         }
 
-        [TestMethod]
+        [Test]
         public void CreateDirectortRecursively()
         {
             var directory = ApplicationPaths.RootDirectory;
@@ -171,14 +165,13 @@ namespace Dongle.Tests.System.IO
             Assert.IsTrue(Directory.Exists(directoryInfo.FullName));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void CreateDirectortRecursivelyException()
         {
-            SystemFileInfoExtensions.CreateRecursively(null);
+            Assert.Throws<ArgumentException>(() => SystemFileInfoExtensions.CreateRecursively(null));
         }
 
-        [TestMethod]
+        [Test]
         public void Closest()
         {
             var directory = new DirectoryInfo(ApplicationPaths.RootDirectory);
@@ -188,7 +181,7 @@ namespace Dongle.Tests.System.IO
             Assert.IsNull(directory.Closest("blablabla"));
         }
 
-        [TestMethod]
+        [Test]
         public void CopyDirectory()
         {
             var directory = ApplicationPaths.RootDirectory;
@@ -198,13 +191,14 @@ namespace Dongle.Tests.System.IO
             CreateFoo(@"\path\path");
             path1.CreateSubdirectory("path");
 
+            if (Directory.Exists(directory + @"\moved")) Directory.Delete(directory + @"\moved", true);
             path1.CopyTo(directory + @"\moved");
 
             Assert.IsTrue(File.Exists(directory + @"\moved\foo.bar"));
             Assert.IsTrue(Directory.Exists(directory + @"\moved\path"));
         }
 
-        [TestMethod]
+        [Test]
         public void GetFolderSizeTest()
         {
             var testSizeFolder = new DirectoryInfo(ApplicationPaths.CurrentPathCombine("FolderSizeTest"));

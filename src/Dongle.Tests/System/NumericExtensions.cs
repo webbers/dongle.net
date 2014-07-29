@@ -1,12 +1,12 @@
 ﻿using Dongle.System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dongle.Tests.System
 {
-    [TestClass]
+    [TestFixture]
     public class NumericExtensions
     {
-        [TestMethod]
+        [Test]
         public void TestToHex()
         {
             long input = 1234;
@@ -16,7 +16,7 @@ namespace Dongle.Tests.System
             Assert.AreEqual("B3A73CE2FF2", input.ToHex());
         }
 
-        [TestMethod]
+        [Test]
         public void TestToFastHex()
         {
             long input = 1234;
@@ -26,7 +26,7 @@ namespace Dongle.Tests.System
             Assert.AreEqual("B3A73CE2FF2", input.ToHexFast());
         }
         
-        [TestMethod]
+        [Test]
         public void TestToFastHexFromNegativeDecimal()
         {
             long input = -933489160;

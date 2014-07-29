@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
 using Dongle.Web.ModelAttributes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dongle.Web.Tests.Mvc.ModelAttributes
 {
-    [TestClass]
+    [TestFixture]
     public class ModelAttributesTest
     {
-        [TestMethod]
+        [Test]
         public void TestEmailAttribute()
         {
             var attrib = new WEmailAttribute();
@@ -17,10 +17,10 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
 
             var rules = attrib.GetClientValidationRules(null, null);
 
-            Assert.AreEqual("Invalid e-mail", rules.First().ErrorMessage);
+            Assert.IsTrue(rules.First().ErrorMessage == "Invalid e-mail" || rules.First().ErrorMessage == "E-mail inválido");
         }
 
-        [TestMethod]
+        [Test]
         public void TestHexadecimalAttribute()
         {
             var attrib = new WHexadecimalAttribute(1);
@@ -32,16 +32,17 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
             Assert.IsFalse(attrib2.IsValid("FFDF8X67000Z4712"));
             Assert.IsFalse(attrib2.IsValid("FFDF8367000A47122"));
 
-            var attrib3 = new WHexadecimalAttribute(1,2);
+            var attrib3 = new WHexadecimalAttribute(1, 2);
             Assert.IsTrue(attrib3.IsValid("ABCDEF11"));
             Assert.IsTrue(attrib3.IsValid("FFDF896700004712"));
 
             var rules = attrib.GetClientValidationRules(null, null);
 
-            Assert.AreEqual("The value must be a hexadecimal with 1 octet (s)", rules.First().ErrorMessage);
+            Assert.IsTrue(rules.First().ErrorMessage == "The value must be a hexadecimal with 1 octet (s)" ||
+                          rules.First().ErrorMessage == "O valor precisa ser um hexadecimal com 1 octeto(s)");
         }
 
-        [TestMethod]
+        [Test]
         public void TestDomain()
         {
             var attrib = new WDomainAttribute();
@@ -58,28 +59,29 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
 
             var rules = attrib.GetClientValidationRules(null, null);
 
-            Assert.AreEqual("Invalid domain", rules.First().ErrorMessage);
+            Assert.IsTrue(rules.First().ErrorMessage == "Invalid domain" || rules.First().ErrorMessage == "Domínio inválido");
         }
 
-        [TestMethod]
+        [Test]
         public void TestUrl()
         {
             var attrib = new WUrlAttribute();
-            Assert.IsTrue(attrib.IsValid("http://ab.com"),"Minimun neh!!! normal url");
+            Assert.IsTrue(attrib.IsValid("http://ab.com"), "Minimun neh!!! normal url");
             Assert.IsTrue(attrib.IsValid("file:///c:/xxx.exe"), "Can be a file");
             Assert.IsFalse(attrib.IsValid("http://ab.com/ teste.html"), "Can't have whitespace");
             Assert.IsTrue(attrib.IsValid("*://*.dominio.com.br*"), "asterix in any place");
 
             Assert.IsFalse(attrib.IsValid("**://*.dominio.com.br*"), "Can't have double asteristcs");
             Assert.IsFalse(attrib.IsValid("silvio santos"), "need to be a url powww");
-            Assert.IsTrue(attrib.IsValid("http://ab.com/%20teste.html"),"must accept %");
+            Assert.IsTrue(attrib.IsValid("http://ab.com/%20teste.html"), "must accept %");
 
             var rules = attrib.GetClientValidationRules(null, null);
 
-            Assert.AreEqual("Invalid URL", rules.First().ErrorMessage);
+            Assert.IsTrue(rules.First().ErrorMessage == "Invalid URL" ||
+                          rules.First().ErrorMessage == "URL inválida");
         }
 
-        [TestMethod]
+        [Test]
         public void TestProxy()
         {
             var attrib = new WProxyAttribute();
@@ -90,13 +92,14 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
 
             Assert.IsFalse(attrib.IsValid("**.dominio.com"), "Can not have * sequentially");
             Assert.IsFalse(attrib.IsValid("?.dominio.com"), "Can not have a ?");
- 
+
             var rules = attrib.GetClientValidationRules(null, null);
 
-            Assert.AreEqual("Invalid proxy", rules.First().ErrorMessage);
+            Assert.IsTrue(rules.First().ErrorMessage == "Invalid proxy" ||
+                          rules.First().ErrorMessage == "Proxy inválido");
         }
 
-        [TestMethod]
+        [Test]
         public void TestIpV4()
         {
             var attrib = new WIpV4Attribute();
@@ -107,10 +110,11 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
 
             var rules = attrib.GetClientValidationRules(null, null);
 
-            Assert.AreEqual("Invalid IP address", rules.First().ErrorMessage);
+            Assert.IsTrue(rules.First().ErrorMessage == "Invalid IP address" ||
+                          rules.First().ErrorMessage == "Endereço IP inválido");
         }
 
-        [TestMethod]
+        [Test]
         public void TestDateRange()
         {
             var attrib = new WDateRangeAttribute();
@@ -118,7 +122,7 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
             Assert.IsTrue(attrib.IsValid(DateTime.Now.AddDays(-2)));
         }
 
-        [TestMethod]
+        [Test]
         public void TestStringLength()
         {
             var attrib = new WStringLengthAttribute(8);

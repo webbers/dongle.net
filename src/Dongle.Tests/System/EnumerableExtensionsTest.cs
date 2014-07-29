@@ -1,16 +1,13 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Dongle.System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dongle.Tests.System
 {
-    [TestClass]
+    [TestFixture]
     public class EnumerableExtensionsTest
     {
-        [TestMethod]
+        [Test]
         public void TestDistribute()
         {
             var values = new [] {10d, 70d, 1d}.Distribute(100);
