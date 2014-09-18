@@ -34,7 +34,7 @@ namespace Dongle.Tests.System
             Assert.AreEqual("CROS", version.ShortName);
 
             version = OsVersion.GetFromVersion("W6.1");
-            Assert.AreEqual("WIN61", version.ShortName);
+            Assert.AreEqual("WINPHONE", version.ShortName);
         }
 
 

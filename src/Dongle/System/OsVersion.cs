@@ -32,7 +32,8 @@ namespace Dongle.System
             }
             else if (osType == 'W')
             {
-                name = GetWindowsVersionsFromUserAgent(osVersions, name, ref shortName, ref productType);
+                name = "Windows Phone";
+                shortName = "WINPHONE";
             }
             else if (osType == 'L')
             {
@@ -72,31 +73,6 @@ namespace Dongle.System
                 Version = version
             };
             return osVersion;
-        }
-
-        private static string GetWindowsVersionsFromUserAgent(IList<string> osVersions, string name, ref string shortName,ref string productType)
-        {
-            //Ex.: W6.1 / W6.2 / W6.3
-            var major = int.Parse(osVersions[0][1].ToString());
-            var minor = int.Parse(osVersions[1]);
-
-            if (minor == 1)
-            {
-                name = "Windows 7 / Server 2008";
-                shortName = "WIN61";
-            }
-            else if (minor == 2)
-            {
-                name = "Windows 8 / Server 2012";
-                shortName = "WIN62";
-            }
-            else if (minor == 3)
-            {
-                name = "Windows 8.1 / Server 2012 R2";
-                shortName = "WIN63";
-            }
-
-            return name;
         }
 
         private static string GetWindowsVersions(IList<string> osVersions, string name, ref string shortName, ref string productType)
