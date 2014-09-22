@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Net.Sockets;
 
 namespace Dongle.Utils
 {
@@ -115,6 +117,22 @@ namespace Dongle.Utils
                 }
             }
             return true;
+        }
+
+        /// <summary>
+        /// Valida se o item é IPV6
+        /// </summary>
+        private static bool IsIpV6Like(string text)
+        {
+            IPAddress address;
+            if (IPAddress.TryParse(text, out address))
+            {
+                if (AddressFamily.InterNetworkV6.Equals(address.AddressFamily))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
