@@ -122,7 +122,7 @@ namespace Dongle.Utils
         /// <summary>
         /// Valida se o item é IPV6
         /// </summary>
-        private static bool IsIpV6Like(string text)
+        public static bool IsIpV6Like(string text)
         {
             IPAddress address;
             if (IPAddress.TryParse(text, out address))
