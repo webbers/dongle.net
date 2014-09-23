@@ -92,7 +92,7 @@
     <Compile Include="ModelAttributes\WDomainAttribute.cs" />
     <Compile Include="ModelAttributes\WEmailAttribute.cs" />
     <Compile Include="ModelAttributes\WHexadecimalAttribute.cs" />
-    <Compile Include="ModelAttributes\WIpV4Attribute.cs" />
+    <Compile Include="ModelAttributes\WIpAttribute.cs" />
     <Compile Include="ModelAttributes\WRange.cs" />
     <Compile Include="ModelAttributes\WRequired.cs" />
     <Compile Include="ModelAttributes\WRequiredIfAttribute.cs" />
