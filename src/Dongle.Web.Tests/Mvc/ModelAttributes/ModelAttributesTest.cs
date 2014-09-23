@@ -114,6 +114,23 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
         }
 
         [Test]
+        public void TestIpV4WildCard()
+        {
+            var attrib = new WIpWildCardAttribute();
+            Assert.IsTrue(attrib.IsValid("*.*"));
+            Assert.IsTrue(attrib.IsValid("?.*"));
+            Assert.IsTrue(attrib.IsValid("192.*"));
+            Assert.IsTrue(attrib.IsValid("192.?"));
+            Assert.IsTrue(attrib.IsValid("192.168.1.*"));
+            Assert.IsFalse(attrib.IsValid("19*.*"));
+            Assert.IsFalse(attrib.IsValid("*"));
+
+            var rules = attrib.GetClientValidationRules(null, null);
+
+            Assert.IsTrue(rules.First().ErrorMessage == "Invalid IP address" || rules.First().ErrorMessage == "Endereço IP inválido");
+        }
+
+        [Test]
         public void TestIpV6()
         {
             var attrib = new WIpAttribute();

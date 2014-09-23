@@ -86,6 +86,7 @@
     <Compile Include="Html\WResourceLabelExtensions.cs" />
     <Compile Include="Html\WSpinButtonExtensions.cs" />
     <Compile Include="Html\WSwitchButtonExtensions.cs" />
+    <Compile Include="ModelAttributes\WIpWildCardAttribute.cs" />
     <Compile Include="ModelAttributes\WProxyAttribute.cs" />
     <Compile Include="ModelAttributes\WDateRange.cs" />
     <Compile Include="ModelAttributes\WCompare.cs" />
