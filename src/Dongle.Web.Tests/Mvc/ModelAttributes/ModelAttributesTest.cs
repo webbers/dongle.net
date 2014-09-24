@@ -131,6 +131,35 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
         }
 
         [Test]
+        public void TestIpV6WildCard()
+        {
+            var attrib = new WIpWildCardAttribute();
+            Assert.IsTrue(attrib.IsValid("*:2:3:*:5:6:7:?"));
+            Assert.IsTrue(attrib.IsValid("*::"));
+            Assert.IsTrue(attrib.IsValid("*:2:?:4:5:6:7::"));
+            Assert.IsTrue(attrib.IsValid("1::*"));
+            Assert.IsTrue(attrib.IsValid("?:2:?:4:5:?::*"));
+            Assert.IsTrue(attrib.IsValid("1::*:8"));
+            Assert.IsTrue(attrib.IsValid("1:2:3:4:5::*:8"));
+            Assert.IsTrue(attrib.IsValid("*:2:?:4:5::?"));
+            Assert.IsTrue(attrib.IsValid("?::*:4:5:6:?:*"));
+            Assert.IsTrue(attrib.IsValid("::2:?:4:5:6:7:*"));
+            Assert.IsTrue(attrib.IsValid("::*"));
+            Assert.IsTrue(attrib.IsValid("fe80::*:?:8%eth0"));
+            Assert.IsTrue(attrib.IsValid("fe80::?:8%*"));
+            Assert.IsTrue(attrib.IsValid("::255.*.?.255"));
+            Assert.IsTrue(attrib.IsValid("::255.*.255.?"));
+            Assert.IsTrue(attrib.IsValid("::ffff:0:255.?.255.*"));
+            Assert.IsTrue(attrib.IsValid("::?:?:255.?.255.*"));
+            Assert.IsTrue(attrib.IsValid("*:?:3:4::*.0.2.33"));
+            Assert.IsTrue(attrib.IsValid("64:ff9b::192.0.2.?"));
+
+            var rules = attrib.GetClientValidationRules(null, null);
+
+            Assert.IsTrue(rules.First().ErrorMessage == "Invalid IP address" || rules.First().ErrorMessage == "Endereço IP inválido");
+        }
+
+        [Test]
         public void TestIpV6()
         {
             var attrib = new WIpAttribute();

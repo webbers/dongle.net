@@ -99,6 +99,14 @@ namespace Dongle.Utils
         }
 
         /// <summary>
+        /// Verifica se é IPV4 ou IPV6
+        /// </summary>
+        public static bool IsIp(string text)
+        {
+            return IsIpV4Like(text) || IsIpV6Like(text);
+        }
+
+        /// <summary>
         /// Valida se está em um formato parecido com IP v4. Não faz uma checagem completa pois seria mais lento, então apenas verifica se está no formato 999.999.999.999.
         /// </summary>
         public static bool IsIpV4Like(string text)
