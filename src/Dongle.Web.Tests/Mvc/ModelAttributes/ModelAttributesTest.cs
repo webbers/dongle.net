@@ -131,6 +131,23 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
         }
 
         [Test]
+        public void TestIpV6()
+        {
+            var attrib = new WIpAttribute();
+            Assert.IsTrue(attrib.IsValid("::1"));
+            Assert.IsTrue(attrib.IsValid("fe80::20c:29ff:fe09:ebc8"));
+            Assert.IsTrue(attrib.IsValid("805B:2D9D:DC28:0000:0000:0000:D4C8:1FFF"));
+            Assert.IsTrue(attrib.IsValid("805B:2D9D:DC28:0:0:0:D4C8:1FFF"));
+            Assert.IsTrue(attrib.IsValid("FF00:4502:0:0:0:0:0:42"));
+            Assert.IsTrue(attrib.IsValid("FF00:4502::42"));
+            Assert.False(attrib.IsValid("805B::DC28::D4C8:1FFF"));
+
+            var rules = attrib.GetClientValidationRules(null, null);
+
+            Assert.IsTrue(rules.First().ErrorMessage == "Invalid IP address" || rules.First().ErrorMessage == "Endereço IP inválido");
+        }
+
+        [Test]
         public void TestIpV6WildCard()
         {
             var attrib = new WIpWildCardAttribute();
@@ -153,23 +170,6 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
             Assert.IsTrue(attrib.IsValid("::?:?:255.?.255.*"));
             Assert.IsTrue(attrib.IsValid("*:?:3:4::*.0.2.33"));
             Assert.IsTrue(attrib.IsValid("64:ff9b::192.0.2.?"));
-
-            var rules = attrib.GetClientValidationRules(null, null);
-
-            Assert.IsTrue(rules.First().ErrorMessage == "Invalid IP address" || rules.First().ErrorMessage == "Endereço IP inválido");
-        }
-
-        [Test]
-        public void TestIpV6()
-        {
-            var attrib = new WIpAttribute();
-            Assert.IsTrue(attrib.IsValid("::1"));
-            Assert.IsTrue(attrib.IsValid("fe80::20c:29ff:fe09:ebc8"));
-            Assert.IsTrue(attrib.IsValid("805B:2D9D:DC28:0000:0000:0000:D4C8:1FFF"));
-            Assert.IsTrue(attrib.IsValid("805B:2D9D:DC28:0:0:0:D4C8:1FFF"));
-            Assert.IsTrue(attrib.IsValid("FF00:4502:0:0:0:0:0:42"));
-            Assert.IsTrue(attrib.IsValid("FF00:4502::42"));
-            Assert.False(attrib.IsValid("805B::DC28::D4C8:1FFF"));
 
             var rules = attrib.GetClientValidationRules(null, null);
 

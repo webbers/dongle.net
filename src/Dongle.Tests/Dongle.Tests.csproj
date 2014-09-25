@@ -115,6 +115,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FooResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utils\UrlUtilsTest.cs" />
     <Compile Include="Utils\VersionUtilsTest.cs" />
   </ItemGroup>
   <ItemGroup>

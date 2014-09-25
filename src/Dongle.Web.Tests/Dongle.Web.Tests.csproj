@@ -71,6 +71,10 @@
       <Project>{4FABD996-C901-4B80-BF32-41065BC07A67}</Project>
       <Name>Dongle.Web</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dongle\Dongle.csproj">
+      <Project>{56CF536E-2136-4E13-B987-2A76304BEC08}</Project>
+      <Name>Dongle</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TestResource.resx" />

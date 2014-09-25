@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Text.RegularExpressions;
 
 namespace Dongle.Utils
 {
@@ -99,7 +100,7 @@ namespace Dongle.Utils
         }
 
         /// <summary>
-        /// Verifica se é IPV4 ou IPV6
+        /// Valida se o item é IPV4 ou IPV6
         /// </summary>
         public static bool IsIp(string text)
         {
@@ -107,30 +108,18 @@ namespace Dongle.Utils
         }
 
         /// <summary>
-        /// Valida se está em um formato parecido com IP v4. Não faz uma checagem completa pois seria mais lento, então apenas verifica se está no formato 999.999.999.999.
+        /// Valida se o item é IPV4
         /// </summary>
-        public static bool IsIpV4Like(string text)
+        private static bool IsIpV4Like(string text)
         {
-            var chars = text.ToCharArray();
-            if (chars.Length > 15)
-            {
-                return false;
-            }
-            for (var i = 0; i < chars.Length; i++)
-            {
-                var chr = chars[i];
-                if ((chr < 48 || chr > 57) && chr != 46)
-                {
-                    return false;
-                }
-            }
-            return true;
+            const string ipv4Pattern = @"^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3,3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$";
+            return Regex.IsMatch(text, ipv4Pattern);
         }
 
         /// <summary>
         /// Valida se o item é IPV6
         /// </summary>
-        public static bool IsIpV6Like(string text)
+        private static bool IsIpV6Like(string text)
         {
             IPAddress address;
             if (IPAddress.TryParse(text, out address))
