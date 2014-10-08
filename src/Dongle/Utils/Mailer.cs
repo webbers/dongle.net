@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Net.Mail;
 using Dongle.System.IO;
 
@@ -17,6 +18,7 @@ namespace Dongle.Utils
         public bool SmtpEnableSsl { get; set; }
         public bool SmtpAuthenticate { get; set; }
         public int SmtpPort { get; set; }
+        public ICollection<Attachment> Attachments { get; set; }
 
         public void Send()
         {
@@ -36,12 +38,19 @@ namespace Dongle.Utils
             var mail = new MailMessage
             {
                 From = new MailAddress(From),
-                To = { To },
+                To = {To},
                 SubjectEncoding = DongleEncoding.Default,
                 Subject = Subject,
                 Body = message,
                 IsBodyHtml = IsBodyHtml,
             };
+            if (Attachments != null && Attachments.Count > 0)
+            {
+                foreach (var attachment in Attachments)
+                {
+                    mail.Attachments.Add(attachment);
+                }
+            }
             smtp.Send(mail);
         }
     }
