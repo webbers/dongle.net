@@ -75,7 +75,7 @@ namespace Dongle.System
             return osVersion;
         }
 
-        private static string GetWindowsVersions(IList<string> osVersions, string name, ref string shortName, ref string productType)
+        private static string GetWindowsVersions(IList<string> osVersions, string name, ref string shortName, ref string winXpType)
         {
             //Ex.: 2.6.0.6000.0.0.1.256
             var major = int.Parse(osVersions[1]);
@@ -177,6 +177,8 @@ namespace Dongle.System
                         shortName = "WXP";
                         break;
                 }
+                winXpType = GetWinXpType(major, minor, prodType, suiteMask);
+                name += " " + winXpType;
             }
             else if (major == 5 && minor == 0)
             {
@@ -211,327 +213,43 @@ namespace Dongle.System
                 name = "Windows";
                 shortName = "WIN";
             }
-            productType = GetProductType(major, minor, prodType, suiteMask);
-            name += " " + productType;
             return name;
         }
 
-        private static string GetProductType(int major, int minor, int productType, int suiteMask)
+        private static string GetWinXpType(int major, int minor, int productType, int suiteMask)
         {
             var c = "";
-            if (major == 6)
+            if (productType == ProductTypeWorkstation)
             {
-                if (productType == ProductUltimate)
-                {
-                    c = "Ultimate";
-                }
-                else if (productType == ProductHomeBasic)
-                {
-                    c = "Home";
-                }
-                else if (productType == ProductHomePremium)
-                {
-                    c = "Premium";
-                }
-                else if (productType == ProductEnterprise)
-                {
-                    c = "Enterprise";
-                }
-                else if (productType == ProductHomeBasicN)
-                {
-                    c = "Home";
-                }
-                else if (productType == ProductBusiness)
-                {
-                    c = "Business";
-                }
-                else if (productType == ProductStandardServer)
-                {
-                    c = "Standard Server";
-                }
-                else if (productType == ProductDatacenterServer)
-                {
-                    c = "Datacenter server";
-                }
-                else if (productType == ProductSmallbusinessServer)
-                {
-                    c = "Small Business Server";
-                }
-                else if (productType == ProductEnterpriseServer)
-                {
-                    c = "Enterprise Server";
-                }
-                else if (productType == ProductStarter)
-                {
-                    c = "Starter";
-                }
-                else if (productType == ProductDatacenterServerCore)
-                {
-                    c = "Dataceter server core";
-                }
-                else if (productType == ProductStandardServerCore)
-                {
-                    c = "Standard Server Core";
-                }
-                else if (productType == ProductEnterpriseServerCore)
-                {
-                    c = "Enterprise Server Core";
-                }
-                else if (productType == ProductEnterpriseServerIa64)
-                {
-                    c = "Enterprise Server Itanium-based Systems";
-                }
-                else if (productType == ProductBusinessN)
-                {
-                    c = "Business";
-                }
-                else if (productType == ProductWebServer)
-                {
-                    c = "Web Server";
-                }
-                else if (productType == ProductClusterServer)
-                {
-                    c = "Cluster Server";
-                }
-                else if (productType == ProductHomeServer)
-                {
-                    c = "Home Server";
-                }
-                else if (productType == ProductStorageExpressServer)
-                {
-                    c = "Storage Express Server";
-                }
-                else if (productType == ProductStorageStandardServer)
-                {
-                    c = "Storage Standard Server";
-                }
-                else if (productType == ProductStorageWorkgroupServer)
-                {
-                    c = "Storage Workgroup Server";
-                }
-                else if (productType == ProductStorageEnterpriseServer)
-                {
-                    c = "Storage Enterprise Server";
-                }
-                else if (productType == ProductServerForSmallbusiness)
-                {
-                    c = "Small Business Server";
-                }
-                else if (productType == ProductSmallbusinessServerPremium)
-                {
-                    c = "Small Business Server Premium";
-                }
-                else if (productType == ProductHomePremiumN)
-                {
-                    c = "Home Premium";
-                }
-                else if (productType == ProductEnterpriseN)
-                {
-                    c = "Enterprise";
-                }
-                else if (productType == ProductUltimateN)
-                {
-                    c = "Ultimate";
-                }
-                else if (productType == ProductWebServerCore)
-                {
-                    c = "Web Server Core";
-                }
-                else if (productType == ProductMediumbusinessServerManagement)
-                {
-                    c = "Medium Business Server Management";
-                }
-                else if (productType == ProductMediumbusinessServerSecurity)
-                {
-                    c = "Medium Business Server Security";
-                }
-                else if (productType == ProductMediumbusinessServerMessaging)
-                {
-                    c = "Medium Business Server Messaging";
-                }
-                else if (productType == ProductSmallbusinessServerPrime)
-                {
-                    c = "Small Business Server Prime";
-                }
-                else if (productType == ProductHomePremiumServer)
-                {
-                    c = "Home Premium Server";
-                }
-                else if (productType == ProductServerForSmallbusinessV)
-                {
-                    c = "Small Business Server";
-                }
-                else if (productType == ProductStandardServerV)
-                {
-                    c = "Standard Server";
-                }
-                else if (productType == ProductDatacenterServerV)
-                {
-                    c = "Datacenter Server";
-                }
-                else if (productType == ProductEnterpriseServerV)
-                {
-                    c = "Datacenter Server";
-                }
-                else if (productType == ProductDatacenterServerCoreV)
-                {
-                    c = "Datacenter Server Core";
-                }
-                else if (productType == ProductStandardServerCoreV)
-                {
-                    c = "Standard Server Core";
-                }
-                else if (productType == ProductEnterpriseServerCoreV)
-                {
-                    c = "Enterprise Server Core";
-                }
-                else if (productType == ProductHyperv)
-                {
-                    c = "Hyperv";
-                }
-                else if (productType == ProductStorageExpressServerCore)
-                {
-                    c = "Storege Express Server Core";
-                }
-                else if (productType == ProductStorageStandardServerCore)
-                {
-                    c = "Storege Standard Server Core";
-                }
-                else if (productType == ProductStorageWorkgroupServerCore)
-                {
-                    c = "Storege Workgroup Server Core";
-                }
-                else if (productType == ProductStorageEnterpriseServerCore)
-                {
-                    c = "Storege Enterprise Server Core";
-                }
-                else if (productType == ProductProfessional)
-                {
+                if (major < 5)
+                    c = "Workstation";
+                else if ((suiteMask & ProductSuitePersonal) == ProductSuitePersonal)
+                    c = "Home Edition";
+                else
                     c = "Professional";
-                }
-                else if (productType == ProductProfessionalN)
-                {
-                    c = "Professional";
-                }
-                else if (productType == ProductSbSolutionServer)
-                {
-                    c = "Solution Server";
-                }
-                else if (productType == ProductServerForSbSolutions)
-                {
-                    c = "Solution Server";
-                }
-                else if (productType == ProductStandardServerSolutions)
-                {
-                    c = "Standard Solution Server";
-                }
-                else if (productType == ProductStandardServerSolutionsCore)
-                {
-                    c = "Standard Solution Server Core";
-                }
-                else if (productType == ProductSbSolutionServerEm)
-                {
-                    c = "Solution Server";
-                }
-                else if (productType == ProductServerForSbSolutionsEm)
-                {
-                    c = "Solution Server";
-                }
-                else if (productType == ProductSolutionEmbeddedserver)
-                {
-                    c = "Solution Embedded Server";
-                }
-                else if (productType == ProductSolutionEmbeddedserverCore)
-                {
-                    c = "Solution Embedded Server Core";
-                }
-                else if (productType == ProductSmallbusinessServerPremiumCore)
-                {
-                    c = "Small Business Server Premium Core";
-                }
-                else if (productType == ProductEssentialbusinessServerMgmt)
-                {
-                    c = "Essential Business Server";
-                }
-                else if (productType == ProductEssentialbusinessServerAddl)
-                {
-                    c = "Essential Business Server";
-                }
-                else if (productType == ProductEssentialbusinessServerMgmtsvc)
-                {
-                    c = "Essential Business Server";
-                }
-                else if (productType == ProductEssentialbusinessServerAddlsvc)
-                {
-                    c = "Essential Business Server";
-                }
-                else if (productType == ProductClusterServerV)
-                {
-                    c = "Cluster Server";
-                }
-                else if (productType == ProductEmbedded)
-                {
-                    c = "Embedded";
-                }
-                else if (productType == ProductStarterE)
-                {
-                    c = "Starter";
-                }
-                else if (productType == ProductHomeBasicE)
-                {
-                    c = "Home";
-                }
-                else if (productType == ProductHomePremiumE)
-                {
-                    c = "Premium";
-                }
-                else if (productType == ProductProfessionalE)
-                {
-                    c = "Professional";
-                }
-                else if (productType == ProductEnterpriseE)
-                {
-                    c = "Enterprise";
-                }
-                else if (productType == ProductUltimateE)
-                {
-                    c = "Ultimate";
-                }
             }
-            else
+            else if (productType == ProductTypeDomainController)
             {
-                if (productType == ProductTypeWorkstation)
+                c = "Domain Controller Server";
+            }
+            else if (productType == ProductTypeServer)
+            {
+                if ((suiteMask & ProductSuiteDataCenter) == ProductSuiteDataCenter)
+                    c = "Datacenter Server";
+                else if ((suiteMask & ProductSuiteEnterprise) == ProductSuiteEnterprise)
                 {
-                    if (major < 5)
-                        c = "Workstation";
-                    else if ((suiteMask & ProductSuitePersonal) == ProductSuitePersonal)
-                        c = "Home Edition";
+                    if (major == 5 && minor == 0)
+                        c = "Advanced Server";
                     else
-                        c = "Professional";
+                        c = "Edition Entreprise";
                 }
-                else if (productType == ProductTypeDomainController)
+                else if ((suiteMask & ProductSuiteBlade) == ProductSuiteBlade)
                 {
-                    c = "Domain Controller Server";
+                    c = "Edition Web";
                 }
-                else if (productType == ProductTypeServer)
+                else
                 {
-                    if ((suiteMask & ProductSuiteDataCenter) == ProductSuiteDataCenter)
-                        c = "Datacenter Server";
-                    else if ((suiteMask & ProductSuiteEnterprise) == ProductSuiteEnterprise)
-                    {
-                        if (major == 5 && minor == 0)
-                            c = "Advanced Server";
-                        else
-                            c = "Edition Entreprise";
-                    }
-                    else if ((suiteMask & ProductSuiteBlade) == ProductSuiteBlade)
-                    {
-                        c = "Edition Web";
-                    }
-                    else
-                    {
-                        c = "Server";
-                    }
+                    c = "Server";
                 }
             }
             return c;

@@ -42,10 +42,10 @@ namespace Dongle.Tests.System
         public void TestOsVersionName()
         {
             var version = OsVersion.GetFromVersion("2.6.2.8250.0.0.1.256");
-            Assert.AreEqual("Windows 8 Ultimate", version.Name);
+            Assert.AreEqual("Windows 8", version.Name);
             
             version = OsVersion.GetFromVersion("2.5.0.1111.0.0.1.128");
-            Assert.AreEqual("Windows 2000 Professional", version.Name);
+            Assert.AreEqual("Windows 2000", version.Name);
             
             version = OsVersion.GetFromVersion("A3.2.1");
             Assert.AreEqual("Android", version.Name);
@@ -60,11 +60,17 @@ namespace Dongle.Tests.System
             Assert.AreEqual("Linux", version.Name);
 
             version = OsVersion.GetFromVersion("2.6.1.8250.0.0.1.256");
-            Assert.AreEqual("Windows 7 Ultimate", version.Name);
+            Assert.AreEqual("Windows 7", version.Name);
+
+            version = OsVersion.GetFromVersion("2.5.1.2600.3.0.1.256");
+            Assert.AreEqual("Windows XP SP3 Professional", version.Name);
+
+            version = OsVersion.GetFromVersion("2.5.1.2600.3.0.1.768");
+            Assert.AreEqual("Windows XP SP3 Home Edition", version.Name);
 
             version = OsVersion.GetFromVersion("2.6.1.7601.1.0.2.18");
-            Assert.AreEqual("Windows Server 2008 R2 Home", version.Name);
-            Assert.AreEqual("2.6.1.7601.1.0.2.18", version.Version);            
+            Assert.AreEqual("Windows Server 2008 R2", version.Name);
+            Assert.AreEqual("2.6.1.7601.1.0.2.18", version.Version);
         }
     }
 }
