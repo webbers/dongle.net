@@ -53,16 +53,16 @@ namespace Dongle.Tests.System.Networking
             AssertAnyOf(Client, "COMMAND RECEIVED HELLO CLIENT", 4);
 
             //Testa enviar arquivo para o servidor
-            var fileData = new byte[] {72, 69, 76, 76, 79, 32, 83, 62, 67};
-            TcpClient.SendCommand("FILE:9");
-            TcpClient.SendFile(fileData, 0, 4);
+            var fileData = new byte[] { 72, 69, 76, 76, 79, 32, 83, 62, 67, 72, 69, 76, 76, 79, 32, 83, 62, 67, 72, 69, 76, 76, 79, 32, 83, 62, 67 };
+            TcpClient.SendCommand("FILE:" + fileData.Length);
+            TcpClient.SendFile(fileData,0,4);
             AssertAnyOf(Client, "FILE SENT", 4);            
             AssertAnyOf(Server, "FILE RECEIVED", 4);
             Assert.IsTrue(fileData.SequenceEqual(File.ReadAllBytes(ApplicationPaths.CurrentPath + @"Server.txt")));
           
             //Testa enviar arquivo para o cliente
             TcpClient.SendCommand("GETFILE");
-            TcpClient.WaitForFile(9, 4);
+            TcpClient.WaitForFile(fileData.Length);
             AssertAnyOf(Server, "FILE SEND STARTED", 4);
             AssertAnyOf(Client, "FILE RECEIVED", 4);
             Assert.IsTrue(fileData.SequenceEqual(File.ReadAllBytes(ApplicationPaths.CurrentPath + @"Client.txt")));

@@ -54,7 +54,7 @@ namespace Dongle.Tests.System.Networking
                 }
                 else if (command.StartsWith("GETFILE"))
                 {
-                    TcpServer.SendFile(connectionId, new byte[] { 72, 69, 76, 76, 79, 32, 83, 62, 67 }, 0, 4);
+                    TcpServer.SendFile(connectionId, new byte[] { 72, 69, 76, 76, 79, 32, 83, 62, 67, 72, 69, 76, 76, 79, 32, 83, 62, 67, 72, 69, 76, 76, 79, 32, 83, 62, 67 });
                     AddLogLine("FILE SEND STARTED", "Server");
                 }
                 else if (command.StartsWith("QUIT"))

@@ -176,7 +176,6 @@ namespace Dongle.System.Networking.Tcp
             while (IsSending && i < 20)
             {
                 i++;
-                Thread.CurrentThread.Join(100);
             }
             IsSending = true;
         }
