@@ -155,7 +155,7 @@ namespace Dongle.System.Networking.Tcp
                     return;
                 }                
 
-                if (offset + sendingLength < fileData.Length)
+                if (offset + sendingLength <= fileData.Length)
                 {
                     SendFile(socket, callback, fileData, offset + bufferSize, bufferSize);
                     return;
