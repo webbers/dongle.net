@@ -52,20 +52,23 @@ namespace Dongle.Tests.System.Networking
             AssertAnyOf(Server, "COMMAND SENT HELLO CLIENT", 4);
             AssertAnyOf(Client, "COMMAND RECEIVED HELLO CLIENT", 4);
 
-            //Testa enviar arquivo para o servidor
             var fileData = new byte[] { 72, 69, 76, 76, 79, 32, 83, 62, 67, 72, 69, 76, 76, 79, 32, 83, 62, 67, 72, 69, 76, 76, 79, 32, 83, 62, 67 };
-            TcpClient.SendCommand("FILE:" + fileData.Length);
-            TcpClient.SendFile(fileData,0,4);
-            AssertAnyOf(Client, "FILE SENT", 4);            
-            AssertAnyOf(Server, "FILE RECEIVED", 4);
-            Assert.IsTrue(fileData.SequenceEqual(File.ReadAllBytes(ApplicationPaths.CurrentPath + @"Server.txt")));
-          
             //Testa enviar arquivo para o cliente
+
             TcpClient.SendCommand("GETFILE");
             TcpClient.WaitForFile(fileData.Length);
+
             AssertAnyOf(Server, "FILE SEND STARTED", 4);
             AssertAnyOf(Client, "FILE RECEIVED", 4);
             Assert.IsTrue(fileData.SequenceEqual(File.ReadAllBytes(ApplicationPaths.CurrentPath + @"Client.txt")));
+
+            //Testa enviar arquivo para o servidor
+            TcpClient.OnCommandSent += (command, sent) => TcpClient.SendFile(fileData);
+            TcpClient.SendCommand("FILE:" + fileData.Length);
+
+            AssertAnyOf(Client, "FILE SENT",4);
+            AssertAnyOf(Server, "FILE RECEIVED", 4);
+            Assert.IsTrue(fileData.SequenceEqual(File.ReadAllBytes(ApplicationPaths.CurrentPath + @"Server.txt")));
 
             //Testa desconectar
             TcpClient.Disconnect();

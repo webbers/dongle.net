@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading;
 using Dongle.System.IO;
 using Dongle.System.Networking.Tcp;
@@ -48,9 +49,9 @@ namespace Dongle.Tests.System.Networking
                     TcpServer.SendCommand(connectionId, "HELLO CLIENT");
                     TcpServer.WaitForCommand(connectionId);
                 }
-                else if (command.StartsWith("FILE:"))
+                else if (command.StartsWith("FILE"))
                 {
-                    TcpServer.WaitForFile(connectionId, int.Parse(command.Split(':')[1]), 4);
+                    TcpServer.WaitForFile(connectionId, int.Parse(command.Split(':')[1]));
                 }
                 else if (command.StartsWith("GETFILE"))
                 {
@@ -82,6 +83,7 @@ namespace Dongle.Tests.System.Networking
                 AddLogLine("FILE SENT", "Server");
                 TcpServer.WaitForCommand(connectionId);
             };
+
             TcpServer.OnClientConnected += connectionId => AddLogLine("CONNECTED WITH CLIENT", "Server");
 
             TcpServer.Start();

@@ -130,13 +130,14 @@ namespace Dongle.System.Networking.Tcp
 
         protected void SendFile(Socket socket, FileSentEventHandler callback, byte[] fileData, int offset = 0, int bufferSize = DefaultBufferSize)
         {
-            Wait();
+            //Wait();
             var sendingLength = bufferSize;
             if (offset + bufferSize > fileData.Length)
             {
                 sendingLength = fileData.Length - offset;
             }
-            socket.BeginSend(fileData, offset, sendingLength, 0, asyncResult =>
+            socket.SendTimeout = 1000000;
+            socket.BeginSend(fileData, offset, sendingLength, SocketFlags.None, asyncResult =>
             {
                 try
                 {
@@ -155,10 +156,9 @@ namespace Dongle.System.Networking.Tcp
                     return;
                 }                
 
-                if (offset + sendingLength <= fileData.Length)
+                if (offset + sendingLength < fileData.Length)
                 {
                     SendFile(socket, callback, fileData, offset + bufferSize, bufferSize);
-                    return;
                 }
 
                 IsSending = false;
