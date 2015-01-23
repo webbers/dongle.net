@@ -32,7 +32,14 @@ namespace Dongle.Web.Html
         private static MvcHtmlString WDateTimePickerHelper(HtmlHelper htmlHelper, ModelMetadata modelMetadata, string name, object htmlAttributes = null)
         {
             var attr = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
-            attr.Add("class", "wdatetimepicker");
+            if (attr.ContainsKey("class"))
+            {
+                attr["class"] += " wdatetimepicker";
+            }
+            else
+            {
+                attr.Add("class", "wdatetimepicker");
+            }
 
             var obj1 = (object)modelMetadata.NullDisplayText;
             modelMetadata.EditFormatString = "{0:G}";

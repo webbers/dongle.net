@@ -23,7 +23,11 @@ namespace Dongle.Web.Tests.Mvc.Html
             html = hh.WDateTimePicker("abc");
             Assert.AreEqual("<input class=\"wdatetimepicker\" id=\"abc\" name=\"abc\" type=\"text\" value=\"\" />", html.ToHtmlString());
 
-            html = hh.WDateTimePickerFor(m=>m.CreatedAt);
+            html = hh.WDateTimePickerFor(m=>m.CreatedAt, new { @class = "testClass1 testClass2" });
+            Assert.IsTrue(html.ToHtmlString() == "<input class=\"testClass1 testClass2 wdatetimepicker\" id=\"CreatedAt\" name=\"CreatedAt\" type=\"text\" value=\"15/08/2011 12:30:15\" />" ||
+                          html.ToHtmlString() == "<input class=\"testClass1 testClass2 wdatetimepicker\" id=\"CreatedAt\" name=\"CreatedAt\" type=\"text\" value=\"8/15/2011 12:30:15 PM\" />");
+
+            html = hh.WDateTimePickerFor(m => m.CreatedAt);
             Assert.IsTrue(html.ToHtmlString() == "<input class=\"wdatetimepicker\" id=\"CreatedAt\" name=\"CreatedAt\" type=\"text\" value=\"15/08/2011 12:30:15\" />" ||
                           html.ToHtmlString() == "<input class=\"wdatetimepicker\" id=\"CreatedAt\" name=\"CreatedAt\" type=\"text\" value=\"8/15/2011 12:30:15 PM\" />");
         }
@@ -64,6 +68,9 @@ namespace Dongle.Web.Tests.Mvc.Html
 
             html = hh.WSpinButtonFor(m => m.Price);
             Assert.AreEqual("<input class=\"wspinbutton\" id=\"Price\" name=\"Price\" type=\"text\" value=\"10\" />", html.ToHtmlString());
+
+            html = hh.WSpinButtonFor(m => m.Price, new { @class = "testClass1 testClass2" });
+            Assert.AreEqual("<input class=\"testClass1 testClass2 wspinbutton\" id=\"Price\" name=\"Price\" type=\"text\" value=\"10\" />", html.ToHtmlString());
         }
 
         [Test]
@@ -75,7 +82,10 @@ namespace Dongle.Web.Tests.Mvc.Html
                                         CreatedAt = new DateTime(2011, 8, 15, 12, 30, 15)
                                     };
 
-            var html = hh.WSwitchButtonFor(m => m.Enabled);
+            var html = hh.WSwitchButtonFor(m => m.Enabled, new { @class = "testClass1 testClass2" });
+            Assert.AreEqual("<input class=\"testClass1 testClass2 wswitchbutton\" id=\"Enabled\" name=\"Enabled\" no=\"Não!\" type=\"checkbox\" value=\"true\" yes=\"Sim!\" /><input name=\"Enabled\" type=\"hidden\" value=\"false\" />", html.ToHtmlString());
+
+            html = hh.WSwitchButtonFor(m => m.Enabled);
             Assert.AreEqual("<input class=\"wswitchbutton\" id=\"Enabled\" name=\"Enabled\" no=\"Não!\" type=\"checkbox\" value=\"true\" yes=\"Sim!\" /><input name=\"Enabled\" type=\"hidden\" value=\"false\" />", html.ToHtmlString());
 
             html = hh.WSwitchButton("teste");

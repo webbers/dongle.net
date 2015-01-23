@@ -38,7 +38,14 @@ namespace Dongle.Web.Html
         private static IDictionary<string, object> MakeAttributes(object htmlAttributes)
         {
             var attr = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
-            attr.Add("class", "wswitchbutton");
+            if (attr.ContainsKey("class"))
+            {
+                attr["class"] += " wswitchbutton";
+            }
+            else
+            {
+                attr.Add("class", "wswitchbutton");
+            }
             return attr;
         }
     }
