@@ -74,9 +74,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authentication\AuthenticatedUser.cs" />
-    <Compile Include="Authentication\IAuthenticator.cs" />
-    <Compile Include="Authentication\LdapAuthenticator.cs" />
     <Compile Include="Authentication\SessionAuthorizeAttribute.cs" />
     <Compile Include="DongleJsonResult.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />

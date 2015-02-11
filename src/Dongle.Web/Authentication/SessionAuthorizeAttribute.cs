@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Dongle.Authentication;
 
 namespace Dongle.Web.Authentication
 {

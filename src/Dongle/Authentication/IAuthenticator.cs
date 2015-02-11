@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Dongle.Web.Authentication
+namespace Dongle.Authentication
 {
     public interface IAuthenticator
     {

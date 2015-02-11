@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Dongle.Authentication;
 using Dongle.Web.Authentication;
 using Moq;
 

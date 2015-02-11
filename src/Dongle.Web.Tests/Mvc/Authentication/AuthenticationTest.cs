@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
+using Dongle.Authentication;
 using Dongle.Web.Authentication;
 using Dongle.Web.Tests.Tools;
 using NUnit.Framework;

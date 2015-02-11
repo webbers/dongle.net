@@ -4,7 +4,7 @@ using System.DirectoryServices.AccountManagement;
 using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 
-namespace Dongle.Web.Authentication
+namespace Dongle.Authentication
 {
     public class LdapAuthenticator : IAuthenticator
     {

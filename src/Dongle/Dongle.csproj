@@ -69,6 +69,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
@@ -76,6 +78,9 @@
   <ItemGroup>
     <Compile Include="Algorithms\Crc32.cs" />
     <Compile Include="Algorithms\HumanReadableHash.cs" />
+    <Compile Include="Authentication\AuthenticatedUser.cs" />
+    <Compile Include="Authentication\IAuthenticator.cs" />
+    <Compile Include="Authentication\LdapAuthenticator.cs" />
     <Compile Include="Configuration\AppConfig.cs" />
     <Compile Include="Reflection\PropertySetters\BypassSetter.cs" />
     <Compile Include="Reflection\PropertySetters\DateTimeSetter.cs" />
