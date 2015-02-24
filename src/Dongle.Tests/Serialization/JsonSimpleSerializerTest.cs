@@ -92,5 +92,17 @@ namespace Dongle.Tests.Serialization
             var value = JsonSimpleSerializer.GetNodeValueFromJson(fooString, "Name");
             Assert.AreEqual("Wine", value);
         }
+
+
+        [Test]
+        public void GetInvalidNodeValueFromJsonTest()
+        {
+            const string fooString = @"{""Name"":""Wine"",""Age"":10,""CreatedAt"":""03/04/2001"",""Price"":1.25,""Enabled"":false,""Parent"":null}";
+            const string invalidPropertyName = "InvalidPropertyName";
+
+            var value = JsonSimpleSerializer.GetNodeValueFromJson(fooString, invalidPropertyName);
+            
+            Assert.IsNull(value);
+        }
     }
 }

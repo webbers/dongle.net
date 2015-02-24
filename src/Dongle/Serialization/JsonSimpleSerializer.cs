@@ -81,8 +81,18 @@ namespace Dongle.Serialization
 
         public static string GetNodeValueFromJson(string raw,string nodeName)
         {
-            var nodeValue = JObject.Parse(raw);
-            return (string)nodeValue[nodeName];
+            string value = null;
+            using (var reader = new JsonTextReader(new StringReader(raw)))
+            {
+                while (reader.Read())
+                {
+                    if (reader.TokenType == JsonToken.PropertyName && reader.Path == nodeName)
+                    {
+                        value = reader.ReadAsString();
+                    }
+                }
+            }
+            return value;
         }
 
         private static JsonSerializerSettings GetDefatultJsonSerializerSettings(CultureInfo cultureInfo)
