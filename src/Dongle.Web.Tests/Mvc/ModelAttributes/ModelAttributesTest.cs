@@ -11,6 +11,19 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
         [Test]
         public void TestEmailAttribute()
         {
+            var attrib = new WMultipleEmailAttribute();
+            Assert.IsTrue(attrib.IsValid("1@a.com"));
+            Assert.IsTrue(attrib.IsValid("1@a.com,2@a.com,"));
+            Assert.IsTrue(attrib.IsValid("1@a.com,2@a.com,3@a.com,"));
+            Assert.IsFalse(attrib.IsValid("1@a.com;2@a.com;3@a.com;"));
+            var rules = attrib.GetClientValidationRules(null, null);
+
+            Assert.IsTrue(rules.First().ErrorMessage == "Invalid e-mail" || rules.First().ErrorMessage == "E-mail inválido");
+        }
+
+        [Test]
+        public void TestMultipleEmailAttribute()
+        {
             var attrib = new WEmailAttribute();
             Assert.IsTrue(attrib.IsValid("a@b.com"));
             Assert.IsFalse(attrib.IsValid("silvio santos"));

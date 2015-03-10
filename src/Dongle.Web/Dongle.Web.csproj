@@ -83,12 +83,13 @@
     <Compile Include="Html\WResourceLabelExtensions.cs" />
     <Compile Include="Html\WSpinButtonExtensions.cs" />
     <Compile Include="Html\WSwitchButtonExtensions.cs" />
+    <Compile Include="ModelAttributes\WEmailAttribute.cs" />
     <Compile Include="ModelAttributes\WIpWildCardAttribute.cs" />
     <Compile Include="ModelAttributes\WProxyAttribute.cs" />
     <Compile Include="ModelAttributes\WDateRange.cs" />
     <Compile Include="ModelAttributes\WCompare.cs" />
     <Compile Include="ModelAttributes\WDomainAttribute.cs" />
-    <Compile Include="ModelAttributes\WEmailAttribute.cs" />
+    <Compile Include="ModelAttributes\WMultipleEmailAttribute.cs" />
     <Compile Include="ModelAttributes\WHexadecimalAttribute.cs" />
     <Compile Include="ModelAttributes\WIpAttribute.cs" />
     <Compile Include="ModelAttributes\WRange.cs" />
