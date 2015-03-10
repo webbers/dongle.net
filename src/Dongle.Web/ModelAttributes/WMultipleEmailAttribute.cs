@@ -23,7 +23,7 @@ namespace Dongle.Web.ModelAttributes
             };
 
             validationRule.ValidationParameters.Add("pattern", PatternStr);
-            validationRule.ValidationType = "email";
+            validationRule.ValidationType = "regex";
 
             return new List<ModelClientValidationRule> { validationRule };
         }
