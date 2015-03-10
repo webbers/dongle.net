@@ -2,7 +2,7 @@
 	"name": "Dongle",
 	"title": "Dongle",
 	"description": "A boosted util library",
-	"version": "0.20.0",
+	"version": "0.29.0",
 	"homepage": "https://github.com/webbers/dongle.net",
 	"author": "Webbers Team",
 	"repository": {

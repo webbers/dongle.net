@@ -82,6 +82,12 @@
     <Compile Include="Authentication\IAuthenticator.cs" />
     <Compile Include="Authentication\LdapAuthenticator.cs" />
     <Compile Include="Configuration\AppConfig.cs" />
+    <Compile Include="Criptography\Digest.cs" />
+    <Compile Include="Criptography\MD5.cs" />
+    <Compile Include="Criptography\Md5ChangedEventArgs.cs" />
+    <Compile Include="Criptography\Md5ChangingEventArgs.cs" />
+    <Compile Include="Criptography\Md5Helper.cs" />
+    <Compile Include="Criptography\Md5InitializerConstant.cs" />
     <Compile Include="Reflection\PropertySetters\BypassSetter.cs" />
     <Compile Include="Reflection\PropertySetters\DateTimeSetter.cs" />
     <Compile Include="Reflection\PropertySetters\EnumSetter.cs" />

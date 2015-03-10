@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using Dongle.Algorithms;
@@ -13,8 +12,6 @@ namespace Dongle.System
 {
     public static class StringExtensions
     {
-        private static readonly MD5CryptoServiceProvider Md5Provider = new MD5CryptoServiceProvider();
-
         public static byte[] ToBytes(this String str)
         {
             return DongleEncoding.Default.GetBytes(str);
@@ -31,15 +28,11 @@ namespace Dongle.System
         /// </summary>
         public static string ToMd5(this String str)
         {
-            var encodedBytes = Md5Provider.ComputeHash(str.ToBytes());
-
-            var sb = new StringBuilder();
-
-            foreach (var encodedByte in encodedBytes)
+            var md5 = new Criptography.MD5
             {
-                sb.AppendFormat("{0:x2}", encodedByte);
-            }
-            return sb.ToString();
+                ValueAsByte = DongleEncoding.Default.GetBytes(str)
+            };
+            return md5.Hash.ToLowerInvariant();
         }
 
         /// <summary>
@@ -51,15 +44,12 @@ namespace Dongle.System
             {
                 encoding = DongleEncoding.Default;
             }
-            var md5 = MD5.Create();
-            var inputBytes = encoding.GetBytes(value);
-            var hash = md5.ComputeHash(inputBytes);
-            var sb = new StringBuilder();
-            for (var i = 0; i < hash.Length; i++)
+
+            var md5 = new Criptography.MD5
             {
-                sb.Append(hash[i].ToString("X2"));
-            }
-            return sb.ToString();
+                ValueAsByte = encoding.GetBytes(value)
+            };
+            return md5.Hash;
         }
 
         /// <summary>
@@ -72,11 +62,13 @@ namespace Dongle.System
             const string not = "?#\"'\\/:<>|*-+";
             for (var i = 0; i < past.Length; i++)
             {
-                text = text.Replace(past[i].ToString(), future[i].ToString());
+                text = text.Replace(past[i].ToString(CultureInfo.InvariantCulture), 
+                                    future[i].ToString(CultureInfo.InvariantCulture));
             }
             for (var i = 0; i < not.Length; i++)
             {
-                text = text.Replace(not[i].ToString(), "");
+                text = text.Replace(not[i].ToString(CultureInfo.InvariantCulture), 
+                                    string.Empty);
             }
             return text;
         }
