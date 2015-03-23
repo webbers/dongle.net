@@ -17,7 +17,7 @@ namespace Dongle.System.Networking.NamedPipes
         public void Connect(string pipeName, string serverName = ".", int timeout = 2000)
         {
             using (var pipeStream = new NamedPipeClientStream(serverName, pipeName, PipeDirection.InOut, PipeOptions.Asynchronous, TokenImpersonationLevel.Impersonation))
-            {                
+            {
                 try
                 {
                     pipeStream.Connect(timeout);
@@ -34,8 +34,13 @@ namespace Dongle.System.Networking.NamedPipes
                     if (OnErrorOcurred != null)
                     {
                         OnErrorOcurred(exception);
-                    }                    
-                }                
+                    }
+                }
+                finally
+                {
+                    pipeStream.Flush();
+                    pipeStream.Close();
+                }
             }
         }
     }
