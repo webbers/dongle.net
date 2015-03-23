@@ -71,7 +71,7 @@ namespace Dongle.System.Networking.NamedPipes
         private void ProcessClientThread(object o)
         {
             using (var pipeStream = (NamedPipeServerStream)o)
-            {                
+            {
                 try
                 {
                     using (var stringStream = new StringStream(pipeStream))
@@ -89,7 +89,14 @@ namespace Dongle.System.Networking.NamedPipes
                         OnErrorOcurred(exception);
                     }
                 }
-                pipeStream.Close();
+                finally
+                {
+                    if (pipeStream != null && pipeStream.IsConnected)
+                    {
+                        pipeStream.Flush();
+                        pipeStream.Close();
+                    }
+                }
             }
         }
     }

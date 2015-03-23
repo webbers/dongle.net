@@ -16,27 +16,31 @@ namespace Dongle.System.Networking.NamedPipes
 
         public void Connect(string pipeName, string serverName = ".", int timeout = 2000)
         {
-            using (var pipeStream = new NamedPipeClientStream(serverName, pipeName, PipeDirection.InOut, PipeOptions.Asynchronous, TokenImpersonationLevel.Impersonation))
+            NamedPipeClientStream pipeStream = null;
+
+            try
             {
-                try
+                pipeStream = new NamedPipeClientStream(serverName, pipeName, PipeDirection.InOut,
+                                                       PipeOptions.Asynchronous, TokenImpersonationLevel.Impersonation);
+                pipeStream.Connect(timeout);
+                using (var stringStream = new StringStream(pipeStream))
                 {
-                    pipeStream.Connect(timeout);
-                    using (var stringStream = new StringStream(pipeStream))
+                    if (OnConnected != null)
                     {
-                        if (OnConnected != null)
-                        {
-                            OnConnected(stringStream);
-                        }
+                        OnConnected(stringStream);
                     }
                 }
-                catch (Exception exception)
+            }
+            catch (Exception exception)
+            {
+                if (OnErrorOcurred != null)
                 {
-                    if (OnErrorOcurred != null)
-                    {
-                        OnErrorOcurred(exception);
-                    }
+                    OnErrorOcurred(exception);
                 }
-                finally
+            }
+            finally
+            {
+                if (pipeStream != null && pipeStream.IsConnected)
                 {
                     pipeStream.Flush();
                     pipeStream.Close();
