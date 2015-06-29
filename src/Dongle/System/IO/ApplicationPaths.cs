@@ -278,8 +278,12 @@ namespace Dongle.System.IO
                 directory = directory.Parent;
                 if (directory == null)
                     return null;
+                if (directory.Name == dirname)
+                {
+                    break;
+                }
             }
-            return new DirectoryInfo(Path.Combine(directory.FullName, dirname));
+            return new DirectoryInfo(directory.FullName);
         }
 
         /// <summary>
