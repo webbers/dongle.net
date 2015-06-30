@@ -279,7 +279,7 @@ namespace Dongle.System.IO
                 if (directory == null)
                     return null;
             }
-            return new DirectoryInfo(directory.FullName);
+            return new DirectoryInfo(Path.Combine(directory.FullName, dirname));
         }
 
         /// <summary>
