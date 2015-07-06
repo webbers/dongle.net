@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using Dongle.Web.Resources;
+using Dongle.Resources;
 
 namespace Dongle.Web.ModelAttributes
 {

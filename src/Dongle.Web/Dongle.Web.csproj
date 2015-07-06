@@ -99,40 +99,15 @@
     <Compile Include="ModelAttributes\WSwitchButtonAttribute.cs" />
     <Compile Include="ModelAttributes\WUrlAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\DongleResource.es-ES.Designer.cs">
-      <DependentUpon>DongleResource.es-ES.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\DongleResource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DongleResource.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\DongleResource.pt-BR.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DongleResource.pt-BR.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\DongleResource.es-ES.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DongleResource.es-ES.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\DongleResource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DongleResource.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\DongleResource.pt-BR.resx">
-      <LastGenOutput>DongleResource.pt-BR.Designer.cs</LastGenOutput>
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dongle.Data\Dongle.Data.csproj">
       <Project>{DB9CC4FF-D804-4A07-B08B-AEDD0EF2A737}</Project>
       <Name>Dongle.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dongle.Resources\Dongle.Resources.csproj">
+      <Project>{70a2e54d-f5aa-4b98-9f84-83d35760ec58}</Project>
+      <Name>Dongle.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dongle\Dongle.csproj">
       <Project>{56CF536E-2136-4E13-B987-2A76304BEC08}</Project>

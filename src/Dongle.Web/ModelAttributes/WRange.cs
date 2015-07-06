@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using Dongle.Web.Resources;
+using Dongle.Resources;
 
 namespace Dongle.Web.ModelAttributes
 {
 
     public sealed class WRangeAttribute : RangeAttribute, IClientValidatable
     {
-        private int _startValue;
-        private int _endValue;
+        private readonly int _startValue;
+        private readonly int _endValue;
 
         public WRangeAttribute(int startValue, int endValue): base(startValue, endValue)
         {

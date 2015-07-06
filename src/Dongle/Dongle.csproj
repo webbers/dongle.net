@@ -106,11 +106,6 @@
     <Compile Include="System\Networking\Tcp\TcpServer.cs" />
     <Compile Include="Reflection\MemberInfoExtensions.cs" />
     <Compile Include="Reflection\ObjectFiller.cs" />
-    <Compile Include="Resources\DongleResource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DongleResource.resx</DependentUpon>
-    </Compile>
     <Compile Include="Serialization\CsvSerializer.cs" />
     <Compile Include="Serialization\FixedWidthTextSerializer.cs" />
     <Compile Include="Serialization\IEnumerableSerializer.cs" />
@@ -142,17 +137,6 @@
     <Compile Include="Utils\Mailer.cs" />
     <Compile Include="Utils\UrlUtils.cs" />
     <Compile Include="Utils\VersionUtils.cs" />
-    <EmbeddedResource Include="Resources\DongleResource.es-ES.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\DongleResource.pt-BR.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\DongleResource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DongleResource.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <None Include="key.snk.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -167,6 +151,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Reporting\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dongle.Resources\Dongle.Resources.csproj">
+      <Project>{70a2e54d-f5aa-4b98-9f84-83d35760ec58}</Project>
+      <Name>Dongle.Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
