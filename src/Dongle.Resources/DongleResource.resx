@@ -126,6 +126,9 @@
   <data name="FewSecondsAgo" xml:space="preserve">
     <value>Few seconds ago</value>
   </data>
+  <data name="InvalidDate" xml:space="preserve">
+    <value>The field must be a valid date.</value>
+  </data>
   <data name="InvalidDomain" xml:space="preserve">
     <value>Invalid domain</value>
   </data>

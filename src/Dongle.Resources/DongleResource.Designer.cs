@@ -88,6 +88,15 @@ namespace Dongle.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The field must be a valid date..
+        /// </summary>
+        public static string InvalidDate {
+            get {
+                return ResourceManager.GetString("InvalidDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid domain.
         /// </summary>
         public static string InvalidDomain {
