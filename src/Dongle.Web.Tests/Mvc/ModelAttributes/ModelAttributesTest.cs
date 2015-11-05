@@ -11,11 +11,14 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
         [Test]
         public void TestEmailAttribute()
         {
-            var attrib = new WMultipleEmailAttribute();
-            Assert.IsTrue(attrib.IsValid("1@a.com"));
-            Assert.IsTrue(attrib.IsValid("1@a.com,2@a.com,"));
-            Assert.IsTrue(attrib.IsValid("1@a.com,2@a.com,3@a.com,"));
-            Assert.IsFalse(attrib.IsValid("1@a.com;2@a.com;3@a.com;"));
+            var attrib = new WEmailAttribute();
+            Assert.IsTrue(attrib.IsValid("1@teste.com"));
+            Assert.IsTrue(attrib.IsValid("1@teste.com.se"));
+            Assert.IsTrue(attrib.IsValid("1@12.0.0.1"));
+            Assert.IsFalse(attrib.IsValid("teste"));
+            Assert.IsFalse(attrib.IsValid("teste@g"));
+            Assert.IsFalse(attrib.IsValid("teste2@g."));
+            Assert.IsFalse(attrib.IsValid("teste2@gmei.com,"));
             var rules = attrib.GetClientValidationRules(null, null);
 
             Assert.IsTrue(rules.First().ErrorMessage == "Invalid e-mail" || rules.First().ErrorMessage == "E-mail inválido");
@@ -24,9 +27,13 @@ namespace Dongle.Web.Tests.Mvc.ModelAttributes
         [Test]
         public void TestMultipleEmailAttribute()
         {
-            var attrib = new WEmailAttribute();
-            Assert.IsTrue(attrib.IsValid("a@b.com"));
+            var attrib = new WMultipleEmailAttribute();
+            Assert.IsTrue(attrib.IsValid("a@teste.com"));
+            Assert.IsTrue(attrib.IsValid("a@teste.com,b@teste.com.br"));
+            Assert.IsTrue(attrib.IsValid("a@teste.com,b@teste.com.br,c@192.168.0.1"));
             Assert.IsFalse(attrib.IsValid("silvio santos"));
+            Assert.IsFalse(attrib.IsValid("a@teste."));
+            Assert.IsFalse(attrib.IsValid("a@teste.com,b@test"));
 
             var rules = attrib.GetClientValidationRules(null, null);
 

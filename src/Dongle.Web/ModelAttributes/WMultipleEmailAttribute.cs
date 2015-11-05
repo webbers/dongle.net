@@ -8,7 +8,7 @@ namespace Dongle.Web.ModelAttributes
     public sealed class WMultipleEmailAttribute : RegularExpressionAttribute, IClientValidatable
     {
         private const string PatternStr =
-            @"^([\w+-.%]+@[\w-.]+\.[A-Za-z]{2,4},?)+$";
+            @"^(([\w\%\-\._\!]+)@((([0-9]{1,3}\.){3}[0-9])|(([\w]+\.[A-Za-z]{2,})(\.[A-Za-z]{1,2})?))(\,?))+$";
 
         public WMultipleEmailAttribute()
             : base(PatternStr)
@@ -23,7 +23,7 @@ namespace Dongle.Web.ModelAttributes
             };
 
             validationRule.ValidationParameters.Add("pattern", PatternStr);
-            validationRule.ValidationType = "email";
+            validationRule.ValidationType = "regex";
 
             return new List<ModelClientValidationRule> { validationRule };
         }
