@@ -118,42 +118,99 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BadUsernameOrPassword" xml:space="preserve">
-    <value>Usuario o contraseña inválida</value>
+    <value>Bad username or password.</value>
+  </data>
+  <data name="False" xml:space="preserve">
+    <value>False</value>
+  </data>
+  <data name="FewSecondsAgo" xml:space="preserve">
+    <value>Few seconds ago</value>
+  </data>
+  <data name="InvalidDate" xml:space="preserve">
+    <value>The field must be a valid date.</value>
   </data>
   <data name="InvalidDomain" xml:space="preserve">
-    <value>Dominio no valido</value>
+    <value>Invalid domain</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
-    <value>E-mail no valido</value>
+    <value>Invalid e-mail</value>
   </data>
   <data name="InvalidHexadecimal" xml:space="preserve">
-    <value>El valor debe ser un hexadecimal con {0} octeto (s)</value>
+    <value>The value must be a hexadecimal with {0} octet (s)</value>
   </data>
   <data name="InvalidHexadecimalRange" xml:space="preserve">
-    <value>El valor debe ser un hexadecimal de  {0} a {1} octeto (s)</value>
+    <value>The value must be a hexadecimal with {0} to {1} octet (s)</value>
   </data>
   <data name="InvalidIpAddress" xml:space="preserve">
-    <value>Dirección IP no válida</value>
+    <value>Invalid IP address</value>
   </data>
   <data name="InvalidProxy" xml:space="preserve">
-    <value>Proxy no valido</value>
+    <value>Invalid proxy</value>
   </data>
   <data name="InvalidStringLength" xml:space="preserve">
-    <value>La cantidad de caracteres no es válidos. Número máximo de {0} caracteres</value>
+    <value>Invalid string length. Max {0} characters.</value>
   </data>
   <data name="InvalidUrl" xml:space="preserve">
-    <value>URL no valido</value>
+    <value>Invalid URL</value>
+  </data>
+  <data name="ItsNotPossibleReadFile" xml:space="preserve">
+    <value>Is not possible read file</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="OneDayAgo" xml:space="preserve">
+    <value>1 day ago</value>
+  </data>
+  <data name="OneHourAgo" xml:space="preserve">
+    <value>1 hour ago</value>
+  </data>
+  <data name="OneMinuteAgo" xml:space="preserve">
+    <value>1 minute ago</value>
+  </data>
+  <data name="SourceDirectoryNotFound" xml:space="preserve">
+    <value>Source directory does not exist or could not be found</value>
+  </data>
+  <data name="TcpConnectionClosedError" xml:space="preserve">
+    <value>The connection was closed. Check if server is available.</value>
+  </data>
+  <data name="TcpConnectionError" xml:space="preserve">
+    <value>Error while connecting to remote host {0}:{1}</value>
+  </data>
+  <data name="TcpServerStartError" xml:space="preserve">
+    <value>The server could not be started. Make sure the provided IP/Port are no longer being used by another application.</value>
   </data>
   <data name="TheDatePeriodMustBeBetween" xml:space="preserve">
-    <value>La fecha debe estar entre {0} y {1}</value>
+    <value>The date may be between {0} and {1}</value>
   </data>
   <data name="TheValueMustBeBetween" xml:space="preserve">
-    <value>El valor debe estar entre {0} y {1}</value>
+    <value>The value must be between {0} and {1}</value>
+  </data>
+  <data name="TheXFieldWasInvalid" xml:space="preserve">
+    <value>Invalid value for field {0}</value>
   </data>
   <data name="ThisFieldIsRequired" xml:space="preserve">
-    <value>Campos obligatorio</value>
+    <value>Field required</value>
+  </data>
+  <data name="True" xml:space="preserve">
+    <value>True</value>
   </data>
   <data name="UnableToAccessLdapServer" xml:space="preserve">
-    <value>No se puede acceder al servidor LDAP</value>
+    <value>Unable to access LDAP server.</value>
+  </data>
+  <data name="XDaysAgo" xml:space="preserve">
+    <value>{0} days ago</value>
+  </data>
+  <data name="XHoursAgo" xml:space="preserve">
+    <value>{0} hours ago</value>
+  </data>
+  <data name="XMinutesAgo" xml:space="preserve">
+    <value>{0} minutes ago</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>yes</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Yesterday</value>
   </data>
 </root>

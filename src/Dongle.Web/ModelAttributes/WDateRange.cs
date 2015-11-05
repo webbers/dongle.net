@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Resources;
 using System.Web.Mvc;
+using Dongle.Resources;
 using Dongle.Serialization;
-using Dongle.Web.Resources;
 
 namespace Dongle.Web.ModelAttributes
 {

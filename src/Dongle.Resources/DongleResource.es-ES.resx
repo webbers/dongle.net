@@ -117,11 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BadUsernameOrPassword" xml:space="preserve">
+    <value>Usuario o contraseña inválida</value>
+  </data>
   <data name="False" xml:space="preserve">
     <value>Falso</value>
   </data>
   <data name="FewSecondsAgo" xml:space="preserve">
     <value>hace unos segundos</value>
+  </data>
+  <data name="InvalidDate" xml:space="preserve">
+    <value>El campo debe ser una fecha válida.</value>
+  </data>
+  <data name="InvalidDomain" xml:space="preserve">
+    <value>Dominio no valido</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>E-mail no valido</value>
+  </data>
+  <data name="InvalidHexadecimal" xml:space="preserve">
+    <value>El valor debe ser un hexadecimal con {0} octeto (s)</value>
+  </data>
+  <data name="InvalidHexadecimalRange" xml:space="preserve">
+    <value>El valor debe ser un hexadecimal de  {0} a {1} octeto (s)</value>
+  </data>
+  <data name="InvalidIpAddress" xml:space="preserve">
+    <value>Dirección IP no válida</value>
+  </data>
+  <data name="InvalidProxy" xml:space="preserve">
+    <value>Proxy no valido</value>
+  </data>
+  <data name="InvalidStringLength" xml:space="preserve">
+    <value>La cantidad de caracteres no es válidos. Número máximo de {0} caracteres</value>
+  </data>
+  <data name="InvalidUrl" xml:space="preserve">
+    <value>URL no valido</value>
   </data>
   <data name="ItsNotPossibleReadFile" xml:space="preserve">
     <value>No es posible leer archivos</value>
@@ -150,11 +180,23 @@
   <data name="TcpServerStartError" xml:space="preserve">
     <value>No fue posible iniciar el servidor. Verifique si el IP/Puerta suministrado ya no está siendo utilizado por otro aplicativo.</value>
   </data>
+  <data name="TheDatePeriodMustBeBetween" xml:space="preserve">
+    <value>La fecha debe estar entre {0} y {1}</value>
+  </data>
+  <data name="TheValueMustBeBetween" xml:space="preserve">
+    <value>El valor debe estar entre {0} y {1}</value>
+  </data>
   <data name="TheXFieldWasInvalid" xml:space="preserve">
     <value>Valor no válido para el campo {0}</value>
   </data>
+  <data name="ThisFieldIsRequired" xml:space="preserve">
+    <value>Campos obligatorio</value>
+  </data>
   <data name="True" xml:space="preserve">
     <value>Verdadero</value>
+  </data>
+  <data name="UnableToAccessLdapServer" xml:space="preserve">
+    <value>No se puede acceder al servidor LDAP</value>
   </data>
   <data name="XDaysAgo" xml:space="preserve">
     <value>Hace {0} días</value>

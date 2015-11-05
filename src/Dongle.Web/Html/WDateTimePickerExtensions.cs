@@ -50,6 +50,8 @@ namespace Dongle.Web.Html
                                                                                  modelMetadata.Model
                                                                              });
 
+            attr["data-val-date"] = Dongle.Resources.DongleResource.InvalidDate;
+
             return htmlHelper.TextBox(name, obj1, attr);
         }
     }
