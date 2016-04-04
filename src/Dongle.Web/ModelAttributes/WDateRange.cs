@@ -11,24 +11,34 @@ namespace Dongle.Web.ModelAttributes
     public sealed class WDateRangeAttribute : ValidationAttribute, IClientValidatable
     {
         private readonly DateTime _minDate = new DateTime(1900, 1, 1);
-        private readonly DateTime _maxDate = DateTime.Now;
+        private DateTime? _maxDate = DateTime.Now;
+        private static bool _useMaxDate = false;
 
         public WDateRangeAttribute()
-        {
+        {            
         }
         
         public WDateRangeAttribute(DateTime? minDate = null, DateTime? maxDate = null)
         {
             if (maxDate.HasValue)
+            {
                 _maxDate = maxDate.Value;
+                _useMaxDate = true;
+            }
+            else
+            {
+                _maxDate = DateTime.Now.Date.AddDays(1).AddSeconds(-1);
+            }
 
             if (minDate.HasValue)
+            {
                 _minDate = minDate.Value;
+            }
         }
 
         public override string FormatErrorMessage(string name)
         {
-            return String.Format(DongleResource.TheDatePeriodMustBeBetween, _minDate, _maxDate);
+            return String.Format(DongleResource.TheDatePeriodMustBeBetween, _minDate, _useMaxDate ? _maxDate : DateTime.Now.Date.AddDays(1).AddSeconds(-1));
         }
 
         public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
@@ -38,7 +48,7 @@ namespace Dongle.Web.ModelAttributes
                 ErrorMessage = FormatErrorMessage(""),
                 ValidationType = "daterange",
             };
-            rule.ValidationParameters.Add("max", JsonSimpleSerializer.SerializeToString(_maxDate));
+            rule.ValidationParameters.Add("max", JsonSimpleSerializer.SerializeToString(_useMaxDate ? _maxDate : DateTime.Now.Date.AddDays(1).AddSeconds(-1)));
             rule.ValidationParameters.Add("min", JsonSimpleSerializer.SerializeToString(_minDate));
 
             yield return rule;
@@ -50,7 +60,7 @@ namespace Dongle.Web.ModelAttributes
                 return null;
 
             var val = Convert.ToDateTime(value);
-            if (val >= _minDate && val <= _maxDate)
+            if (val >= _minDate && val <= (_useMaxDate ? _maxDate : DateTime.Now.Date.AddDays(1).AddSeconds(-1)))
             {
                 return null;
             }
