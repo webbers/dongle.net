@@ -8,7 +8,7 @@ namespace Dongle.Web.ModelAttributes
     public sealed class WEmailAttribute : RegularExpressionAttribute, IClientValidatable
     {
         private const string PatternStr =
-            @"^(([\w\%\-\._\!]+)@((([0-9]{1,3}\.){3}[0-9]{1,3})|([\w]+(\.[A-Za-z]{2,})+)))$";
+            @"^(([\w\%\-\._\!]+)@((([0-9]{1,3}\.){3}[0-9]{1,3})|([\w\-]+(\.[A-Za-z]{2,})+)))$";
 
         public WEmailAttribute()
             : base(PatternStr)
